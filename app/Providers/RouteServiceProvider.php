@@ -38,8 +38,8 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapBackRoutes();
-//        $this->mapApiRoutes();
-//        $this->mapFrontRoutes();
+        $this->mapApiRoutes();
+        $this->mapFrontRoutes();
     }
 
     /**
