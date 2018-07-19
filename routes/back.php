@@ -13,3 +13,4 @@
 Route::get('/', 'AdminController@index');
 Route::view('login', 'Back.Login.login');
 Route::post('login/login', 'LoginController@login');
+Route::post('');
