@@ -10,7 +10,11 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-Route::get('/', 'AdminController@index');
+
+//登录
 Route::view('login', 'Back.Login.login');
 Route::post('login/login', 'LoginController@login');
-Route::post('');
+//首页
+Route::get('/', 'AdminController@index');
+//用户
+Route::get('user/create', 'AdminUserController@create');//创建用户

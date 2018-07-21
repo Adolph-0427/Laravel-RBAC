@@ -13,8 +13,7 @@
   ================================================== -->
     <meta charset="utf-8">
     <title>@yield('title','Blog')</title>
-    <meta name="description"
-          content="Free Html5 Templates and Free Responsive Themes Designed by Kimmy | zerotheme.com">
+    <meta name="description" content="Free Html5 Templates and Free Responsive Themes Designed by Kimmy | zerotheme.com">
     <meta name="author" content="www.zerotheme.com">
 
     <!-- Mobile Specific Metas

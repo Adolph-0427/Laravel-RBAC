@@ -25,24 +25,24 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('Back.User.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\AdminUser  $adminUser
+     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function show(AdminUser $adminUser)
@@ -53,7 +53,7 @@ class AdminUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdminUser  $adminUser
+     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function edit(AdminUser $adminUser)
@@ -64,19 +64,19 @@ class AdminUserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AdminUser  $adminUser
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AdminUser $adminUser)
     {
-        //
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AdminUser  $adminUser
+     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdminUser $adminUser)
