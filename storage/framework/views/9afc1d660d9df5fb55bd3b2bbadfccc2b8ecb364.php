@@ -30,14 +30,8 @@
                                     <input type="text" name="date" id="date">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label">URL (Start with http://)</label>
-                                <div class="controls">
-                                    <input type="text" name="url" id="url">
-                                </div>
-                            </div>
                             <div class="form-actions">
-                                <input type="submit" value="Validate" class="btn btn-success">
+                                <input type="submit" value="Save" class="btn btn-success">
                             </div>
                         </form>
                     </div>
