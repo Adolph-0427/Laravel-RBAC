@@ -10,24 +10,30 @@
                         <h5>创建用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate"
-                              novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('user/store')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                            <?php echo csrf_field(); ?>
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
-                                    <input type="text" name="required" id="required">
+                                    <input type="text" name="username" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">密码</label>
                                 <div class="controls">
-                                    <input type="text" name="email" id="email">
+                                    <input type="text" name="password" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">确认密码</label>
                                 <div class="controls">
-                                    <input type="text" name="date" id="date">
+                                    <input type="text" name="password_confirmation" class="required">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">描述</label>
+                                <div class="controls">
+                                    <textarea id="textarea" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="form-actions">

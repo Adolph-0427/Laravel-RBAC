@@ -18,3 +18,4 @@ Route::post('login/login', 'LoginController@login');
 Route::get('/', 'AdminController@index');
 //用户
 Route::get('user/create', 'AdminUserController@create');//创建用户
+Route::post('user/store', 'AdminUserController@store');//创建用户

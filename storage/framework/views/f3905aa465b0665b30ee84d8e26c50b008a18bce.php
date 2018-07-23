@@ -72,7 +72,19 @@
         </li>
     </ul>
 </div>
+
 <div id="content">
+    
+    <?php if($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+    
     <div id="content-header">
         <div id="breadcrumb"><a href="<?php echo e(url('/')); ?>" title="Go to Home" class="tip-bottom">
             <i class="icon-home"></i>Home</a>
@@ -82,6 +94,7 @@
     </div>
     <?php echo $__env->yieldContent('content'); ?>
 </div>
+
 <!--Footer-part-->
 <div class="row-fluid">
     <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.

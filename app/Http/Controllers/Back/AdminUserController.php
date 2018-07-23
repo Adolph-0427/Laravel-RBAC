@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Back;
 
 use App\AdminUser;
+use App\Http\Requests\StoreAdminUserPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -34,9 +37,13 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdminUserPost $request)
     {
-
+        $AdminUser = new AdminUser;
+        $AdminUser->password = Hash::make($request->password);
+        $AdminUser->username = $request->username;
+        $AdminUser->describe = $request->describe;
+        $AdminUser->save();
     }
 
     /**

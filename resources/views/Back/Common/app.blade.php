@@ -72,7 +72,19 @@
         </li>
     </ul>
 </div>
+
 <div id="content">
+    {{--错误消息--}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {{--错误消息--}}
     <div id="content-header">
         <div id="breadcrumb"><a href="{{url('/')}}" title="Go to Home" class="tip-bottom">
             <i class="icon-home"></i>Home</a>
@@ -82,6 +94,7 @@
     </div>
     @yield('content')
 </div>
+
 <!--Footer-part-->
 <div class="row-fluid">
     <div id="footer" class="span12">Copyright &copy; 2018.Company name All rights reserved.
