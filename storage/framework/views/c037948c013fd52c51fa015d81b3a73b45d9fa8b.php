@@ -1,8 +1,7 @@
-@extends('Back.Common.app')
-@section('column_url',url('user/index')){{--栏目链接--}}
-@section('column','用户'){{--栏目名称--}}
-@section('title','添加')
-@section('content')
+<?php $__env->startSection('column_url',url('user/index')); ?>
+<?php $__env->startSection('column','用户'); ?>
+<?php $__env->startSection('title','添加'); ?>
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <hr>
         <div class="row-fluid">
@@ -12,8 +11,8 @@
                         <h5>创建用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user/store')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
-                            @csrf
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('user/store')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                            <?php echo csrf_field(); ?>
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
@@ -48,11 +47,12 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
-    @parent
-    <script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/jquery.validate.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/matrix.form_validation.js') }}"></script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+    ##parent-placeholder-93f8bb0eb2c659b85694486c41717eaf0fe23cd4##
+    <script src="<?php echo e(URL::asset('/back/js/jquery.uniform.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/jquery.validate.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/matrix.form_validation.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Back.Common.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

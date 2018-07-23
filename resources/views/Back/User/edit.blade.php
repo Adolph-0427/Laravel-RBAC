@@ -1,7 +1,7 @@
 @extends('Back.Common.app')
 @section('column_url',url('user/index')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
-@section('title','添加')
+@section('title','编辑')
 @section('content')
     <div class="container-fluid">
         <hr>
@@ -12,30 +12,19 @@
                         <h5>创建用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user/store')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="{{url('user/'.$info->uid)}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
+                            <input type="hidden" name="method" value="put">
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
-                                    <input type="text" name="username" class="required">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">密码</label>
-                                <div class="controls">
-                                    <input type="text" name="password" class="required">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">确认密码</label>
-                                <div class="controls">
-                                    <input type="text" name="password_confirmation" class="required">
+                                    <input type="text" name="username" value="{{$info->username}}" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea" name="describe" rows="3"></textarea>
+                                    <textarea id="textarea"  name="describe" rows="3">{{$info->describe}}</textarea>
                                 </div>
                             </div>
                             <input type="hidden" value="" name="uid" />

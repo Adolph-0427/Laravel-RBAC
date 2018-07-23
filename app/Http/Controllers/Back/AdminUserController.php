@@ -18,7 +18,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        //
+        return view('Back.User.index', ['list' => AdminUser::all()]);
     }
 
     /**
@@ -46,16 +46,6 @@ class AdminUserController extends Controller
         $AdminUser->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\AdminUser $adminUser
-     * @return \Illuminate\Http\Response
-     */
-    public function show(AdminUser $adminUser)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -63,9 +53,9 @@ class AdminUserController extends Controller
      * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(AdminUser $adminUser)
+    public function edit(AdminUser $adminUser, $id)
     {
-        //
+        return view('Back.User.edit', ['info' => $adminUser::find($id)]);
     }
 
     /**
