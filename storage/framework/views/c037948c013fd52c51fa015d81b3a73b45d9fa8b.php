@@ -1,4 +1,4 @@
-<?php $__env->startSection('column_url',url('user/index')); ?>
+<?php $__env->startSection('column_url',url('user')); ?>
 <?php $__env->startSection('column','用户'); ?>
 <?php $__env->startSection('title','添加'); ?>
 <?php $__env->startSection('content'); ?>
@@ -11,7 +11,7 @@
                         <h5>创建用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="<?php echo e(url('user/store')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('user')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
                             <div class="control-group">
                                 <label class="control-label">名称</label>

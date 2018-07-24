@@ -1,5 +1,5 @@
 @extends('Back.Common.app')
-@section('column_url',url('user/index')){{--栏目链接--}}
+@section('column_url',url('user')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
 @section('title','添加')
 @section('content')
@@ -12,7 +12,7 @@
                         <h5>创建用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user/store')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="{{url('user')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
                             <div class="control-group">
                                 <label class="control-label">名称</label>

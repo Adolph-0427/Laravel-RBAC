@@ -39,11 +39,10 @@ class AdminUserController extends Controller
      */
     public function store(StoreAdminUserPost $request)
     {
-        $AdminUser = new AdminUser;
-        $AdminUser->password = Hash::make($request->password);
-        $AdminUser->username = $request->username;
-        $AdminUser->describe = $request->describe;
-        $AdminUser->save();
+        $request->password = Hash::make($request->password);
+        AdminUser::create($request->all());
+
+        return redirect('/user');
     }
 
 
@@ -65,9 +64,11 @@ class AdminUserController extends Controller
      * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminUser $adminUser)
+    public function update(Request $request, $id, AdminUser $adminUser)
     {
-        dd(111);
+        $user = $adminUser::findOrFail($id);
+        $user->update($request->all());
+        return redirect('/user');
     }
 
     /**
@@ -76,8 +77,10 @@ class AdminUserController extends Controller
      * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminUser $adminUser)
+    public function destroy(AdminUser $adminUser, $id)
     {
-        //
+        $user = $adminUser::findOrFail($id);
+        $user->delete();
+        return redirect('/user');
     }
 }

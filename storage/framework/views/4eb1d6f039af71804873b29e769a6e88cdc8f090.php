@@ -86,7 +86,7 @@
         <li><a href="<?php echo e(url('/')); ?>"><i class="icon icon-home"></i> <span>首页</span></a></li>
         <li class="submenu active"><a href="#"><i class="icon icon-user"></i> <span>用户</span> </a>
             <ul>
-                <li><a href="<?php echo e(url('user/index')); ?>">用户列表</a></li>
+                <li><a href="<?php echo e(url('user')); ?>">用户列表</a></li>
                 <li><a href="<?php echo e(url('user/create')); ?>">添加用户</a></li>
             </ul>
         </li>

@@ -1,5 +1,5 @@
 @extends('Back.Common.app')
-@section('column_url',url('user/index')){{--栏目链接--}}
+@section('column_url',url('user')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
 @section('title','列表')
 @section('content')
@@ -33,10 +33,13 @@
                                     <td>{{$value->uid}}</td>
                                     <td>{{$value->username}}</td>
                                     <td>{{$value->describe}}</td>
-                                    <td class="center">{{$value->created_at}}</td>
+                                    <td class="center left">{{$value->created_at}}</td>
                                     <td>
                                         <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
-                                        <a href="">删除</a>
+                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" style="display: inline;margin-left: 30px"><input name="_method" value="DELETE" type="hidden">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger ">删除</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

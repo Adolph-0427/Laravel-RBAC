@@ -1,4 +1,4 @@
-<?php $__env->startSection('column_url',url('user/index')); ?>
+<?php $__env->startSection('column_url',url('user')); ?>
 <?php $__env->startSection('column','用户'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
@@ -32,10 +32,13 @@
                                     <td><?php echo e($value->uid); ?></td>
                                     <td><?php echo e($value->username); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
-                                    <td class="center"><?php echo e($value->created_at); ?></td>
+                                    <td class="center left"><?php echo e($value->created_at); ?></td>
                                     <td>
                                         <a href="<?php echo e(url('user/'.$value->uid.'/edit')); ?>">编辑</a>
-                                        <a href="">删除</a>
+                                        <form action="<?php echo e(url('user/'.$value->uid)); ?>" method="POST" style="display: inline;margin-left: 30px"><input name="_method" value="DELETE" type="hidden">
+                                            <?php echo csrf_field(); ?>
+                                            <button type="submit" class="btn btn-danger ">删除</button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

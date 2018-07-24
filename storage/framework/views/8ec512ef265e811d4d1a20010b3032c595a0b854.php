@@ -1,4 +1,4 @@
-<?php $__env->startSection('column_url',url('user/index')); ?>
+<?php $__env->startSection('column_url',url('user')); ?>
 <?php $__env->startSection('column','用户'); ?>
 <?php $__env->startSection('title','编辑'); ?>
 <?php $__env->startSection('content'); ?>
@@ -8,12 +8,12 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"><span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>创建用户</h5>
+                        <h5>编辑用户</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <form class="form-horizontal" method="post" action="<?php echo e(url('user/'.$info->uid)); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
-                            <input type="hidden" name="method" value="put">
+                            <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
@@ -26,7 +26,6 @@
                                     <textarea id="textarea"  name="describe" rows="3"><?php echo e($info->describe); ?></textarea>
                                 </div>
                             </div>
-                            <input type="hidden" value="" name="uid" />
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
                             </div>
