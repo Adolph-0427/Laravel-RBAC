@@ -67,7 +67,7 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, AdminUser $adminUser)
     {
-
+        dd(111);
     }
 
     /**
