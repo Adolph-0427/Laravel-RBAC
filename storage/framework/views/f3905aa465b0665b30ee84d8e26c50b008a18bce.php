@@ -4,27 +4,33 @@
     <title>Blog-Admin</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/bootstrap.min.css')); ?>"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/bootstrap-responsive.min.css')); ?>"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/uniform.css')); ?>"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/select2.css')); ?>"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-style.css')); ?>"/>
-    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-media.css')); ?>"/>
-    <link href="<?php echo e(URL::asset('/back/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <?php $__env->startSection('css'); ?>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/bootstrap.min.css')); ?>"/>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/bootstrap-responsive.min.css')); ?>"/>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/uniform.css')); ?>"/>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/select2.css')); ?>"/>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-style.css')); ?>"/>
+        <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-media.css')); ?>"/>
+        <link href="<?php echo e(URL::asset('/back/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet'
+              type='text/css'>
+    <?php echo $__env->yieldSection(); ?>
 </head>
 <body>
 <!--Header-part-->
 <div id="header">
-    <h1><a href="dashboard.html">MatAdmin</a></h1>
+    <h1><a href="dashboard.html">BlogAdmin</a></h1>
 </div>
 
 <!--top-Header-menu-->
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-        <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
-                                                      data-target="#profile-messages" class="dropdown-toggle"><i
-                        class="icon icon-user"></i> <span class="text">欢迎Admin</span><b class="caret"></b></a>
+        <li class="dropdown" id="profile-messages">
+            <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages"
+               class="dropdown-toggle">
+                <i class="icon icon-user"></i>
+                <span class="text">欢迎Admin</span><b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
                 <li><a href="#"><i class="icon-user"></i>我的资料</a></li>
                 <li class="divider"></li>
@@ -33,9 +39,13 @@
                 <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
             </ul>
         </li>
-        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
-                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
-                        class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+        <li class="dropdown" id="menu-messages">
+            <a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle">
+                <i class="icon icon-envelope"></i>
+                <span class="text">消息</span>
+                <span class="label label-important">5</span>
+                <b class="caret"></b>
+            </a>
             <ul class="dropdown-menu">
                 <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
                 <li class="divider"></li>
@@ -46,8 +56,17 @@
                 <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> 发送</a></li>
             </ul>
         </li>
-        <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
-        <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">退出</span></a>
+        <li class="">
+            <a title="" href="#">
+                <i class="icon icon-cog"></i>
+                <span class="text">设置</span>
+            </a>
+        </li>
+        <li class="">
+            <a title="" href="login.html">
+                <i class="icon icon-share-alt"></i>
+                <span class="text">退出</span>
+            </a>
         </li>
     </ul>
 </div>
@@ -55,7 +74,8 @@
 <!--start-top-serch-->
 <div id="search">
     <input type="text" placeholder="请输入搜索内容..."/>
-    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i>
+    </button>
 </div>
 <!--close-top-serch-->
 
@@ -66,7 +86,7 @@
         <li><a href="<?php echo e(url('/')); ?>"><i class="icon icon-home"></i> <span>首页</span></a></li>
         <li class="submenu active"><a href="#"><i class="icon icon-user"></i> <span>用户</span> </a>
             <ul>
-                <li><a href="<?php echo e(url('user/index')); ?>">用户列表</a></li>
+                <li><a href="<?php echo e(url('user')); ?>">用户列表</a></li>
                 <li><a href="<?php echo e(url('user/create')); ?>">添加用户</a></li>
             </ul>
         </li>
@@ -86,11 +106,14 @@
     <?php endif; ?>
     
     <div id="content-header">
-        <div id="breadcrumb"><a href="<?php echo e(url('/')); ?>" title="Go to Home" class="tip-bottom">
-            <i class="icon-home"></i>Home</a>
-            <a href="<?php echo $__env->yieldContent('column_url','/'); ?>"><?php echo $__env->yieldContent('column','Blog'); ?></a>
+        <div id="breadcrumb">
+            <a href="<?php echo e(url('/')); ?>" title="Go to Home" class="tip-bottom">
+                <i class="icon-home"></i>Home
+            </a>
+            <a href="<?php echo $__env->yieldContent('column_url','/'); ?>" class="tip-bottom" data-original-title=""><?php echo $__env->yieldContent('column','Blog'); ?></a>
+            <a href="#"><?php echo $__env->yieldContent('title','Blog'); ?></a>
         </div>
-        <h1><?php echo $__env->yieldContent('column','Blog'); ?></h1>
+        <h1><?php echo $__env->yieldContent('title','Blog'); ?></h1>
     </div>
     <?php echo $__env->yieldContent('content'); ?>
 </div>
@@ -102,13 +125,11 @@
     </div>
 </div>
 <!--end-Footer-part-->
-<script src="<?php echo e(URL::asset('/back/js/jquery.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/jquery.ui.custom.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/bootstrap.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/jquery.uniform.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/select2.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/jquery.validate.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/matrix.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/back/js/matrix.form_validation.js')); ?>"></script>
+<?php $__env->startSection('js'); ?>
+    <script src="<?php echo e(URL::asset('/back/js/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/jquery.ui.custom.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('/back/js/matrix.js')); ?>"></script>
+<?php echo $__env->yieldSection(); ?>
 </body>
 </html>

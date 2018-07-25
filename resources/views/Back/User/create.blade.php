@@ -23,13 +23,13 @@
                             <div class="control-group">
                                 <label class="control-label">密码</label>
                                 <div class="controls">
-                                    <input type="text" name="password" class="required">
+                                    <input type="password" name="password" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">确认密码</label>
                                 <div class="controls">
-                                    <input type="text" name="password_confirmation" class="required">
+                                    <input type="password" name="password_confirmation" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
