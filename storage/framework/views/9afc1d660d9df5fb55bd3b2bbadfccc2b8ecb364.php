@@ -37,7 +37,6 @@
                                     <textarea id="textarea" name="describe" rows="3"></textarea>
                                 </div>
                             </div>
-                            <input type="hidden" value="" name="uid" />
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
                             </div>

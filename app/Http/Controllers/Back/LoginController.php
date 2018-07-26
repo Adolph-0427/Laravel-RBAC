@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\AdminUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
 
-    public function login()
+    //用户登录
+    public function login(Request $request)
     {
-        dd($_POST);
+        $user = new AdminUser();
+
+        $info = $user->login($request->username, $request->password);
+        dump($info);
     }
+
 }

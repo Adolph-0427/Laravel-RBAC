@@ -33,12 +33,13 @@
                                     <td>{{$value->uid}}</td>
                                     <td>{{$value->username}}</td>
                                     <td>{{$value->describe}}</td>
-                                    <td class="center left">{{$value->created_at}}</td>
+                                    <td>{{$value->created_at}}</td>
                                     <td>
                                         <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
-                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" style="display: inline;margin-left: 30px"><input name="_method" value="DELETE" type="hidden">
+                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" id="delete">
+                                            <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger ">删除</button>
+                                            <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>

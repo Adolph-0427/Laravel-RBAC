@@ -14,31 +14,35 @@
 </head>
 <body>
 <div id="loginbox">
-    <form id="loginform" method="post" class="form-vertical" action="{{ url('login/login') }}">
+    {{--登录--}}
+    <form class="form-horizontal" method="post" action="{{url('login/login')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
         @csrf
         <div class="control-group normal_text"><h3><img src="{{ URL::asset('/back/img/logo.png') }}" alt="Logo"/></h3>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_lg"><i class="icon-user"></i></span><input name="username" type="text" placeholder="用户名"/>
+                    <span class="add-on bg_lg"><i class="icon-user"></i></span><input name="username" type="text" placeholder="用户名" class="required"/>
                 </div>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
-                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input name="password" type="password" placeholder="密码"/>
+                    <span class="add-on bg_ly"><i class="icon-lock"></i></span><input name="password" type="password" placeholder="密码" class="required"/>
                 </div>
             </div>
         </div>
         <div class="form-actions">
             <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>
             <span class="pull-right">
-                <button type="submit" class="btn btn-success">登录</button>
+                <input type="submit" value="Save" class="btn btn-success">
+                {{--<button type="submit" class="btn btn-success">登录</button>--}}
             </span>
+
         </div>
     </form>
+    {{--忘记密码--}}
     <form id="recoverform" action="#" class="form-vertical">
         <p class="normal_text">请输入正确的用户名密码.</p>
 
@@ -57,6 +61,14 @@
 
 <script src="{{ URL::asset('/back/js/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('/back/js/matrix.login.js') }}"></script>
+
+<script src="{{ URL::asset('/back/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('/back/js/matrix.js') }}"></script>
+
+<script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
+<script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
+<script src="{{ URL::asset('/back/js/jquery.validate.js') }}"></script>
+<script src="{{ URL::asset('/back/js/matrix.form_validation.js') }}"></script>
 </body>
 
 </html>
