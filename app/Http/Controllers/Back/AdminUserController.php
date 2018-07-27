@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Back;
 use App\AdminUser;
 use App\Http\Requests\StoreAdminUserPost;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class AdminUserController extends Controller
+class AdminUserController extends CommonController
 {
     /**
      * Display a listing of the resource.

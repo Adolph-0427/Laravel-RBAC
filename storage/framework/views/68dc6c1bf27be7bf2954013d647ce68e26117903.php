@@ -15,6 +15,20 @@
 <body>
 <div id="loginbox">
     
+    <?php if($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+    
+
+    
+    <?php echo e(session('user.username')); ?>
+
     <form class="form-horizontal" method="post" action="<?php echo e(url('login/login')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
         <?php echo csrf_field(); ?>
         <div class="control-group normal_text"><h3><img src="<?php echo e(URL::asset('/back/img/logo.png')); ?>" alt="Logo"/></h3>
@@ -26,6 +40,7 @@
                 </div>
             </div>
         </div>
+
         <div class="control-group">
             <div class="controls">
                 <div class="main_input_box">
@@ -33,11 +48,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <img src="<?php echo e(captcha_src()); ?>" style="cursor: pointer;margin-bottom: 4px;" onclick="this.src='<?php echo e(captcha_src()); ?>'+Math.random()">
+                    <input type="text" style="width: 60%" class="required form-control <?php echo e($errors->has('captcha')?'parsley-error':''); ?>" name="captcha" placeholder="验证码">
+                </div>
+            </div>
+        </div>
+
         <div class="form-actions">
             <span class="pull-left"><a href="#" class="flip-link btn btn-info" id="to-recover">忘记密码?</a></span>
             <span class="pull-right">
-                <input type="submit" value="Save" class="btn btn-success">
                 
+                <input type="submit" value="Save" class="btn btn-success">
             </span>
 
         </div>

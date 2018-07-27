@@ -29,7 +29,7 @@
             <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages"
                class="dropdown-toggle">
                 <i class="icon icon-user"></i>
-                <span class="text">欢迎Admin</span><b class="caret"></b>
+                <span class="text">欢迎 {{session('user.username')}}</span><b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="#"><i class="icon-user"></i>我的资料</a></li>
