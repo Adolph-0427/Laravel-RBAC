@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUser extends Model
 {
@@ -17,15 +18,21 @@ class AdminUser extends Model
      */
     public function login($data)
     {
+        $password = $this->where([['username', '=', $data['username']]])->value('password');
 
-        $user = $this->where([['username', '=', $data['username']], ['password', '=', $data['password']]])->select('username', 'describe')->first();;
-
-        if ($user != false) {
-            session(['user' => $user]);
-            return true;
-        } else {
+        if (empty($password) || !Hash::check($data['password'], $password)) {
             return false;
+        } else {
+            $user = $this->where([['username', '=', $data['username']]])->select('username', 'describe')->first();;
+
+            if ($user != false) {
+                session(['user' => $user]);
+                return true;
+            } else {
+                return false;
+            }
         }
+
 
     }
 

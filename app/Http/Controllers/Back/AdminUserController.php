@@ -37,7 +37,7 @@ class AdminUserController extends CommonController
      */
     public function store(StoreAdminUserPost $request)
     {
-        $request->password = Hash::make($request->password);
+        $request->offsetSet('password', Hash::make($request->password));
         AdminUser::create($request->all());
 
         return redirect('/user');

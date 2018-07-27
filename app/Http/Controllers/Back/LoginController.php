@@ -14,6 +14,7 @@ class LoginController extends Controller
     //用户登录
     public function login(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             'password' => 'required',
@@ -26,7 +27,6 @@ class LoginController extends Controller
         ]);
         if (!$validator->fails()) {
             $user = new AdminUser();
-            $request->password = Hash::make($request->password);
             $result = $user->login($request->all());
             if ($result !== false) {
                 return redirect('/user');
