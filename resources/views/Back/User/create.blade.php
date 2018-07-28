@@ -2,6 +2,11 @@
 @section('column_url',url('user')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
 @section('title','添加')
+@section('css')
+    @parent
+    <link rel="stylesheet" href="{{ URL::asset('/back/css/uniform.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('/back/css/select2.css') }}"/>
+@endsection
 @section('content')
     <div class="container-fluid">
         <hr>

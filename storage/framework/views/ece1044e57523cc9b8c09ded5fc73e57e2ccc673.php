@@ -1,6 +1,11 @@
 <?php $__env->startSection('column_url',url('user')); ?>
 <?php $__env->startSection('column','用户'); ?>
 <?php $__env->startSection('title','编辑'); ?>
+<?php $__env->startSection('css'); ?>
+    ##parent-placeholder-2f84417a9e73cead4d5c99e05daff2a534b30132##
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/uniform.css')); ?>"/>
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/select2.css')); ?>"/>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <hr>
@@ -11,7 +16,8 @@
                         <h5>编辑用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="<?php echo e(url('user/'.$info->uid)); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('user/'.$info->uid)); ?>"
+                              name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
@@ -23,7 +29,7 @@
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea"  name="describe" rows="3"><?php echo e($info->describe); ?></textarea>
+                                    <textarea id="textarea" name="describe" rows="3"><?php echo e($info->describe); ?></textarea>
                                 </div>
                             </div>
                             <div class="form-actions">

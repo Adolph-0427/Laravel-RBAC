@@ -10,6 +10,6 @@ class AdminController extends CommonController
 
     public function index()
     {
-
+        return view('Back.Index.index');
     }
 }
