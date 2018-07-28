@@ -7,13 +7,10 @@
     @section('css')
         <link rel="stylesheet" href="{{ URL::asset('/back/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/css/bootstrap-responsive.min.css') }}"/>
-        <link rel="stylesheet" href="{{ URL::asset('/back/css/uniform.css') }}"/>
-        <link rel="stylesheet" href="{{ URL::asset('/back/css/select2.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-style.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-media.css') }}"/>
-        <link href="{{ URL::asset('/back/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet'
-              type='text/css'>
+        <link rel="stylesheet" href="{{ URL::asset('/back/font-awesome/css/font-awesome.css') }}"/>
+        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
     @show
 </head>
 <body>
@@ -36,7 +33,7 @@
                 <li class="divider"></li>
                 <li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="icon-key"></i> 退出</a></li>
+                <li><a href="{{url('/logout')}}"><i class="icon-key"></i> 退出</a></li>
             </ul>
         </li>
         <li class="dropdown" id="menu-messages">
@@ -63,7 +60,7 @@
             </a>
         </li>
         <li class="">
-            <a title="" href="login.html">
+            <a title="退出" href="{{url('/logout')}}">
                 <i class="icon icon-share-alt"></i>
                 <span class="text">退出</span>
             </a>
@@ -83,11 +80,17 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
     <ul>
-        <li><a href="{{url('/')}}"><i class="icon icon-home"></i> <span>首页</span></a></li>
-        <li class="submenu active"><a href="#"><i class="icon icon-user"></i> <span>用户</span> </a>
+        <li class="home"><a href="{{url('/')}}"><i class="icon icon-home"></i> <span>首页</span></a></li>
+        <li class="submenu" id="user"><a href="#"><i class="icon icon-user"></i> <span>用户</span> </a>
             <ul>
                 <li><a href="{{url('user')}}">用户列表</a></li>
                 <li><a href="{{url('user/create')}}">添加用户</a></li>
+            </ul>
+        </li>
+        <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
+            <ul>
+                <li><a href="{{url('articles')}}">文章列表</a></li>
+                <li><a href="{{url('articles/create')}}">添加用户</a></li>
             </ul>
         </li>
     </ul>
@@ -125,11 +128,31 @@
     </div>
 </div>
 <!--end-Footer-part-->
+{{--菜单高亮--}}
+
 @section('js')
     <script src="{{ URL::asset('/back/js/jquery.min.js') }}"></script>
+
+    {{--导航高亮--}}
+    <script>
+        $(function () {
+            var url = "{{url()->full()}}";//当前url
+            var group_name = url.split('/')[3];
+            if ($(".home a").attr('href') == url) {
+                $(".home").addClass('active');
+            }
+            $(".submenu").each(function () {
+                if(group_name == $(this).attr('id')){
+                    $(this).addClass('active');
+                }
+            })
+        })
+    </script>
+    
     <script src="{{ URL::asset('/back/js/jquery.ui.custom.js') }}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/matrix.js') }}"></script>
 @show
+
 </body>
 </html>

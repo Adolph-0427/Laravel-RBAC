@@ -37,4 +37,11 @@ class LoginController extends Controller
         return redirect('/login')->withErrors($validator)->withInput();
     }
 
+    //退出登录
+    public function logout()
+    {
+        if (session(['user' => null]) == null) {
+            return redirect('/login');
+        }
+    }
 }

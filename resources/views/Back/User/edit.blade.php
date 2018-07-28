@@ -2,6 +2,11 @@
 @section('column_url',url('user')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
 @section('title','编辑')
+@section('css')
+    @parent
+    <link rel="stylesheet" href="{{ URL::asset('/back/css/uniform.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('/back/css/select2.css') }}"/>
+@endsection
 @section('content')
     <div class="container-fluid">
         <hr>
@@ -12,7 +17,8 @@
                         <h5>编辑用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user/'.$info->uid)}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="{{url('user/'.$info->uid)}}"
+                              name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
@@ -24,7 +30,7 @@
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea"  name="describe" rows="3">{{$info->describe}}</textarea>
+                                    <textarea id="textarea" name="describe" rows="3">{{$info->describe}}</textarea>
                                 </div>
                             </div>
                             <div class="form-actions">
