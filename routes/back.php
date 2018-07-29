@@ -19,3 +19,5 @@ Route::get('logout', 'LoginController@logout');
 Route::get('/', 'AdminController@index');
 //用户
 Route::resource('user', 'AdminUserController');
+//文章
+Route::resource('articles', 'ArticlesController');

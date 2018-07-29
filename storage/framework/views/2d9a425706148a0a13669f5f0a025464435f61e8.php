@@ -1,12 +1,11 @@
-@extends('Back.Common.app')
-@section('column_url',url('/')){{--栏目链接--}}
-@section('column','首页'){{--栏目名称--}}
-@section('title','')
-@section('css')
-    @parent
-    <link rel="stylesheet" href="{{ URL::asset('/back/css/fullcalendar.css') }}"/>
-@endsection
-@section('content')
+<?php $__env->startSection('column_url',url('/')); ?>
+<?php $__env->startSection('column','首页'); ?>
+<?php $__env->startSection('title',''); ?>
+<?php $__env->startSection('css'); ?>
+    ##parent-placeholder-2f84417a9e73cead4d5c99e05daff2a534b30132##
+    <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/fullcalendar.css')); ?>"/>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <html>
     <head></head>
     <body>
@@ -32,7 +31,7 @@
                             <li>
                                 <div class="user-thumb">
                                     <img width="40" height="40" alt="User"
-                                         src="{{ URL::asset('/back/img/demo/av1.jpg') }}"/>
+                                         src="<?php echo e(URL::asset('/back/img/demo/av1.jpg')); ?>"/>
                                 </div>
                                 <div class="article-post">
                                     <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
@@ -43,7 +42,7 @@
                             <li>
                                 <div class="user-thumb">
                                     <img width="40" height="40" alt="User"
-                                         src="{{ URL::asset('/back/img/demo/av2.jpg') }}"/>
+                                         src="<?php echo e(URL::asset('/back/img/demo/av2.jpg')); ?>"/>
                                 </div>
                                 <div class="article-post">
                                     <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
@@ -54,7 +53,7 @@
                             <li>
                                 <div class="user-thumb">
                                     <img width="40" height="40" alt="User"
-                                         src="{{ URL::asset('/back/img/demo/av3.jpg') }}"/>
+                                         src="<?php echo e(URL::asset('/back/img/demo/av3.jpg')); ?>"/>
                                 </div>
                                 <div class="article-post">
                                     <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
@@ -270,25 +269,25 @@
             </div>
         </div>
     </div>
-    @endsection
-    @section('js')
-        @parent
-        <script src="{{ URL::asset('/back/js/excanvas.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.flot.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.flot.resize.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.peity.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/fullcalendar.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.calendar.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.chat.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.validate.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.form_validation.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.wizard.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.popover.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.tables.js') }}"></script>
-        <script src="{{ URL::asset('/back/js/matrix.interface.js') }}"></script>
+    <?php $__env->stopSection(); ?>
+    <?php $__env->startSection('js'); ?>
+        ##parent-placeholder-93f8bb0eb2c659b85694486c41717eaf0fe23cd4##
+        <script src="<?php echo e(URL::asset('/back/js/excanvas.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.flot.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.flot.resize.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.peity.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/fullcalendar.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.calendar.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.chat.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.validate.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.form_validation.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.wizard.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.uniform.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/select2.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.popover.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/jquery.dataTables.min.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.tables.js')); ?>"></script>
+        <script src="<?php echo e(URL::asset('/back/js/matrix.interface.js')); ?>"></script>
         <script type="text/javascript">
             window.onerror=function(){return true;}
             // This function is called from the pop-up menus to transfer to
@@ -314,4 +313,5 @@
                 document.gomenu.selector.selectedIndex = 2;
             }
         </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('Back.Common.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
