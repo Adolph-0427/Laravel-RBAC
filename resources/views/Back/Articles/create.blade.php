@@ -130,37 +130,6 @@
     <script src="{{ URL::asset('/back/js/matrix.form_common.js')}}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap-colorpicker.js')}}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap-datepicker.js')}}"></script>
-    {{--webUploader--}}
-    <script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
-
-    // swf文件路径
-
-    <script>
-        // 初始化Web Uploader
-        // 初始化Web Uploader
-        var uploader = WebUploader.create({
-
-            // 选完文件后，是否自动上传。
-            auto: true,
-
-            // swf文件路径
-            swf: 'https://cdn.bootcss.com/webuploader/0.1.0/Uploader.swf',
-
-            // 文件接收服务端。
-            server: 'http://webuploader.duapp.com/server/fileupload.php',
-
-            // 选择文件的按钮。可选。
-            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#filePicker',
-
-            // 只允许选择图片文件。
-            accept: {
-                title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
-                mimeTypes: 'image/*'
-            }
-        });
-    </script>
 
     {{--编辑器--}}
     <!-- Include external JS libs. -->
@@ -184,6 +153,41 @@
                     'bold', 'italic', 'underline', 'paragraphFormat', 'align', 'color', 'fontSize', 'insertImage', 'insertTable', 'undo', 'redo'
                 ]
             })
+        });
+    </script>
+
+    {{--webUploader--}}
+    <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
+
+    // swf文件路径
+    <script>
+        // 初始化Web Uploader
+        var jquery = jQuery.noConflict(true);
+        var uploader = WebUploader.create({
+
+            // 选完文件后，是否自动上传。
+            auto: true,
+            formData:{
+                _token:'{{csrf_token()}}',
+                name:'articleCover',
+            },
+            // swf文件路径
+            swf: 'https://cdn.bootcss.com/webuploader/0.1.0/Uploader.swf',
+
+            // 文件接收服务端。
+            server: "{{url('articles/articleCover')}}",
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#filePicker',
+
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
         });
     </script>
 @endsection

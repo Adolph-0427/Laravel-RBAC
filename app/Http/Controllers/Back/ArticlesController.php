@@ -87,8 +87,7 @@ class ArticlesController extends CommonController
 
     public function articleCover(Request $request)
     {
-        return $request->all();
-//        $path = $request->file('articleCover')->store('article/cover');
-//        return $path;
+        $path = $request->file('articleCover')->store('article/cover');
+        return $path;
     }
 }
