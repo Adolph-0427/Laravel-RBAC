@@ -90,7 +90,7 @@
         <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
             <ul>
                 <li><a href="<?php echo e(url('articles')); ?>">文章列表</a></li>
-                <li><a href="<?php echo e(url('articles/create')); ?>">添加用户</a></li>
+                <li><a href="<?php echo e(url('articles/create')); ?>">添加文章</a></li>
             </ul>
         </li>
     </ul>
@@ -136,8 +136,6 @@
     <script>
         $(function () {
             var url = "<?php echo e(url()->full()); ?>";//当前url
-            var router = "<?php echo e(Request::path()); ?>";//当前路由
-            var domain = "<?php echo e(config('route.back_url')); ?>}";//当前域名
             var group_name = url.split('/')[3];
             if ($(".home a").attr('href') == url) {
                 $(".home").addClass('active');
@@ -149,7 +147,7 @@
             })
         })
     </script>
-
+    
     <script src="<?php echo e(URL::asset('/back/js/jquery.ui.custom.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/bootstrap.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/matrix.js')); ?>"></script>

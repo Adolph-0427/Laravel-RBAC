@@ -14,10 +14,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    protected $namespace = 'App\Http\Controllers';//公共
     protected $frontNamespace = 'App\Http\Controllers\Front';//PC端
     protected $backNamespace = 'App\Http\Controllers\Back';//后台管理
-    protected $currentDomain;
+    protected $apiNamespace = 'App\Http\Controllers\Api';//后台管理
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -26,7 +26,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->currentDomain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
         parent::boot();
     }
 
@@ -37,38 +36,21 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        
+
         $this->mapBackRoutes();
 //        $this->mapApiRoutes();
 //        $this->mapFrontRoutes();
+//        $this->commonRoutes();
     }
 
     /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
-    {
-        Route::middleware('web')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
-    }
-
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
+     * Api
      */
     protected function mapApiRoutes()
     {
         Route::domain(config('route.api_url'))->prefix('api')
             ->middleware('api')
-            ->namespace($this->namespace)
+            ->namespace($this->apiNamespace)
             ->group(base_path('routes/api.php'));
     }
 
@@ -95,4 +77,15 @@ class RouteServiceProvider extends ServiceProvider
             );
     }
 
+    /**
+     * 公共路由
+     */
+    protected function commonRoutes()
+    {
+        Route::middleware('web')
+            ->domain(config('route.web_url'))
+            ->namespace($this->namespace)
+            ->group(base_path('routes/web.php')
+            );
+    }
 }

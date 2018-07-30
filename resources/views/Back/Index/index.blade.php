@@ -290,7 +290,7 @@
         <script src="{{ URL::asset('/back/js/matrix.tables.js') }}"></script>
         <script src="{{ URL::asset('/back/js/matrix.interface.js') }}"></script>
         <script type="text/javascript">
-//            window.onerror=function(){return true;}
+            window.onerror=function(){return true;}
             // This function is called from the pop-up menus to transfer to
             // a different page. Ignore if the value returned is a null string:
             function goPage(newURL) {

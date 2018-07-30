@@ -10,12 +10,6 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-//Home Page 
-Route::get('/', 'FrontController@index');
-//Route::get('/', function () {
-//    return view('Home.index');
-//});
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//上传文章封面图
+Route::get('upload/articleCover','UploadController@articleCover');

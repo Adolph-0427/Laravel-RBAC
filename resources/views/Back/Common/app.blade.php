@@ -90,7 +90,7 @@
         <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
             <ul>
                 <li><a href="{{url('articles')}}">文章列表</a></li>
-                <li><a href="{{url('articles/create')}}">添加用户</a></li>
+                <li><a href="{{url('articles/create')}}">添加文章</a></li>
             </ul>
         </li>
     </ul>
@@ -132,7 +132,6 @@
 
 @section('js')
     <script src="{{ URL::asset('/back/js/jquery.min.js') }}"></script>
-
     {{--导航高亮--}}
     <script>
         $(function () {
