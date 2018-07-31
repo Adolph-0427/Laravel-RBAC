@@ -85,9 +85,10 @@ class ArticlesController extends CommonController
     }
 
 
+    //上传文章封面图
     public function articleCover(Request $request)
     {
-        $path = $request->file('articleCover')->store('article/cover');
+        $path = $request->file('file')->store('article/articleCover/'.Carbon::now()->toDateString());
         return $path;
     }
 }

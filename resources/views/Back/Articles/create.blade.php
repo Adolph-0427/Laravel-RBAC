@@ -60,9 +60,7 @@
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
                                         <div id="fileList" class="uploader-list"></div>
-                                        <div id="filePicker">
-                                            选择图片
-                                        </div>
+                                        <div id="filePicker"> 选择图片</div>
                                     </div>
                                     <input type="hidden" name="cover_img" class="required"/>
                                 </div>
@@ -134,10 +132,13 @@
     {{--编辑器--}}
     <!-- Include external JS libs. -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <!-- Include Editor JS files. -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.4/js/froala_editor.pkgd.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.4/js/froala_editor.pkgd.min.js"></script>
     <script src="https://cdn.bootcss.com/froala-editor/2.8.1/js/languages/zh_cn.js" type="text/javascript"></script>
 
     <script>
@@ -160,7 +161,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
 
-    // swf文件路径
     <script>
         // 初始化Web Uploader
         var jquery = jQuery.noConflict(true);
@@ -168,26 +168,88 @@
 
             // 选完文件后，是否自动上传。
             auto: true,
-            formData:{
-                _token:'{{csrf_token()}}',
-                name:'articleCover',
+            formData: {
+                _token: '{{csrf_token()}}',
             },
             // swf文件路径
             swf: 'https://cdn.bootcss.com/webuploader/0.1.0/Uploader.swf',
-
             // 文件接收服务端。
             server: "{{url('articles/articleCover')}}",
-
-            // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
             pick: '#filePicker',
-
             // 只允许选择图片文件。
             accept: {
                 title: 'Images',
-                extensions: 'gif,jpg,jpeg,bmp,png',
+//                extensions: 'gif,jpg,jpeg,bmp,png',
+                extensions: 'bmp',
                 mimeTypes: 'image/*'
+            },
+            duplicate: true,//支持再次上传
+            fileNumLimit: 1,//上传单张
+            //缩略图
+            thumb: {
+                width: 110,
+                height: 110,
+                // 图片质量，只有type为`image/jpeg`的时候才有效。
+                quality: 70,
+                // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                allowMagnify: false,
+                // 是否允许裁剪。
+                crop: true,
             }
+        });
+        /**
+         * 验证文件格式以及文件大小
+         */
+        uploader.on("error", function (handler) {
+            alert(handler);
+//            if (type == "Q_TYPE_DENIED") {
+//                console.log(type);
+//                layer.msg("请上传JPG、PNG、GIF、BMP格式文件");
+//            } else if (type == "Q_EXCEED_SIZE_LIMIT") {
+//                layer.msg("文件大小不能超过2M");
+//            } else {
+//                layer.msg("上传出错！请检查后重新上传！错误代码" + type);
+//            }
+        });
+
+        // 当有文件被添加进队列的时候
+        uploader.on('fileQueued', function (file) {
+            var $list = $("#fileList");
+            $list.append('<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">等待上传...</p>' +
+                '</div>');
+        });
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress .progress-bar');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<div class="progress progress-striped active">' +
+                    '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                    '</div>' +
+                    '</div>').appendTo($li).find('.progress-bar');
+            }
+            $li.find('p.state').text('上传中');
+            $percent.css('width', percentage * 100 + '%');
+        });
+        uploader.on('uploadSuccess', function (file) {
+            $('#' + file.id).find('p.state').text('已上传');
+        });
+
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).find('p.state').text('上传出错');
+        });
+
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').fadeOut();
+        });
+
+        $("#filePicker").click(function () {
+            uploader.retry();
         });
     </script>
 @endsection
