@@ -58,7 +58,7 @@
                 },
                 duplicate: true,//支持再次上传
                 fileNumLimit: 1,//上传单张
-//                multiple:false,//是否开起同时选择多个文件能力
+                multiple:false,//是否开起同时选择多个文件能力
             });
             /**
              * 验证文件格式以及文件大小
