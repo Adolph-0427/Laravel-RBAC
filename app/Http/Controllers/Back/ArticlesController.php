@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Articles;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArticlesController extends CommonController
 {
@@ -88,7 +89,14 @@ class ArticlesController extends CommonController
     //上传文章封面图
     public function articleCover(Request $request)
     {
-        $path = $request->file('file')->store('article/articleCover/'.Carbon::now()->toDateString());
-        return $path;
+        $path = $request->file('file')->store('public/articleCover/' . Carbon::now()->toDateString());
+        return Storage::url($path);
+    }
+
+    //编辑器上传文章内容图
+    public function articleEdit(Request $request)
+    {
+        $path = $request->file('file')->store('public/articleEdit/' . Carbon::now()->toDateString());
+        return array('link' => Storage::url($path));
     }
 }

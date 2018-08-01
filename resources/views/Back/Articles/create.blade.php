@@ -114,9 +114,11 @@
 
 @endsection
 {{--引入上传插件--}}
-@include('Back.Common.webUpload',[
+@include('Plug.webUpload',[
     'server'=>'articles/articleCover',
     'pick'=>'filePicker'
 ])
 {{--引入富文本编辑器--}}
-@include('Back.Common.froalaEditor')
+@include('Plug.froalaEditor',[
+    'imageUploadURL'=>'articles/articleEdit'
+])

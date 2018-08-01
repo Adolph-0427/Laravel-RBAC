@@ -19,3 +19,5 @@ Route::resource('user', 'AdminUserController');
 Route::resource('articles', 'ArticlesController');
 //上传文章封面
 Route::post('articles/articleCover','ArticlesController@articleCover');
+//文章内容图片上传
+Route::post('articles/articleEdit','ArticlesController@articleEdit');

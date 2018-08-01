@@ -15,7 +15,7 @@
     }
 </style>
 
-{{--编辑器--}}
+
 <!-- Include external JS libs. -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
@@ -29,7 +29,7 @@
     _$(function () {
         _$('#edit').froalaEditor({
             placeholderText: '请输入内容',
-            imageUploadURL: "{{url('articles/articleCover')}}",//上传图片路径
+            imageUploadURL: "<?php echo e(url('articles/articleCover')); ?>",//上传图片路径
             enter: _$.FroalaEditor.ENTER_BR,
             language: 'zh_cn',
             height: 150,

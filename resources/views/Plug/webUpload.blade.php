@@ -1,7 +1,6 @@
 <link href="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
-<script type="text/javascript"
-        src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
 <script>
     var server = "{{url($server)}}";
     var pick = "{{$pick}}";
@@ -10,11 +9,11 @@
     /**
      * server 上传地址
      * pick 调用ID名称
-     * fileSizeLimit 文件大小 默认 1024
+     * fileSizeLimit 文件大小 默认 1024 字节 1M=1024*1024
      * filetype 文件类型
      * mimeTypes MIME类型
      * */
-    function uploadImg(server, pick, fileSizeLimit=1024, width=1600, height=1600, filetype='gif,jpg,jpeg,bmp,png', mimeTypes='image/*') {
+    function uploadImg(server, pick, fileSizeLimit=1024*1024, width=1600, height=1600, filetype='gif,jpg,jpeg,bmp,png', mimeTypes='image/*') {
         var jquery = jQuery.noConflict(true);
         jquery(function () {
             // 初始化Web Uploader
@@ -58,7 +57,7 @@
                 },
                 duplicate: true,//支持再次上传
                 fileNumLimit: 1,//上传单张
-                multiple:false,//是否开起同时选择多个文件能力
+                multiple: false,//是否开起同时选择多个文件能力
             });
             /**
              * 验证文件格式以及文件大小
