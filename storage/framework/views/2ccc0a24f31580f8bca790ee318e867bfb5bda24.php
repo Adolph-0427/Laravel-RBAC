@@ -2,8 +2,8 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
 <script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
 <script>
-    var server = "{{url($server)}}";
-    var pick = "{{$pick}}";
+    var server = "<?php echo e(url($server)); ?>";
+    var pick = "<?php echo e($pick); ?>";
     uploadImg(server, pick);
 
     /**
@@ -24,7 +24,7 @@
                 fileSizeLimit: fileSizeLimit,
                 //文件上传请求的参数表
                 formData: {
-                    _token: '{{csrf_token()}}',
+                    _token: '<?php echo e(csrf_token()); ?>',
                 },
                 //配置压缩的图片
                 compress: {
@@ -105,7 +105,7 @@
                     $(".preview").eq(0).remove();
                 }
                 $("#"+pick).append('<img class="preview" style="width: auto;height: 20%;display: inherit;margin-top: 10px;" src='+response._raw+ '/>');
-                $("#"+pick).append('<input name='+pick+' value='+response._raw+'/>');
+//                $("#"+pick).append('<input name=');
                 uploader.removeFile(file);
             });
 

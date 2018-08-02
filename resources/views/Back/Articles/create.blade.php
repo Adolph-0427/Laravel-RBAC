@@ -32,7 +32,7 @@
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea" name="describe" rows="3"></textarea>
+                                    <textarea id="textarea" class="required" name="describe" rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -43,7 +43,6 @@
                                         <div id="fileList" class="uploader-list"></div>
                                         <div id="filePicker"> 选择图片</div>
                                     </div>
-                                    <input type="hidden" name="cover_img" class="required"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -80,7 +79,7 @@
                                 <div class="control-group">
                                     <label class="control-label">内容</label>
                                     <div class="controls" style="padding-right: 10%">
-                                        <textarea id="edit" class="textarea_editor span12" rows="6"></textarea>
+                                        <textarea id="edit" name="content" class="textarea_editor required span12" rows="6"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-actions">

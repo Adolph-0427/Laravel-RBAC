@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Articles;
+use App\Http\Requests\StoreArticlesPost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -35,9 +36,10 @@ class ArticlesController extends CommonController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticlesPost $request)
     {
-        //
+        Articles::create($request->all());
+        return redirect('/article');
     }
 
     /**

@@ -41,7 +41,7 @@ class StoreArticlesPost extends FormRequest
             'describe.max' => '描述不能超出50个字符',
             'cover_img.required' => '封面图不能为空',
             'category_id.required' => '文章分类不能为空',
-            'content.required' => '文章不能为空',
+            'content.required' => '文章内容不能为空',
         ];
     }
 }
