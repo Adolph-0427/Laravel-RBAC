@@ -13,7 +13,7 @@
      * filetype 文件类型
      * mimeTypes MIME类型
      * */
-    function uploadImg(server, pick, fileSizeLimit=1024*1024, width=1600, height=1600, filetype='gif,jpg,jpeg,bmp,png', mimeTypes='image/*') {
+    function uploadImg(server, pick, fileSizeLimit=1024 * 1024, width=1600, height=1600, filetype='gif,jpg,jpeg,bmp,png', mimeTypes='image/*') {
         var jquery = jQuery.noConflict(true);
         jquery(function () {
             // 初始化Web Uploader
@@ -55,7 +55,7 @@
                     extensions: filetype,//允许的文件后缀，不带点，多个用逗号分割 String
                     mimeTypes: mimeTypes,//多个用逗号分割 String
                 },
-                duplicate: true,//支持再次上传
+                duplicate: false,//支持再次上传
                 fileNumLimit: 1,//上传单张
                 multiple: false,//是否开起同时选择多个文件能力
             });
@@ -63,14 +63,15 @@
              * 验证文件格式以及文件大小
              */
             uploader.on("error", function (handler) {
-                alert(handler);
-                if (type == "Q_TYPE_DENIED") {
-                    console.log(type);
-                    layer.msg("请上传JPG、PNG、GIF、BMP格式文件");
-                } else if (type == "Q_EXCEED_SIZE_LIMIT") {
-                    layer.msg("文件大小不能超过2M");
-                } else {
-                    layer.msg("上传出错！请检查后重新上传！错误代码" + type);
+                if (handler == "Q_TYPE_DENIED") {
+                    alert("请上传" + filetype + "格式文件");
+                } else if (handler == "Q_EXCEED_SIZE_LIMIT") {
+                    alert("文件大小不能超过" + fileSizeLimit / 1024 / 1024 + "M");
+                } else if (handler == "Q_EXCEED_NUM_LIMIT") {
+                    alert("文件个数超过上限");
+                }
+                else {
+                    alert("上传出错！请检查后重新上传！错误代码" + handler);
                 }
             });
 
@@ -78,7 +79,7 @@
             uploader.on('fileQueued', function (file) {
                 var $list = $("#fileList");
                 $list.append('<div id="' + file.id + '" class="item">' +
-                    '<h4 class="info">' + file.name + '</h4>' +
+                    //                    '<h4 class="info">' + file.name + '</h4>' +
                     '<p class="state">等待上传...</p>' +
                     '</div>');
             });
@@ -97,8 +98,14 @@
                 $li.find('p.state').text('上传中');
                 $percent.css('width', percentage * 100 + '%');
             });
-            uploader.on('uploadSuccess', function (file) {
+            uploader.on('uploadSuccess', function (file,response) {
                 $('#' + file.id).find('p.state').text('已上传');
+                if ($('p.state').length > 1) {
+                    $('p.state').eq(0).parent().remove();
+                    $(".preview").eq(0).remove();
+                }
+                $("#"+pick).append('<img class="preview" style="width: auto;height: 20%;display: inherit;margin-top: 10px;" src='+response._raw+ '/>');
+                uploader.removeFile(file);
             });
 
             uploader.on('uploadError', function (file) {
@@ -108,7 +115,11 @@
             uploader.on('uploadComplete', function (file) {
                 $('#' + file.id).find('.progress').fadeOut();
             });
-
+            // 所有文件上传成功后调用
+            uploader.on('uploadFinished', function () {
+                //清空队列
+                uploader.reset();
+            });
             $("#filePicker").click(function () {
                 uploader.retry();
             });

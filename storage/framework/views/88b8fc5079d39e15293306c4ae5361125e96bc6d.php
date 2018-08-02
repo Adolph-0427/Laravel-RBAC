@@ -52,6 +52,10 @@
                                         .radio input[type="radio"] {
                                             margin-left: 0px
                                         }
+
+                                        .btn-info {
+                                            cursor: pointer;
+                                        }
                                     </style>
                                     <label class="radio">
                                         <input type="radio" name="is_hot" value="1"/>是
@@ -64,13 +68,7 @@
                             <div class="control-group">
                                 <label class="control-label">发表时间</label>
                                 <div class="controls">
-                                    <div data-date="12-02-2012"
-                                         class="input-append date datepicker">
-                                        <input type="text"
-                                               value="<?php echo e(\Carbon\Carbon::now()->toDateString()); ?>"
-                                               class="span11" data-date-format="mm-dd-yyyy"/>
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
+                                    <input name="publication_time" type="text" data-date="2018-1-1" data-date-format="yyyy-mm-dd" value="" class="datepicker"><a class="btn-info btn-mini" onclick="$('input[name=publication_time]').val('')">清空</a>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -81,8 +79,7 @@
                                 <div class="control-group">
                                     <label class="control-label">内容</label>
                                     <div class="controls" style="padding-right: 10%">
-                                        <textarea id="edit" class="textarea_editor span12"
-                                                  rows="6"></textarea>
+                                        <textarea id="edit" class="textarea_editor span12" rows="6"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-actions">
@@ -106,19 +103,17 @@
     <script src="<?php echo e(URL::asset('/back/js/select2.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/jquery.validate.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/matrix.form_validation.js')); ?>"></script>
-
     <script src="<?php echo e(URL::asset('/back/js/matrix.form_common.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/bootstrap-colorpicker.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/bootstrap-datepicker.js')); ?>"></script>
-
+    
+    <?php echo $__env->make('Plug.webUpload',[
+        'server'=>'articles/articleCover',//上传图片地址
+        'pick'=>'filePicker'//绑定的dom
+    ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
+    <?php echo $__env->make('Plug.froalaEditor',[
+        'imageUploadURL'=>'articles/articleEdit'//上传图片地址
+    ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('Plug.webUpload',[
-    'server'=>'articles/articleCover',
-    'pick'=>'filePicker'
-], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-
-<?php echo $__env->make('Plug.froalaEditor',[
-    'imageUploadURL'=>'articles/articleEdit'
-], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('Back.Common.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
