@@ -40,8 +40,7 @@
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
                                         <div id="fileList" class="uploader-list"></div>
-                                        
-                                        <input id="filePicker" type="button" name="cover_img" class="required" value="shangchuang"/>
+                                        <div id="cover_img"> 选择图片</div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +108,7 @@
     
     <?php echo $__env->make('Plug.webUpload',[
         'server'=>'articles/articleCover',//上传图片地址
-        'pick'=>'filePicker'//绑定的dom
+        'pick'=>'cover_img'//绑定的dom
     ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     
     <?php echo $__env->make('Plug.froalaEditor',[

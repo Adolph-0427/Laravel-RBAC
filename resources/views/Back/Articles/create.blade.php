@@ -41,7 +41,7 @@
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
                                         <div id="fileList" class="uploader-list"></div>
-                                        <div id="filePicker"> 选择图片</div>
+                                        <div id="cover_img"> 选择图片</div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
     {{--引入上传插件--}}
     @include('Plug.webUpload',[
         'server'=>'articles/articleCover',//上传图片地址
-        'pick'=>'filePicker'//绑定的dom
+        'pick'=>'cover_img'//绑定的dom
     ])
     {{--引入富文本编辑器--}}
     @include('Plug.froalaEditor',[

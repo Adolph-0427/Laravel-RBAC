@@ -105,7 +105,7 @@
                     $(".preview").eq(0).remove();
                 }
                 $("#"+pick).append('<img class="preview" style="width: auto;height: 20%;display: inherit;margin-top: 10px;" src='+response._raw+ '/>');
-                $("#"+pick).append('<input name='+pick+' value='+response._raw+'/>');
+                $("#"+pick).append('<input type="hidden" name='+pick+' value='+response._raw+'/>');
                 uploader.removeFile(file);
             });
 
