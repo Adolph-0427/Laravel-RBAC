@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Back;
 use App\AdminUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class LoginController extends Controller
@@ -34,7 +33,7 @@ class LoginController extends Controller
                 $validator->errors()->add('username_password', '账号或密码错误！');
             }
         }
-        return redirect('/login')->withErrors($validator)->withInput();
+        return redirect('login')->withErrors($validator)->withInput();
     }
 
     //退出登录

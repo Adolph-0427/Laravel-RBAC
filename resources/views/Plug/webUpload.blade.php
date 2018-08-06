@@ -1,6 +1,7 @@
 <link href="https://cdn.bootcss.com/webuploader/0.1.1/webuploader.css" rel="stylesheet">
 <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
+<script type="text/javascript"
+        src="http://cdn.staticfile.org/webuploader/0.1.0/webuploader.js"></script>
 <script>
     var server = "{{url($server)}}";
     var pick = "{{$pick}}";
@@ -19,7 +20,7 @@
             // 初始化Web Uploader
             var uploader = WebUploader.create({
                 // 选完文件后，是否自动上传。
-                auto: true,
+                auto: false,
                 //验证文件总大小是否超出限制
                 fileSizeLimit: fileSizeLimit,
                 //文件上传请求的参数表
@@ -27,23 +28,23 @@
                     _token: '{{csrf_token()}}',
                 },
                 //配置压缩的图片
-                compress: {
-                    width: width,
-                    height: height,
-                    // 图片质量，只有type为`image/jpeg`的时候才有效。
-                    quality: 90,
-                    // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
-                    allowMagnify: false,
-                    // 是否允许裁剪。
-                    crop: false,
-                    // 是否保留头部meta信息。
-                    preserveHeaders: true,
-                    // 如果发现压缩后文件大小比原来还大，则使用原来图片
-                    // 此属性可能会影响图片自动纠正功能
-                    noCompressIfLarger: false,
-                    // 单位字节，如果图片大小小于此值，不会采用压缩。
-                    compressSize: 0
-                },
+//                compress: {
+//                    width: width,
+//                    height: height,
+//                    // 图片质量，只有type为`image/jpeg`的时候才有效。
+//                    quality: 90,
+//                    // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+//                    allowMagnify: false,
+//                    // 是否允许裁剪。
+//                    crop: false,
+//                    // 是否保留头部meta信息。
+//                    preserveHeaders: true,
+//                    // 如果发现压缩后文件大小比原来还大，则使用原来图片
+//                    // 此属性可能会影响图片自动纠正功能
+//                    noCompressIfLarger: false,
+//                    // 单位字节，如果图片大小小于此值，不会采用压缩。
+//                    compressSize: 0
+//                },
                 // swf文件路径
                 swf: 'https://cdn.bootcss.com/webuploader/0.1.0/Uploader.swf',
                 // 文件接收服务端。
@@ -58,6 +59,19 @@
                 duplicate: false,//支持再次上传
                 fileNumLimit: 1,//上传单张
                 multiple: false,//是否开起同时选择多个文件能力
+                thumb:{
+                    width: 110,
+                    height: 110,
+                    // 图片质量，只有type为`image/jpeg`的时候才有效。
+                    quality: 70,
+                    // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+                    allowMagnify: true,
+                    // 是否允许裁剪。
+                    crop: true,
+                    // 为空的话则保留原有图片格式。
+                    // 否则强制转换成指定的类型。
+                    type: 'image/jpeg'
+                },
             });
             /**
              * 验证文件格式以及文件大小
@@ -77,12 +91,28 @@
 
             // 当有文件被添加进队列的时候
             uploader.on('fileQueued', function (file) {
-                var $list = $("#fileList");
-                $list.append('<div id="' + file.id + '" class="item">' +
-                    //                    '<h4 class="info">' + file.name + '</h4>' +
-                    '<p class="state">等待上传...</p>' +
-                    '</div>');
+//                var $li = $(
+//                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+//                    '<img>' +
+//                    '<div class="info">' + file.name + '</div>' +
+//                    '</div>'
+//                    ),
+//                $img = $li.find('img');
+                // $list为容器jQuery实例
+//                $("#fileList").append($li);
+                // 创建缩略图
+                // 如果为非图片文件，可以不用调用此方法。
+                // thumbnailWidth x thumbnailHeight 为 100 x 100
+                uploader.makeThumb( file, function( error, ret ) {
+                    console.log(ret)
+                    if ( error ) {
+                    } else {
+                        $("#thumb").attr('src',ret);
+                    }
+                });
+
             });
+
             // 文件上传过程中创建进度条实时显示。
             uploader.on('uploadProgress', function (file, percentage) {
                 var $li = $('#' + file.id),
@@ -98,14 +128,14 @@
                 $li.find('p.state').text('上传中');
                 $percent.css('width', percentage * 100 + '%');
             });
-            uploader.on('uploadSuccess', function (file,response) {
+            uploader.on('uploadSuccess', function (file, response) {
                 $('#' + file.id).find('p.state').text('已上传');
                 if ($('p.state').length > 1) {
                     $('p.state').eq(0).parent().remove();
                     $(".preview").eq(0).remove();
                 }
-                $("#"+pick).append('<img class="preview" style="width: auto;height: 20%;display: inherit;margin-top: 10px;" src='+response._raw+ '/>');
-                $("#"+pick).append('<input type="hidden" name='+pick+' value='+response._raw+'/>');
+                $("#" + pick).append('<img class="preview" style="width: auto;height: 20%;display: inherit;margin-top: 10px;" src=' + response._raw + '/>');
+                $("#" + pick).append('<input type="hidden" name=' + pick + ' value=' + response._raw + '/>');
                 uploader.removeFile(file);
             });
 
