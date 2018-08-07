@@ -59,7 +59,7 @@
                 duplicate: false,//支持再次上传
                 fileNumLimit: 1,//上传单张
                 multiple: false,//是否开起同时选择多个文件能力
-                thumb:{
+                thumb: {
                     width: 110,
                     height: 110,
                     // 图片质量，只有type为`image/jpeg`的时候才有效。
@@ -91,25 +91,26 @@
 
             // 当有文件被添加进队列的时候
             uploader.on('fileQueued', function (file) {
-//                var $li = $(
-//                    '<div id="' + file.id + '" class="file-item thumbnail">' +
-//                    '<img>' +
-//                    '<div class="info">' + file.name + '</div>' +
-//                    '</div>'
-//                    ),
-//                $img = $li.find('img');
-                // $list为容器jQuery实例
-//                $("#fileList").append($li);
+                var $li = $(
+                    '<div id="' + file.id + '" class="file-item thumbnail">' +
+                    '<i class="icon-remove" style="cursor: pointer" onclick="removeUpload()"></i>' +
+                    '<img id="thumb">' +
+                    '<a href="javascript:;" class="btn btn-success" onclick="upload()">上传</a>' +
+                    '</div>'
+                    ),
+                    $img = $li.find('img');
+
+                $("#" + pick).append($li);
                 // 创建缩略图
                 // 如果为非图片文件，可以不用调用此方法。
                 // thumbnailWidth x thumbnailHeight 为 100 x 100
-                uploader.makeThumb( file, function( error, ret ) {
-                    console.log(ret)
-                    if ( error ) {
+                uploader.makeThumb(file, function (error, ret) {
+                    if (error) {
+                        $(".icon-remove").append('<span>无法预览</span>');
                     } else {
-                        $("#thumb").attr('src',ret);
+                        $img.attr('src', ret);
                     }
-                });
+                }, 150, 150);
 
             });
 
@@ -128,6 +129,7 @@
                 $li.find('p.state').text('上传中');
                 $percent.css('width', percentage * 100 + '%');
             });
+            //上传成功
             uploader.on('uploadSuccess', function (file, response) {
                 $('#' + file.id).find('p.state').text('已上传');
                 if ($('p.state').length > 1) {
@@ -138,7 +140,7 @@
                 $("#" + pick).append('<input type="hidden" name=' + pick + ' value=' + response._raw + '/>');
                 uploader.removeFile(file);
             });
-
+            //上传失败
             uploader.on('uploadError', function (file) {
                 $('#' + file.id).find('p.state').text('上传出错');
             });
@@ -151,11 +153,18 @@
                 //清空队列
                 uploader.reset();
             });
-            $("#filePicker").click(function () {
-                uploader.retry();
-            });
 
         });
 
+    }
+    
+    //上传图片
+    function upload() {
+        
+    }
+
+    //取消上传
+    function removeUpload() {
+        $("#WU_FILE_0").remove();
     }
 </script>
