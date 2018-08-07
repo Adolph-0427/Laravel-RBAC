@@ -39,7 +39,6 @@
                                 <label class="control-label">封面图</label>
                                 <div class="controls">
                                     <div id="uploader-demo">
-                                        <img id="thumb"/>
                                         <!--用来存放item-->
                                         <div id="cover_img"> 选择图片</div>
                                     </div>
