@@ -96,8 +96,9 @@
     </ul>
 </div>
 
+
 <div id="content">
-    {{--错误消息--}}
+    {{--错误消息(后台返回)--}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -107,7 +108,18 @@
             </ul>
         </div>
     @endif
-    {{--错误消息--}}
+    {{--错误消息(后台返回)--}}
+
+    {{--自定义错误--}}
+    <div class="alert alert-error alert-block" style="display: none;">
+        <a id="close-alert" style="float: right;font-size: 20px;" href="#">×</a>
+        <h4 class="alert-heading">Error!</h4>
+        <span>
+            message!
+        </span>
+    </div>
+    {{--自定义错误--}}
+
     <div id="content-header">
         <div id="breadcrumb">
             <a href="{{url('/')}}" title="Go to Home" class="tip-bottom">
@@ -132,22 +144,33 @@
 
 @section('js')
     <script src="{{ URL::asset('/back/js/jquery.min.js') }}"></script>
-    {{--导航高亮--}}
     <script>
         $(function () {
+           {{--导航高亮--}}
             var url = "{{url()->full()}}";//当前url
             var group_name = url.split('/')[3];
             if ($(".home a").attr('href') == url) {
                 $(".home").addClass('active');
             }
             $(".submenu").each(function () {
-                if(group_name == $(this).attr('id')){
+                if (group_name == $(this).attr('id')) {
                     $(this).addClass('active');
                 }
             })
         })
+
+        {{--自定义弹窗--}}
+        function alerterror(error) {
+            $(".alert-error").css("display", "block");
+            $(".alert-error").find('span').text(error);
+        }
+
+        $("#close-alert").click(function () {
+            $(".alert-error").css("display", "none");
+        })
+
     </script>
-    
+
     <script src="{{ URL::asset('/back/js/jquery.ui.custom.js') }}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/matrix.js') }}"></script>

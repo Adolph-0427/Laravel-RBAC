@@ -67,7 +67,10 @@
                             <div class="control-group">
                                 <label class="control-label">发表时间</label>
                                 <div class="controls">
-                                    <input name="publication_time" type="text" data-date="2018-1-1" data-date-format="yyyy-mm-dd" value="" class="datepicker"><a class="btn-info btn-mini" onclick="$('input[name=publication_time]').val('')">清空</a>
+                                    <input name="publication_time" type="text" data-date="2018-1-1"
+                                           data-date-format="yyyy-mm-dd" value="" class="datepicker"><a
+                                            class="btn-info btn-mini"
+                                            onclick="$('input[name=publication_time]').val('')">清空</a>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -78,7 +81,8 @@
                                 <div class="control-group">
                                     <label class="control-label">内容</label>
                                     <div class="controls" style="padding-right: 10%">
-                                        <textarea id="edit" name="content" class="textarea_editor required span12" rows="6"></textarea>
+                                        <textarea id="edit" name="content" class="textarea_editor required span12"
+                                                  rows="6"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-actions">
@@ -106,12 +110,12 @@
     <script src="{{ URL::asset('/back/js/bootstrap-colorpicker.js')}}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap-datepicker.js')}}"></script>
     {{--引入上传插件--}}
-    @include('Plug.webUpload',[
-        'server'=>'articles/articleCover',//上传图片地址
-        'pick'=>'cover_img'//绑定的dom
-    ])
+    @include('Plug.webUpload')
+    <script>
+        uploadImg('/articles/articleCover', 'cover_img', 300, 300);
+    </script>
     {{--引入富文本编辑器--}}
     @include('Plug.froalaEditor',[
-        'imageUploadURL'=>'articles/articleEdit'//上传图片地址
+        'imageUploadURL'=>'/articles/articleEdit'//上传图片地址
     ])
 @endsection
