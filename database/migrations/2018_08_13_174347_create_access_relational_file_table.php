@@ -13,7 +13,7 @@ class CreateAccessRelationalFileTable extends Migration
      */
     public function up()
     {
-        Schema::table('access_relational_file', function (Blueprint $table) {
+        Schema::create('access_relational_file', function (Blueprint $table) {
             //
             $table->integer('aid')->comment('权限ID');
             $table->integer('fid')->comment('文件ID');

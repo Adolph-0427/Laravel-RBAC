@@ -13,7 +13,7 @@ class CreateAccessRelationalFunctionalTable extends Migration
      */
     public function up()
     {
-        Schema::table('access_relational_functional', function (Blueprint $table) {
+        Schema::create('access_relational_functional', function (Blueprint $table) {
             //
             $table->integer('aid')->comment('权限ID');
             $table->integer('fid')->comment('功能操作ID');

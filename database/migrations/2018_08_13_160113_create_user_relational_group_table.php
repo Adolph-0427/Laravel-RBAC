@@ -13,7 +13,7 @@ class CreateUserRelationalGroupTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_relational_group', function (Blueprint $table) {
+        Schema::create('user_relational_group', function (Blueprint $table) {
             //
             $table->integer('gid')->comment('组id');
             $table->integer('uid')->comment('用户ID');

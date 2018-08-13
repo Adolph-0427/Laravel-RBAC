@@ -13,7 +13,7 @@ class CreateAccessRelationalMenuTable extends Migration
      */
     public function up()
     {
-        Schema::table('access_relational_menu', function (Blueprint $table) {
+        Schema::create('access_relational_menu', function (Blueprint $table) {
             //
             $table->integer('aid')->comment('权限ID');
             $table->integer('mid')->comment('菜单ID');

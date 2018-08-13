@@ -13,7 +13,7 @@ class CreateUserRelationalRoleTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_relational_role', function (Blueprint $table) {
+        Schema::create('user_relational_role', function (Blueprint $table) {
             //
             $table->integer('uid')->comment('用户ID');
             $table->integer('rid')->comment('角色ID');

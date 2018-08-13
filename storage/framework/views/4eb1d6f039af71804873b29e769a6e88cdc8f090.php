@@ -96,6 +96,7 @@
     </ul>
 </div>
 
+
 <div id="content">
     
     <?php if($errors->any()): ?>
@@ -108,6 +109,17 @@
         </div>
     <?php endif; ?>
     
+
+    
+    <div class="alert alert-error alert-block" style="display: none;">
+        <a id="close-alert" style="float: right;font-size: 20px;" href="#">×</a>
+        <h4 class="alert-heading">Error!</h4>
+        <span>
+            message!
+        </span>
+    </div>
+    
+
     <div id="content-header">
         <div id="breadcrumb">
             <a href="<?php echo e(url('/')); ?>" title="Go to Home" class="tip-bottom">
@@ -132,22 +144,33 @@
 
 <?php $__env->startSection('js'); ?>
     <script src="<?php echo e(URL::asset('/back/js/jquery.min.js')); ?>"></script>
-    
     <script>
         $(function () {
+           
             var url = "<?php echo e(url()->full()); ?>";//当前url
             var group_name = url.split('/')[3];
             if ($(".home a").attr('href') == url) {
                 $(".home").addClass('active');
             }
             $(".submenu").each(function () {
-                if(group_name == $(this).attr('id')){
+                if (group_name == $(this).attr('id')) {
                     $(this).addClass('active');
                 }
             })
         })
+
+        
+        function alerterror(error) {
+            $(".alert-error").css("display", "block");
+            $(".alert-error").find('span').text(error);
+        }
+
+        $("#close-alert").click(function () {
+            $(".alert-error").css("display", "none");
+        })
+
     </script>
-    
+
     <script src="<?php echo e(URL::asset('/back/js/jquery.ui.custom.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/bootstrap.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/matrix.js')); ?>"></script>

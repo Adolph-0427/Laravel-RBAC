@@ -13,7 +13,7 @@ class CreateRoleRelationalGroupTable extends Migration
      */
     public function up()
     {
-        Schema::table('role_relational_group', function (Blueprint $table) {
+        Schema::create('role_relational_group', function (Blueprint $table) {
             //
             $table->integer('gid')->comment('用户组ID');
             $table->integer('rid')->comment('角色ID');

@@ -13,7 +13,7 @@ class CreatePageElementsTable extends Migration
      */
     public function up()
     {
-        Schema::table('page_elements', function (Blueprint $table) {
+        Schema::create('page_elements', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('coding')->comment('页面元素编码');

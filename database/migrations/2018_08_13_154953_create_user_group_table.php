@@ -13,7 +13,7 @@ class CreateUserGroupTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_group', function (Blueprint $table) {
+        Schema::create('user_group', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('用户组名称');
             $table->integer('pid')->comment('父级用户组ID');

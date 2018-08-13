@@ -13,7 +13,7 @@ class CreateAccessRelationalRoleTable extends Migration
      */
     public function up()
     {
-        Schema::table('access_relational_role', function (Blueprint $table) {
+        Schema::create('access_relational_role', function (Blueprint $table) {
             //
             $table->integer('rid')->comment('角色ID');
             $table->integer('aid')->comment('权限ID');

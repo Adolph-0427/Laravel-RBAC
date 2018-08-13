@@ -13,7 +13,7 @@ class CreateFunctionalOperationTable extends Migration
      */
     public function up()
     {
-        Schema::table('functional_operation', function (Blueprint $table) {
+        Schema::create('functional_operation', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name')->comment('操做名称');

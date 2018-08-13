@@ -13,7 +13,7 @@ class CreateAccessTable extends Migration
      */
     public function up()
     {
-        Schema::table('access', function (Blueprint $table) {
+        Schema::create('access', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->tinyInteger('type')->comment('1菜单 2页面元素 3文件');

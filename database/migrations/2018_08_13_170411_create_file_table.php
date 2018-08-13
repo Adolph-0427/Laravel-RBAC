@@ -13,7 +13,7 @@ class CreateFileTable extends Migration
      */
     public function up()
     {
-        Schema::table('file', function (Blueprint $table) {
+        Schema::create('file', function (Blueprint $table) {
             //
             $table->increments('id');
             $table->string('name')->comment('文件名称');
