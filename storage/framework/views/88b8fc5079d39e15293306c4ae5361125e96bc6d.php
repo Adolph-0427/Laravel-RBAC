@@ -50,7 +50,6 @@
                                         .radio input[type="radio"] {
                                             margin-left: 0px
                                         }
-
                                         .btn-info {
                                             cursor: pointer;
                                         }

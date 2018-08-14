@@ -18,6 +18,9 @@ Route::resource('user', 'AdminUserController');
 //文章
 Route::resource('articles', 'ArticlesController');
 //上传文章封面
-Route::post('articles/articleCover','ArticlesController@articleCover');
+Route::post('articles/articleCover', 'ArticlesController@articleCover');
 //文章内容图片上传
-Route::post('articles/articleEdit','ArticlesController@articleEdit');
+Route::post('articles/articleEdit', 'ArticlesController@articleEdit');
+
+//用户组
+Route::resource('group', 'UserGroupController');

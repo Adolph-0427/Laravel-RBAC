@@ -93,6 +93,12 @@
                 <li><a href="{{url('articles/create')}}">添加文章</a></li>
             </ul>
         </li>
+        <li class="submenu" id="group"><a href="#"><i class="icon icon-book"></i> <span>用户组</span> </a>
+            <ul>
+                <li><a href="{{url('group')}}">用户组列表</a></li>
+                <li><a href="{{url('group/create')}}">添加用户组</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
