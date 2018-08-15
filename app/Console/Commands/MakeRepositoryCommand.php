@@ -194,10 +194,9 @@ class MakeRepositoryCommand extends Command
     private function getStub()
     {
         $stubs = [
-            'Eloquent' => $this->files->get(resource_path('stubs/Repository') . DIRECTORY_SEPARATOR . 'Eloquent' . DIRECTORY_SEPARATOR . 'repository.stub'),
-            'Interface' => $this->files->get(resource_path('stubs/Repository') . DIRECTORY_SEPARATOR . 'repository_interface.stub'),
+            'Eloquent' => $this->files->get(resource_path('stubs\Repository') . DIRECTORY_SEPARATOR . 'repository.stub'),
+            'Interface' => $this->files->get(resource_path('stubs\Repository') . DIRECTORY_SEPARATOR . 'repository_interface.stub'),
         ];
-
         return $stubs;
     }
 
