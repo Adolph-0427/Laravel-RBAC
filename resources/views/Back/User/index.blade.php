@@ -18,7 +18,6 @@
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
-                                <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
                                 <th>用户</th>
                                 <th>描述</th>
@@ -29,7 +28,6 @@
                             <tbody>
                             @foreach($list as $value)
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="{{$value->uid}}}"/></td>
                                     <td>{{$value->uid}}</td>
                                     <td>{{$value->username}}</td>
                                     <td>{{$value->describe}}</td>

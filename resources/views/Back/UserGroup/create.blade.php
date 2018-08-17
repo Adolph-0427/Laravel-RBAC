@@ -54,6 +54,7 @@
     </div>
 @endsection
 @section('js')
+
     @parent
     <script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
     <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>

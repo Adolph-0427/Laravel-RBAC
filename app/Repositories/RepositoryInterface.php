@@ -1,12 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: liuxiang
+ * User: phper
+ * Date: 2018/8/17
+ * Time: 15:54
  */
 
 namespace App\Repositories;
 
-interface  UserRepositoryInterface
+interface RepositoryInterface
 {
     /**
      * @param array $columns
@@ -22,32 +24,36 @@ interface  UserRepositoryInterface
     public function paginate($perPage = 15, $columns = array('*'));
 
     /**
-     * Create a new User
+     * Create a new $model_name
      * @param array $data
-     * @return \App\User
+     * @return \$model_namespace
      */
     public function create(array $data);
 
+
     /**
-     * Update a User
+     * Update a $model_name
      * @param array $data
-     * @return \App\User
+     * @return \$model_namespace
      */
     public function update($data = [], $id);
 
+
     /**
-     * Store a User
+     * Store a $model_name
      * @param array $data
-     * @return \App\User
+     * @return \$model_namespace
      */
     public function store($data = []);
 
+
     /**
-     * Delete a User
+     * Delete a $model_name
      * @param array $data
-     * @return \App\User
+     * @return \$model_namespace
      */
     public function delete($data = [], $id);
+
 
     /**
      * @param $id
@@ -55,6 +61,7 @@ interface  UserRepositoryInterface
      * @return array|\Illuminate\Database\Eloquent\Collection|static[]
      */
     public function find($id, $columns = array('*'));
+
 
     /**
      * @param $field
@@ -64,4 +71,3 @@ interface  UserRepositoryInterface
      */
     public function findBy($field, $value, $columns = array('*'));
 }
-
