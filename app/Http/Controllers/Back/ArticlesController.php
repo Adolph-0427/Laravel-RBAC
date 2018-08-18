@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Articles;
+use App\Model\Articles;
 use App\Http\Requests\StoreArticlesPost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

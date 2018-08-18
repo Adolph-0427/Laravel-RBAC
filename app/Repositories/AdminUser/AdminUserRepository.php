@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Repositories\AdminUserRepository;
+namespace App\Repositories\AdminUser;
 
+use App\Model\AdminUser;
 use App\Repositories\EloquentRepository;
+
 class AdminUserRepository extends EloquentRepository
 {
-    /**
-     * @var \App\User
-     */
-    public $user;
 
-    public function __construct(AdminUser $user)
+
+    public function __construct(AdminUser $model)
     {
-        $this->user = $user;
+        parent::__construct($model);
     }
 
 }

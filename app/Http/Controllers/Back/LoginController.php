@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\AdminUser;
+use App\Model\AdminUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;

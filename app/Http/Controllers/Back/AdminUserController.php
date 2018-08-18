@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\AdminUser;
+use App\Model\AdminUser;
 use App\Http\Requests\StoreAdminUserPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\AdminUser\AdminUserRepository;
 
 class AdminUserController extends CommonController
 {
+    protected $AdminUser;
+
+    public function __construct(AdminUserRepository $AdminUser)
+    {
+        parent::__construct();
+        $this->AdminUser = $AdminUser;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,7 @@ class AdminUserController extends CommonController
      */
     public function index()
     {
-        return view('Back.User.index', ['list' => AdminUser::all()]);
+        return view('Back.User.index', ['list' => $this->AdminUser->all()]);
     }
 
     /**
@@ -37,9 +46,9 @@ class AdminUserController extends CommonController
      */
     public function store(StoreAdminUserPost $request)
     {
-        $request->offsetSet('password', Hash::make($request->password));
-        AdminUser::create($request->all());
+        $request->offsetSet('password', Hash::make($request->password));//加密密码
 
+        $this->AdminUser->create($request->all());
         return redirect('/user');
     }
 
@@ -50,22 +59,21 @@ class AdminUserController extends CommonController
      * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(AdminUser $adminUser, $id)
+    public function edit($id)
     {
-        return view('Back.User.edit', ['info' => $adminUser::find($id)]);
+        return view('Back.User.edit', ['info' => $this->AdminUser->find($id, array('uid', 'username', 'describe'))]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\AdminUser $adminUser
+     * @param  \App\Model\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, AdminUser $adminUser)
+    public function update(Request $request, $id)
     {
-        $user = $adminUser::findOrFail($id);
-        $user->update($request->all());
+        $this->AdminUser->update($request->all(), array('uid', '=', $id));
         return redirect('/user');
     }
 

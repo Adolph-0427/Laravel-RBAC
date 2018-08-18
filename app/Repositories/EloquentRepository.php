@@ -27,18 +27,90 @@ abstract class EloquentRepository implements RepositoryInterface
 
 
     /**
-     * Make a new instance of the entity to query on
-     *
+     * @param array $with
      * @param array $columns
-     * @return \Illuminate\Database\Eloquent\Builder|static
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function all(array $columns = [])
+    public function all(array $with = [], array $columns = ['*'])
     {
-        return $this->model->with($columns);
+        return $this->model->with($with)->get($columns);
+    }
+
+    /**
+     * @param int $perPage
+     * @param array $columns
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+
+    public function paginate($perPage = 15, $columns = array('*'))
+    {
+        return $this->model->paginate($perPage, $columns);
+    }
+
+    /**
+     * Create
+     * @param array $data
+     * @return $model
+     */
+
+    public function create(array $data)
+    {
+        return $this->model->create($data);
+    }
+
+    /**
+     * Update
+     * @param array $data
+     * @param array $where
+     * @return $model
+     */
+
+    public function update(array $data = [], array $where = [])
+    {
+        return $this->model->where($where)->update($data);
     }
 
 
     /**
-     * Retrieve all entities
+     * Store
+     * @param array $data
+     * @return $model
      */
+    public function store($data = [])
+    {
+        $this->model->id = $data['id'];
+        return $this->model->save();
+    }
+
+    /**
+     * Delete
+     * @param int $id
+     * @return $model
+     */
+    public function delete($id)
+    {
+        return $this->model->find($id)->delete();
+    }
+
+    /**
+     * @param $id
+     * @param array $columns
+     * @return array|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function find($id, $columns = array('*'))
+    {
+        return $this->model->find($id, $columns);
+    }
+
+
+    /**
+     * @param $field
+     * @param $value
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function findBy($field, $value, $columns = array('*'))
+    {
+        return $this->model->where($field, '=', $value)->get($columns);
+    }
 }

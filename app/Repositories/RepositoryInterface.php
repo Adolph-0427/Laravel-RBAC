@@ -14,7 +14,7 @@ interface RepositoryInterface
      * @param array $columns
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
-    public function all($columns = array('*'));
+    public function all(array $with = [], array $columns = []);
 
     /**
      * @param int $perPage
@@ -36,7 +36,7 @@ interface RepositoryInterface
      * @param array $data
      * @return \$model_namespace
      */
-    public function update($data = [], $id);
+    public function update(array $data = [], array $where = []);
 
 
     /**
@@ -49,10 +49,10 @@ interface RepositoryInterface
 
     /**
      * Delete a $model_name
-     * @param array $data
+     * @param int $id
      * @return \$model_namespace
      */
-    public function delete($data = [], $id);
+    public function delete($id);
 
 
     /**
