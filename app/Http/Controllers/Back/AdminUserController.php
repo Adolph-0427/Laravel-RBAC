@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Model\AdminUser;
 use App\Http\Requests\StoreAdminUserPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -56,7 +55,6 @@ class AdminUserController extends CommonController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,25 +66,22 @@ class AdminUserController extends CommonController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Model\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $this->AdminUser->update($request->all(), array('uid', '=', $id));
+        $this->AdminUser->update($request->all(), array('uid' => $id));
         return redirect('/user');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AdminUser $adminUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AdminUser $adminUser, $id)
+    public function destroy($id)
     {
-        $user = $adminUser::findOrFail($id);
-        $user->delete();
+        $this->AdminUser->delete($id);
         return redirect('/user');
     }
 }

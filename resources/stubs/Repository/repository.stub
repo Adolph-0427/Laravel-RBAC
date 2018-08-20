@@ -16,6 +16,11 @@ class $class_name implements $repository_interface
         $this->$model_var_name = $$model_var_name;
     }
 
+        public function __construct(AdminUser $model)
+        {
+            parent::__construct($model);
+        }
+
     /**
      * @param array $columns
      * @return \Illuminate\Database\Eloquent\Collection|static[]

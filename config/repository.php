@@ -3,8 +3,8 @@
 return [
 
     'directory_path' => 'App' . DIRECTORY_SEPARATOR . 'Repositories',
-    'directory_eloquent_path' => 'App' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Eloquent',
-    'repository_namespace' => 'App\Repositories\Eloquent',
+    'directory_eloquent_path' => 'App' . DIRECTORY_SEPARATOR . 'Repositories',
+    'repository_namespace' => 'App\Repositories',
     'repository_interface_namespace' => 'App\Repositories',
 
 ];

@@ -40,14 +40,6 @@ interface RepositoryInterface
 
 
     /**
-     * Store a $model_name
-     * @param array $data
-     * @return \$model_namespace
-     */
-    public function store($data = []);
-
-
-    /**
      * Delete a $model_name
      * @param int $id
      * @return \$model_namespace

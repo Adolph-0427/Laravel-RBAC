@@ -58,12 +58,12 @@ class MakeRepositoryCommand extends Command
         $argument = $this->argument('repository');
         $option = $this->option('model');
         //自动生成RepositoryInterface和Repository文件
-        $this->writeRepositoryAndInterface($argument, $option);
+        $this->writeRepository($argument, $option);
         //重新生成autoload.php文件
         $this->composer->dumpAutoloads();
     }
 
-    private function writeRepositoryAndInterface($repository, $model)
+    private function writeRepository($repository, $model)
     {
         if ($this->createRepository($repository, $model)) {
             //若生成成功,则输出信息
@@ -76,7 +76,7 @@ class MakeRepositoryCommand extends Command
         // getter/setter 赋予成员变量值
         $this->setRepository($repository);
         $this->setModel($model);
-        // 创建文件存放路径, RepositoryInterface放在app/Repositories,Repository个人一般放在app/Repositories/Eloquent里
+        // 创建文件存放路径, Repository个人一般放在app/Repositories/
         $this->createDirectory();
         // 生成两个文件
         return $this->createClass();
@@ -101,10 +101,7 @@ class MakeRepositoryCommand extends Command
         //渲染模板文件,替换模板文件中变量值
         $templates = $this->templateStub();
         $class = null;
-        foreach ($templates as $key => $template) {
-            //根据不同路径,渲染对应的模板文件
-            $class = $this->files->put($this->getPath($key), $template);
-        }
+        $class = $this->files->put($this->getPath(), $templates);
         return $class;
     }
 
@@ -112,15 +109,8 @@ class MakeRepositoryCommand extends Command
     {
         // 两个模板文件,对应的两个路径
         $path = null;
-        switch ($class) {
-            case 'Eloquent':
-                $path = $this->getDirectory() . DIRECTORY_SEPARATOR . $this->getRepositoryName() . '.php';
-                break;
-            case 'Interface':
-                $path = $this->getInterfaceDirectory() . DIRECTORY_SEPARATOR . $this->getInterfaceName() . '.php';
-                break;
-        }
 
+        $path = $this->getDirectory() . DIRECTORY_SEPARATOR . $this->getRepositoryName() . '.php';
         return $path;
     }
 
@@ -195,7 +185,6 @@ class MakeRepositoryCommand extends Command
     {
         $stubs = [
             'Eloquent' => $this->files->get(resource_path('stubs\Repository') . DIRECTORY_SEPARATOR . 'repository.stub'),
-            'Interface' => $this->files->get(resource_path('stubs\Repository') . DIRECTORY_SEPARATOR . 'repository_interface.stub'),
         ];
         return $stubs;
     }

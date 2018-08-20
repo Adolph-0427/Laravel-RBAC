@@ -67,20 +67,10 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function update(array $data = [], array $where = [])
     {
+        unset($data['_token'], $data['_method']);
         return $this->model->where($where)->update($data);
     }
 
-
-    /**
-     * Store
-     * @param array $data
-     * @return $model
-     */
-    public function store($data = [])
-    {
-        $this->model->id = $data['id'];
-        return $this->model->save();
-    }
 
     /**
      * Delete
@@ -89,6 +79,7 @@ abstract class EloquentRepository implements RepositoryInterface
      */
     public function delete($id)
     {
+
         return $this->model->find($id)->delete();
     }
 
