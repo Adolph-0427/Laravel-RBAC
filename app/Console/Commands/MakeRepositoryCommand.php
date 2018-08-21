@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputOption;
 
 class RepositoryMakeCommand extends GeneratorCommand
 {
@@ -11,9 +12,8 @@ class RepositoryMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $name = 'make:repository {--model=}';
+    protected $name = 'make:repository';
 
-    
 
     /**
      * The console command description.
@@ -63,11 +63,38 @@ class RepositoryMakeCommand extends GeneratorCommand
 
         $stub = str_replace(
             ['RepositoryNamespace', 'ModelName'],
-            [$this->getNamespace($name), 'AAA'],
+            [$this->getNamespace($name), $this->setModel()],
             $stub
         );
 
         return $this;
     }
 
+
+    /**
+     * set Model
+     *
+     */
+    private function setModel()
+    {
+        if (!empty($this->option('model'))) {
+            return $this->option('model');
+        } else {
+            $modelName = explode('/', $this->getNameInput('name'));
+            return $modelName[1];
+        }
+    }
+
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['model', 'm', InputOption::VALUE_OPTIONAL, 'Injection  model.']
+        ];
+    }
 }
