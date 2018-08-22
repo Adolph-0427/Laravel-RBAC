@@ -80,8 +80,8 @@ class RepositoryMakeCommand extends GeneratorCommand
         if (!empty($this->option('model'))) {
             return $this->option('model');
         } else {
-            $modelName = explode('/', $this->getNameInput('name'));
-            return $modelName[1];
+            $name = explode('/', $this->getNameInput('name'));
+            return str_replace('Repository', '', $name[count($name) - 1]);
         }
     }
 

@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Model\Articles;
 use App\Http\Requests\StoreArticlesPost;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Repositories\Articles\ArticlesRepository;
 
 class ArticlesController extends CommonController
 {
+
+    protected $Articles;
+
+    public function __construct(ArticlesRepository $Articles)
+    {
+        parent::__construct();
+        $this->Articles = $Articles;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +26,7 @@ class ArticlesController extends CommonController
      */
     public function index()
     {
-        return view('Back.Articles.index', ['list' => Articles::all()]);
+        return view('Back.Articles.index', ['list' => $this->Articles->all()]);
     }
 
     /**
@@ -38,7 +47,7 @@ class ArticlesController extends CommonController
      */
     public function store(StoreArticlesPost $request)
     {
-        Articles::create($request->all());
+        $this->Articles->create($request->all());
         return redirect('/article');
     }
 

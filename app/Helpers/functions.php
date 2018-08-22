@@ -6,7 +6,13 @@
  * Time: 10:33
  */
 
-function test()
+/*
+ * php截取指定两个字符之间字符串
+ * */
+function get_between($input, $start, $end)
 {
-    return 11;
+    $substr = substr($input, strlen($start) + strpos($input, $start), (strlen($input) - strpos($input, $end)) * (-1));
+
+    return $substr;
+
 }
