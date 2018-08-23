@@ -2,38 +2,31 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Model\AdminUser;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserLogin;
 use App\Http\Controllers\Controller;
-use Validator;
+use App\Repositories\AdminUser\AdminUserRepository;
 
 class LoginController extends Controller
 {
 
+    protected $AdminUser;
+
+    public function __construct(AdminUserRepository $AdminUser)
+    {
+        $this->AdminUser = $AdminUser;
+    }
+
     //用户登录
-    public function login(Request $request)
+    public function login(StoreUserLogin $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required',
-            'captcha' => 'required|captcha'
-        ], [
-            'username.required' => '请填写用户名',
-            'password.required' => '请填写密码',
-            'captcha.required' => '请填写验证码',
-            'captcha.captcha' => '验证码错误',
-        ]);
-        if (!$validator->fails()) {
-            $user = new AdminUser();
-            $result = $user->login($request->all());
-            if ($result !== false) {
-                return redirect('/user');
-            } else {
-                $validator->errors()->add('username_password', '账号或密码错误！');
-            }
+        $result = $this->AdminUser->login($request->all());
+        if ($result !== false) {
+            return redirect('/user');
+        } else {
+            return back()->withErrors(['用户名或者密码错误']);
         }
-        return redirect('login')->withErrors($validator)->withInput();
+        return redirect('login');
     }
 
     //退出登录
