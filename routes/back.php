@@ -21,6 +21,11 @@ Route::resource('articles', 'ArticlesController');
 Route::post('articles/articleCover', 'ArticlesController@articleCover');
 //文章内容图片上传
 Route::post('articles/articleEdit', 'ArticlesController@articleEdit');
+//文章分类
+Route::resource('articleCategory', 'ArticleCategoryController');
+
 
 //用户组
 Route::resource('group', 'UserGroupController');
+
+

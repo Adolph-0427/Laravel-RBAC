@@ -17,7 +17,6 @@
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
-                                <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
                                 <th>用户</th>
                                 <th>描述</th>
@@ -28,7 +27,6 @@
                             <tbody>
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="<?php echo e($value->uid); ?>}"/></td>
                                     <td><?php echo e($value->uid); ?></td>
                                     <td><?php echo e($value->username); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
