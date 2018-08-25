@@ -17,8 +17,7 @@
                         <h5>添加分类</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user')}}" name="basic_validate"
-                              id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="{{url('articleCategory')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
                             <div class="control-group">
                                 <label class="control-label">名称</label>
@@ -38,6 +37,8 @@
                                     <textarea id="textarea" name="describe" rows="3"></textarea>
                                 </div>
                             </div>
+                            <input name="pid" value="{{$pid or 0}}" type="hidden">
+                            <input name="level" value="{{$level or 1}}" type="hidden">
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
                             </div>

@@ -1,5 +1,5 @@
-<?php $__env->startSection('column_url',url('user')); ?>
-<?php $__env->startSection('column','用户'); ?>
+<?php $__env->startSection('column_url',url('articleCategory')); ?>
+<?php $__env->startSection('column','文章分类'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
@@ -18,22 +18,22 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>用户</th>
+                                <th>名称</th>
+                                <th>分类标识</th>
                                 <th>描述</th>
-                                <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><?php echo e($value->uid); ?></td>
-                                    <td><?php echo e($value->username); ?></td>
+                                    <td><?php echo e($value->id); ?></td>
+                                    <td><?php echo e($value->name); ?></td>
+                                    <td><?php echo e($value->identify); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
-                                    <td><?php echo e($value->created_at); ?></td>
                                     <td>
-                                        <a href="<?php echo e(url('user/'.$value->uid.'/edit')); ?>">编辑</a>
-                                        <form action="<?php echo e(url('user/'.$value->uid)); ?>" method="POST" id="delete">
+                                        <a href="<?php echo e(url('articleCategory/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('articleCategory/'.$value->id)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
                                             <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Http\Requests\StoreArticleCategoryPost;
 use Illuminate\Http\Request;
 use App\Repositories\Articles\ArticleCategoryRepository;
 
@@ -31,9 +32,9 @@ class ArticleCategoryController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('Back.ArticleCategory.create');
+        return view('Back.ArticleCategory.create', ['pid' => $request->input('pid'), 'level' => $request->input('level') + 1]);
     }
 
     /**
@@ -42,9 +43,11 @@ class ArticleCategoryController extends CommonController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticleCategoryPost $request)
     {
-        //
+        $this->Category->create($request->all());
+
+        return redirect('/articleCategory');
     }
 
     /**
@@ -66,7 +69,7 @@ class ArticleCategoryController extends CommonController
      */
     public function edit($id)
     {
-        //
+        return view('Back.ArticleCategory.edit', ['info' => $this->Category->find($id)]);
     }
 
     /**
@@ -78,7 +81,8 @@ class ArticleCategoryController extends CommonController
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->Category->update($request->all(), array('id' => $id));
+        return redirect('/articleCategory');
     }
 
     /**
@@ -89,6 +93,7 @@ class ArticleCategoryController extends CommonController
      */
     public function destroy($id)
     {
-        //
+        $this->Category->delete($id);
+        return redirect('/articleCategory');
     }
 }

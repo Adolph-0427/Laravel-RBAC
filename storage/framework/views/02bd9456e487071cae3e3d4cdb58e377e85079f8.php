@@ -1,6 +1,6 @@
 <?php $__env->startSection('column_url',url('articleCategory')); ?>
-<?php $__env->startSection('column','文章类别'); ?>
-<?php $__env->startSection('title','添加'); ?>
+<?php $__env->startSection('column','文章分类'); ?>
+<?php $__env->startSection('title','编辑'); ?>
 <?php $__env->startSection('css'); ?>
     ##parent-placeholder-2f84417a9e73cead4d5c99e05daff2a534b30132##
     <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/uniform.css')); ?>"/>
@@ -13,31 +13,33 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"><span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>添加分类</h5>
+                        <h5>编辑文章分类</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="<?php echo e(url('articleCategory')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('articleCategory/'.$info->id)); ?>"
+                              name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
+                            <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
-                                    <input type="text" name="name" class="required">
+                                    <input type="text" name="name" value="<?php echo e($info->name); ?>" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">分类标识</label>
                                 <div class="controls">
-                                    <input type="text" name="identify" class="required">
+                                    <input type="text" name="identify" value="<?php echo e($info->identify); ?>" class="required">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea" name="describe" rows="3"></textarea>
+                                    <textarea id="textarea" name="describe" rows="3"><?php echo e($info->describe); ?></textarea>
                                 </div>
                             </div>
-                            <input name="pid" value="<?php echo e(isset($pid) ? $pid : 0); ?>" type="hidden">
-                            <input name="level" value="<?php echo e(isset($level) ? $level : 1); ?>" type="hidden">
+                            <input name="pid" value="<?php echo e($info->pid); ?>" type="hidden">
+                            <input name="level" value="<?php echo e($info->level); ?>" type="hidden">
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
                             </div>

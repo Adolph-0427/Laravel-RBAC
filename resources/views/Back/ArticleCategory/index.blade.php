@@ -1,6 +1,6 @@
 @extends('Back.Common.app')
-@section('column_url',url('user')){{--栏目链接--}}
-@section('column','用户'){{--栏目名称--}}
+@section('column_url',url('articleCategory')){{--栏目链接--}}
+@section('column','文章分类'){{--栏目名称--}}
 @section('title','列表')
 @section('content')
     <div class="container-fluid">
@@ -19,22 +19,22 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>用户</th>
+                                <th>名称</th>
+                                <th>分类标识</th>
                                 <th>描述</th>
-                                <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($list as $value)
                                 <tr>
-                                    <td>{{$value->uid}}</td>
-                                    <td>{{$value->username}}</td>
+                                    <td>{{$value->id}}</td>
+                                    <td>{{$value->name}}</td>
+                                    <td>{{$value->identify}}</td>
                                     <td>{{$value->describe}}</td>
-                                    <td>{{$value->created_at}}</td>
                                     <td>
-                                        <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
-                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" id="delete">
+                                        <a href="{{url('articleCategory/'.$value->id.'/edit')}}">编辑</a>
+                                        <form action="{{ url('articleCategory/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>
