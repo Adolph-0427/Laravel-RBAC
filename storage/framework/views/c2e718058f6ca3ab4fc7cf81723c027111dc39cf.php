@@ -29,6 +29,14 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">Select input</label>
+                                <div class="controls" style="width:30%;">
+                                    <select name="category_id">
+                                        <option value="">First option</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
                                     <textarea id="textarea" class="required" name="describe" rows="3"></textarea>

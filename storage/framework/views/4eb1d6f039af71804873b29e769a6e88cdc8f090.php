@@ -93,10 +93,10 @@
                 <li><a href="<?php echo e(url('articles/create')); ?>">添加文章</a></li>
             </ul>
         </li>
-        <li class="submenu" id="articlesCategory"><a href="#"><i class="icon icon-book"></i> <span>文章分类</span> </a>
+        <li class="submenu" id="articleCategory"><a href="#"><i class="icon icon-book"></i> <span>文章分类</span> </a>
             <ul>
-                <li><a href="<?php echo e(url('articlesCategory')); ?>">文章列表</a></li>
-                <li><a href="<?php echo e(url('articlesCategory/create')); ?>">添加文章</a></li>
+                <li><a href="<?php echo e(url('articleCategory')); ?>">文章分类列表</a></li>
+                <li><a href="<?php echo e(url('articleCategory/create')); ?>">添加分类</a></li>
             </ul>
         </li>
         <li class="submenu" id="group"><a href="#"><i class="icon icon-book"></i> <span>用户组</span> </a>

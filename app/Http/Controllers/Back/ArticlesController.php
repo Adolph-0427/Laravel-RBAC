@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Requests\StoreArticlesPost;
+use App\Repositories\Articles\ArticleCategoryRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,11 +13,13 @@ class ArticlesController extends CommonController
 {
 
     protected $Articles;
+    protected $Category;
 
     public function __construct(ArticlesRepository $Articles)
     {
         parent::__construct();
         $this->Articles = $Articles;
+        $this->Category = ArticleCategoryRepository::class;
     }
 
     /**
