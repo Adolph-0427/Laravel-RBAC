@@ -1,5 +1,5 @@
 @extends('Back.Common.app')
-@section('column_url',url('user')){{--栏目链接--}}
+@section('column_url',url('articles')){{--栏目链接--}}
 @section('column','用户'){{--栏目名称--}}
 @section('title','添加')
 @section('css')
@@ -32,7 +32,7 @@
                             <div class="control-group">
                                 <label class="control-label">文章分类</label>
                                 <div class="controls">
-                                    <select name="category_id" style="width: 230px" >
+                                    <select name="category_id" style="width: 230px">
                                         @foreach($category as $value)
                                             <option value="{{$value->id}}">{{$value->name}}</option>
                                         @endforeach
@@ -42,7 +42,8 @@
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea" class="required" name="describe" rows="3"></textarea>
+                                    <textarea id="textarea" class="required" name="describe"
+                                              rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -78,7 +79,8 @@
                                 <label class="control-label">发表时间</label>
                                 <div class="controls">
                                     <input name="publication_time" type="text" data-date="2018-1-1"
-                                           data-date-format="yyyy-mm-dd" value="0" class="datepicker"><a
+                                           data-date-format="yyyy-mm-dd" value="0"
+                                           class="datepicker"><a
                                             class="btn-info btn-mini"
                                             onclick="$('input[name=publication_time]').val('')">清空</a>
                                 </div>
@@ -91,10 +93,11 @@
                                 <div class="control-group">
                                     <label class="control-label">内容</label>
                                     <div class="controls" style="padding-right: 10%">
-                                        <textarea id="edit" name="content" class="textarea_editor required span12"
-                                                  rows="6"></textarea>
+                                        <textarea id="edit" name="content"  class="textarea_editor required span12" rows="6"></textarea>
                                     </div>
                                 </div>
+                                <input name="user_id" type="hidden" value="0">
+                                <input name="status" type="hidden" value="1">
                                 <div class="form-actions">
                                     <input type="submit" value="Save" class="btn btn-success"/>
                                 </div>

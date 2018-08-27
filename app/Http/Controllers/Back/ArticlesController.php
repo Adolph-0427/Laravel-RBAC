@@ -51,7 +51,7 @@ class ArticlesController extends CommonController
     public function store(StoreArticlesPost $request)
     {
         $this->Articles->create($request->all());
-        return redirect('/article');
+        return redirect('/articles');
     }
 
     /**
@@ -73,7 +73,7 @@ class ArticlesController extends CommonController
      */
     public function edit($id)
     {
-        //
+        return view('Back.Articles.edit', ['info' => $this->Articles->find($id), 'category' => $this->getCategory()]);
     }
 
     /**
@@ -85,7 +85,8 @@ class ArticlesController extends CommonController
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->Articles->update($request->all(), array('id' => $id));
+        return redirect('/articles');
     }
 
     /**
@@ -96,7 +97,8 @@ class ArticlesController extends CommonController
      */
     public function destroy($id)
     {
-        //
+        $this->Articles->delete($id);
+        return redirect('/articles');
     }
 
 

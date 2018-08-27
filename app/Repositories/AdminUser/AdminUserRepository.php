@@ -26,7 +26,7 @@ class AdminUserRepository extends EloquentRepository
         if (empty($password) || !Hash::check($data['password'], $password)) {
             return false;
         } else {
-            $user = $this->model->where([['username', '=', $data['username']]])->select('username', 'describe')->first();;
+            $user = $this->model->where([['username', '=', $data['username']]])->select('username', 'describe', 'uid')->first();;
 
             if ($user != false) {
                 session(['user' => $user]);

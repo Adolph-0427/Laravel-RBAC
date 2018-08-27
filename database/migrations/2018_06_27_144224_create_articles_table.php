@@ -26,7 +26,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('category_id')->comment('分类ID');
             $table->integer('sort')->comment('排序');
             $table->integer('user_id')->unsigned()->comment('用户id');
-            $table->foreign('user_id')->references('id')->on('users');
+//            $table->foreign('user_id')->references('id')->on('users');//设置外键
             $table->timestamps();
         });
     }

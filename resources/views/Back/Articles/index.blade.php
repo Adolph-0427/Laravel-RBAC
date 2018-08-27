@@ -20,8 +20,10 @@
                             <tr>
                                 <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
-                                <th>用户</th>
+                                <th>标题</th>
                                 <th>描述</th>
+                                <th>阅读量</th>
+                                <th>状态</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -29,14 +31,16 @@
                             <tbody>
                             @foreach($list as $value)
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="{{$value->uid}}}"/></td>
-                                    <td>{{$value->uid}}</td>
-                                    <td>{{$value->username}}</td>
+                                    <td><input type="checkbox" name="uid" value="{{$value->id}}}"/></td>
+                                    <td>{{$value->id}}</td>
+                                    <td>{{$value->title}}</td>
                                     <td>{{$value->describe}}</td>
+                                    <td>{{$value->views}}</td>
+                                    <td>{{articleStatus($value->status)}}</td>
                                     <td>{{$value->created_at}}</td>
                                     <td>
-                                        <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
-                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" id="delete">
+                                        <a href="{{url('articles/'.$value->id.'/edit')}}">编辑</a>
+                                        <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>

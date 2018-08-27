@@ -19,8 +19,10 @@
                             <tr>
                                 <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
-                                <th>用户</th>
+                                <th>标题</th>
                                 <th>描述</th>
+                                <th>阅读量</th>
+                                <th>状态</th>
                                 <th>创建时间</th>
                                 <th>操作</th>
                             </tr>
@@ -28,14 +30,16 @@
                             <tbody>
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="<?php echo e($value->uid); ?>}"/></td>
-                                    <td><?php echo e($value->uid); ?></td>
-                                    <td><?php echo e($value->username); ?></td>
+                                    <td><input type="checkbox" name="uid" value="<?php echo e($value->id); ?>}"/></td>
+                                    <td><?php echo e($value->id); ?></td>
+                                    <td><?php echo e($value->title); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
+                                    <td><?php echo e($value->views); ?></td>
+                                    <td><?php echo e(articleStatus($value->status)); ?></td>
                                     <td><?php echo e($value->created_at); ?></td>
                                     <td>
-                                        <a href="<?php echo e(url('user/'.$value->uid.'/edit')); ?>">编辑</a>
-                                        <form action="<?php echo e(url('user/'.$value->uid)); ?>" method="POST" id="delete">
+                                        <a href="<?php echo e(url('articles/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('articles/'.$value->id)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
                                             <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>
