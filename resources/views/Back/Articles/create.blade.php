@@ -30,10 +30,12 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Select input</label>
-                                <div class="controls" style="width:30%;">
-                                    <select name="category_id">
-                                        <option value="">First option</option>
+                                <label class="control-label">文章分类</label>
+                                <div class="controls">
+                                    <select name="category_id" style="width: 230px" >
+                                        @foreach($category as $value)
+                                            <option value="{{$value->id}}">{{$value->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -59,6 +61,7 @@
                                         .radio input[type="radio"] {
                                             margin-left: 0px
                                         }
+
                                         .btn-info {
                                             cursor: pointer;
                                         }
@@ -75,7 +78,7 @@
                                 <label class="control-label">发表时间</label>
                                 <div class="controls">
                                     <input name="publication_time" type="text" data-date="2018-1-1"
-                                           data-date-format="yyyy-mm-dd" value="" class="datepicker"><a
+                                           data-date-format="yyyy-mm-dd" value="0" class="datepicker"><a
                                             class="btn-info btn-mini"
                                             onclick="$('input[name=publication_time]').val('')">清空</a>
                                 </div>
@@ -83,7 +86,7 @@
                             <div class="control-group">
                                 <label class="control-label">排序</label>
                                 <div class="controls">
-                                    <input type="text" name="sort" class="number"/>
+                                    <input type="text" name="sort" value="0" class="number"/>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">内容</label>

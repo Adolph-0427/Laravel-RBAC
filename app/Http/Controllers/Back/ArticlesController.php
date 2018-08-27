@@ -15,11 +15,11 @@ class ArticlesController extends CommonController
     protected $Articles;
     protected $Category;
 
-    public function __construct(ArticlesRepository $Articles)
+    public function __construct(ArticlesRepository $Articles, ArticleCategoryRepository $Category)
     {
         parent::__construct();
         $this->Articles = $Articles;
-        $this->Category = ArticleCategoryRepository::class;
+        $this->Category = $Category;
     }
 
     /**
@@ -39,7 +39,7 @@ class ArticlesController extends CommonController
      */
     public function create()
     {
-        return view('Back.Articles.create');
+        return view('Back.Articles.create', ['category' => $this->getCategory()]);
     }
 
     /**
@@ -112,5 +112,13 @@ class ArticlesController extends CommonController
     {
         $path = $request->file('file')->store('public/articleEdit/' . Carbon::now()->toDateString());
         return array('link' => Storage::url($path));
+    }
+
+    /**
+     * 获取文章分类
+     */
+    private function getCategory()
+    {
+        return $this->Category->all();
     }
 }
