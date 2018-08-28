@@ -87,6 +87,12 @@
                 <li><a href="<?php echo e(url('user/create')); ?>">添加用户</a></li>
             </ul>
         </li>
+        <li class="submenu" id="group"><a href="#"><i class="icon icon-book"></i> <span>用户组</span> </a>
+            <ul>
+                <li><a href="<?php echo e(url('group')); ?>">用户组列表</a></li>
+                <li><a href="<?php echo e(url('group/create')); ?>">添加用户组</a></li>
+            </ul>
+        </li>
         <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
             <ul>
                 <li><a href="<?php echo e(url('articles')); ?>">文章列表</a></li>
@@ -97,12 +103,6 @@
             <ul>
                 <li><a href="<?php echo e(url('articleCategory')); ?>">文章分类列表</a></li>
                 <li><a href="<?php echo e(url('articleCategory/create')); ?>">添加分类</a></li>
-            </ul>
-        </li>
-        <li class="submenu" id="group"><a href="#"><i class="icon icon-book"></i> <span>用户组</span> </a>
-            <ul>
-                <li><a href="<?php echo e(url('group')); ?>">用户组列表</a></li>
-                <li><a href="<?php echo e(url('group/create')); ?>">添加用户组</a></li>
             </ul>
         </li>
     </ul>
