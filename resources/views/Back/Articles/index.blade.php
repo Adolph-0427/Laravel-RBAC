@@ -43,7 +43,7 @@
                                         <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a href="#" name="submit" onclick="document.getElementById('delete').submit();return false" >删除</a>
+                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>
