@@ -1,6 +1,6 @@
 @extends('Back.Common.app')
-@section('column_url',url('user')){{--栏目链接--}}
-@section('column','用户'){{--栏目名称--}}
+@section('column_url',url('group')){{--栏目链接--}}
+@section('column','用户组'){{--栏目名称--}}
 @section('title','编辑')
 @section('css')
     @parent
@@ -14,23 +14,17 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"><span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>编辑用户</h5>
+                        <h5>编辑用户组</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('user/'.$info->uid)}}"
+                        <form class="form-horizontal" method="post" action="{{url('group/'.$info->id)}}"
                               name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
                                 <label class="control-label">名称</label>
                                 <div class="controls">
-                                    <input type="text" name="username" value="{{$info->username}}" class="required">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">描述</label>
-                                <div class="controls">
-                                    <textarea id="textarea" name="describe" rows="3">{{$info->describe}}</textarea>
+                                    <input type="text" name="name" value="{{$info->name}}" class="required">
                                 </div>
                             </div>
                             <div class="form-actions">

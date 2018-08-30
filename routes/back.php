@@ -23,8 +23,6 @@ Route::post('articles/articleCover', 'ArticlesController@articleCover');
 Route::post('articles/articleEdit', 'ArticlesController@articleEdit');
 //文章分类
 Route::resource('articleCategory', 'ArticleCategoryController');
-
-
 //用户组
 Route::resource('group', 'UserGroupController');
 

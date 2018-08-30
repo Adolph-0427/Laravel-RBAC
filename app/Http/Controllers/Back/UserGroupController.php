@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers\Back;
 
+use App\Http\Requests\StoreUserGroupPost;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Repositories\AdminUser\UserGroupRepository;
 
-class UserGroupController extends Controller
+class UserGroupController extends CommonController
 {
+
+    protected $UserGroup;
+
+    public function __construct(UserGroupRepository $UserGroup)
+    {
+        parent::__construct();
+        $this->UserGroup = $UserGroup;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,7 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        return view('Back.UserGroup.index', ['list' => \DB::table('')  ]);
+        return view('Back.UserGroup.index', ['list' => $this->UserGroup->all()]);
     }
 
     /**
@@ -24,7 +34,7 @@ class UserGroupController extends Controller
      */
     public function create()
     {
-        //
+        return view('Back.UserGroup.create');
     }
 
     /**
@@ -33,9 +43,10 @@ class UserGroupController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserGroupPost $request)
     {
-        //
+        $this->UserGroup->create($request->all());
+        return redirect('/group');
     }
 
     /**
@@ -57,7 +68,7 @@ class UserGroupController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('Back.UserGroup.edit', ['info' => $this->UserGroup->find($id)]);
     }
 
     /**
@@ -69,7 +80,8 @@ class UserGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->UserGroup->update($request->all(), array('id' => $id));
+        return redirect('/group');
     }
 
     /**
@@ -80,6 +92,7 @@ class UserGroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->UserGroup->delete($id);
+        return redirect('/group');
     }
 }

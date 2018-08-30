@@ -8,35 +8,23 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title">
-                        <span class="icon">
-                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
-                        </span>
-                        <h5>全部选择</h5>
-                    </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
-                                <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
-                                <th>用户</th>
-                                <th>描述</th>
-                                <th>创建时间</th>
+                                <th>用户组</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($list as $value)
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="{{$value->uid}}}"/></td>
-                                    <td>{{$value->uid}}</td>
-                                    <td>{{$value->username}}</td>
-                                    <td>{{$value->describe}}</td>
-                                    <td>{{$value->created_at}}</td>
+                                    <td>{{$value->id}}</td>
+                                    <td>{{$value->name}}</td>
                                     <td>
-                                        <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
-                                        <form action="{{ url('user/'.$value->uid) }}" method="POST" id="delete">
+                                        <a href="{{url('group/'.$value->id.'/edit')}}">编辑</a>
+                                        <form action="{{ url('group/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
