@@ -39,6 +39,7 @@
                                             @csrf
                                             <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
+                                        <a href="{{url('user/authorization?uid='.$value->uid)}}">授权</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -38,6 +38,7 @@
                                             <?php echo csrf_field(); ?>
                                             <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
+                                        <a href="<?php echo e(url('user/authorization?uid='.$value->uid)); ?>">授权</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

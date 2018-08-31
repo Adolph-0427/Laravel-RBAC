@@ -6,15 +6,21 @@ use App\Http\Requests\StoreAdminUserPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\AdminUser\AdminUserRepository;
+use App\Repositories\AdminUser\UserGroupRepository;
+use  App\Repositories\AdminUser\AuthorizationRepository;
 
 class AdminUserController extends CommonController
 {
     protected $AdminUser;
+    protected $UserGroup;
+    protected $Authorization;
 
-    public function __construct(AdminUserRepository $AdminUser)
+    public function __construct(AdminUserRepository $AdminUser, UserGroupRepository $UserGroup, AuthorizationRepository $Authorization)
     {
         parent::__construct();
         $this->AdminUser = $AdminUser;
+        $this->UserGroup = $UserGroup;
+        $this->Authorization = $Authorization;
     }
 
     /**
@@ -82,6 +88,29 @@ class AdminUserController extends CommonController
     public function destroy($id)
     {
         $this->AdminUser->delete($id);
+        return redirect('/user');
+    }
+
+
+    public function authorization(Request $request)
+    {
+        $userInfo = $this->AdminUser->find($request->uid, ['uid', 'username']);//获取用户信息
+        $group = $this->UserGroup->all();
+        return view('Back.User.authorization', ['userInfo' => $userInfo, 'group' => $group]);
+    }
+
+    /**
+     * 授权
+     */
+    public function storeAuth(Request $request)
+    {
+        $data = [];
+        foreach ($request->gids as $key => $value) {
+            $data[$key]['gid'] = $value;
+            $data[$key]['uid'] = $request->uid;
+        }
+
+        $this->Authorization->authorization($data, $request->uid);
         return redirect('/user');
     }
 }

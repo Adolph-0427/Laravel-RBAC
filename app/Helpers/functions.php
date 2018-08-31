@@ -37,3 +37,14 @@ function articleStatus($status)
 
     return $result;
 }
+
+/**
+ * 查询此用户是否添加该用户组
+ * @param gid uid
+ * return boolean
+ */
+function is_select_group($uid, $gid)
+{
+    
+    return DB::table('user_relational_group')->where([['uid', '=', $uid], ['gid', '=', $gid]])->exists();
+}

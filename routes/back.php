@@ -14,6 +14,9 @@ Route::get('logout', 'LoginController@logout');
 //首页
 Route::get('/', 'AdminController@index');
 //用户
+//用户授权
+Route::get('user/authorization', 'AdminUserController@authorization');
+Route::post('user/storeAuth', 'AdminUserController@storeAuth');
 Route::resource('user', 'AdminUserController');
 //文章
 Route::resource('articles', 'ArticlesController');
