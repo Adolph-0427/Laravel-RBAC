@@ -1,6 +1,6 @@
 <?php $__env->startSection('column_url',url('user')); ?>
-<?php $__env->startSection('column','用户授权'); ?>
-<?php $__env->startSection('title','授权'); ?>
+<?php $__env->startSection('column','用户'); ?>
+<?php $__env->startSection('title','用户组授权'); ?>
 <?php $__env->startSection('css'); ?>
     ##parent-placeholder-2f84417a9e73cead4d5c99e05daff2a534b30132##
     <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/uniform.css')); ?>"/>

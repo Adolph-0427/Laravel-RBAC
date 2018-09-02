@@ -32,11 +32,11 @@
                                     <td><?php echo e($value->identify); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
                                     <td>
-                                        <a href="<?php echo e(url('articleCategory/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <a class="edit" href="<?php echo e(url('articleCategory/'.$value->id.'/edit')); ?>">编辑</a>
                                         <form action="<?php echo e(url('articleCategory/'.$value->id)); ?>" method="POST" class="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>

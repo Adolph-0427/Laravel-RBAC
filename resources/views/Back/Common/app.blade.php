@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-media.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/font-awesome/css/font-awesome.css') }}"/>
         <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
+        <link rel="stylesheet" href="{{URL::asset('/back/css/style.css')}}" />
     @show
 </head>
 <body>

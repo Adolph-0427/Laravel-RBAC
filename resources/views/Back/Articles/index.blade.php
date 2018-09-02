@@ -39,11 +39,11 @@
                                     <td>{{articleStatus($value->status)}}</td>
                                     <td>{{$value->created_at}}</td>
                                     <td>
-                                        <a href="{{url('articles/'.$value->id.'/edit')}}">编辑</a>
+                                        <a class="edit" href="{{url('articles/'.$value->id.'/edit')}}">编辑</a>
                                         <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>

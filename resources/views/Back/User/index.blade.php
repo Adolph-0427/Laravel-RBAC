@@ -33,13 +33,13 @@
                                     <td>{{$value->describe}}</td>
                                     <td>{{$value->created_at}}</td>
                                     <td>
-                                        <a href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
+                                        <a class="edit" href="{{url('user/'.$value->uid.'/edit')}}">编辑</a>
                                         <form action="{{ url('user/'.$value->uid) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
-                                        <a href="{{url('user/authorization?uid='.$value->uid)}}">授权</a>
+                                        <a class="edit" href="{{url('user/authorization?uid='.$value->uid)}}">授权</a>
                                     </td>
                                 </tr>
                             @endforeach

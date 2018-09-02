@@ -45,6 +45,6 @@ function articleStatus($status)
  */
 function is_select_group($uid, $gid)
 {
-    
+
     return DB::table('user_relational_group')->where([['uid', '=', $uid], ['gid', '=', $gid]])->exists();
 }

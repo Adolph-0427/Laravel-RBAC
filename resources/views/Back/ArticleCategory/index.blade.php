@@ -33,11 +33,11 @@
                                     <td>{{$value->identify}}</td>
                                     <td>{{$value->describe}}</td>
                                     <td>
-                                        <a href="{{url('articleCategory/'.$value->id.'/edit')}}">编辑</a>
+                                        <a class="edit" href="{{url('articleCategory/'.$value->id.'/edit')}}">编辑</a>
                                         <form action="{{url('articleCategory/'.$value->id)}}" method="POST" class="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>

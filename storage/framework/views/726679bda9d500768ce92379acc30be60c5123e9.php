@@ -32,13 +32,13 @@
                                     <td><?php echo e($value->describe); ?></td>
                                     <td><?php echo e($value->created_at); ?></td>
                                     <td>
-                                        <a href="<?php echo e(url('user/'.$value->uid.'/edit')); ?>">编辑</a>
+                                        <a class="edit" href="<?php echo e(url('user/'.$value->uid.'/edit')); ?>">编辑</a>
                                         <form action="<?php echo e(url('user/'.$value->uid)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
-                                        <a href="<?php echo e(url('user/authorization?uid='.$value->uid)); ?>">授权</a>
+                                        <a class="edit" href="<?php echo e(url('user/authorization?uid='.$value->uid)); ?>">授权</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

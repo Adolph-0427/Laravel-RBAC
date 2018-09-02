@@ -1,7 +1,7 @@
 @extends('Back.Common.app')
 @section('column_url',url('user')){{--栏目链接--}}
-@section('column','用户授权'){{--栏目名称--}}
-@section('title','授权')
+@section('column','用户'){{--栏目名称--}}
+@section('title','用户组授权')
 @section('css')
     @parent
     <link rel="stylesheet" href="{{ URL::asset('/back/css/uniform.css') }}"/>

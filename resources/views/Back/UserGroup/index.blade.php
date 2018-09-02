@@ -23,11 +23,11 @@
                                     <td>{{$value->id}}</td>
                                     <td>{{$value->name}}</td>
                                     <td>
-                                        <a href="{{url('group/'.$value->id.'/edit')}}">编辑</a>
+                                        <a class="edit" href="{{url('group/'.$value->id.'/edit')}}">编辑</a>
                                         <form action="{{ url('group/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>
