@@ -88,10 +88,16 @@
                 <li><a href="<?php echo e(url('user/create')); ?>">添加用户</a></li>
             </ul>
         </li>
-        <li class="submenu" id="group"><a href="#"><i class="icon icon-book"></i> <span>用户组</span> </a>
+        <li class="submenu" id="group"><a href="#"><i class="icon icon-group"></i> <span>用户组</span> </a>
             <ul>
                 <li><a href="<?php echo e(url('group')); ?>">用户组列表</a></li>
                 <li><a href="<?php echo e(url('group/create')); ?>">添加用户组</a></li>
+            </ul>
+        </li>
+        <li class="submenu" id="role"><a href="#"><i class="icon icon-user-md"></i> <span>角色</span> </a>
+            <ul>
+                <li><a href="<?php echo e(url('role')); ?>">角色列表</a></li>
+                <li><a href="<?php echo e(url('role/create')); ?>">添加角色</a></li>
             </ul>
         </li>
         <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
@@ -100,7 +106,7 @@
                 <li><a href="<?php echo e(url('articles/create')); ?>">添加文章</a></li>
             </ul>
         </li>
-        <li class="submenu" id="articleCategory"><a href="#"><i class="icon icon-book"></i> <span>文章分类</span> </a>
+        <li class="submenu" id="articleCategory"><a href="#"><i class="icon icon-bookmark"></i> <span>文章分类</span> </a>
             <ul>
                 <li><a href="<?php echo e(url('articleCategory')); ?>">文章分类列表</a></li>
                 <li><a href="<?php echo e(url('articleCategory/create')); ?>">添加分类</a></li>

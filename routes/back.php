@@ -28,5 +28,7 @@ Route::post('articles/articleEdit', 'ArticlesController@articleEdit');
 Route::resource('articleCategory', 'ArticleCategoryController');
 //用户组
 Route::resource('group', 'UserGroupController');
+//角色
+Route::resource('role', 'RoleController');
 
 
