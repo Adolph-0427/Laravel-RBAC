@@ -43,6 +43,7 @@
                             <input name="level" value="{{$info->level}}" type="hidden">
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
+                                <button type="button" class="btn btn-danger btn-cancel">Cancel</button>
                             </div>
                         </form>
                     </div>

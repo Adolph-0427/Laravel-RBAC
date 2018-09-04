@@ -100,6 +100,7 @@
                                 <input name="status" type="hidden" value="1">
                                 <div class="form-actions">
                                     <input type="submit" value="Save" class="btn btn-success"/>
+                                    <button type="button" class="btn btn-danger btn-cancel">Cancel</button>
                                 </div>
                             </div>
                         </form>

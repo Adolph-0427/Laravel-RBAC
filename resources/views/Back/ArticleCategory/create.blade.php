@@ -41,6 +41,7 @@
                             <input name="level" value="{{$level or 1}}" type="hidden">
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
+                                <button type="button" class="btn btn-danger btn-cancel">Cancel</button>
                             </div>
                         </form>
                     </div>

@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-style.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-media.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/font-awesome/css/font-awesome.css') }}"/>
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
-        <link rel="stylesheet" href="{{URL::asset('/back/css/style.css')}}" />
+        <link rel='stylesheet' type='text/css'
+              href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
+        <link rel="stylesheet" href="{{URL::asset('/back/css/style.css')}}"/>
     @show
 </head>
 <body>
@@ -81,32 +82,38 @@
 
 <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-list"></i>Forms</a>
     <ul>
-        <li class="home"><a href="{{url('/')}}"><i class="icon icon-home"></i> <span>首页</span></a></li>
-        <li class="submenu" id="user"><a href="#"><i class="icon icon-user"></i> <span>用户</span> </a>
+        <li class="home"><a href="{{url('/')}}"><i class="icon icon-home"></i> <span>首页</span></a>
+        </li>
+        <li class="submenu" id="user"><a href="#"><i class="icon icon-user"></i> <span>用户</span>
+            </a>
             <ul>
                 <li><a href="{{url('user')}}">用户列表</a></li>
                 <li><a href="{{url('user/create')}}">添加用户</a></li>
             </ul>
         </li>
-        <li class="submenu" id="group"><a href="#"><i class="icon icon-group"></i> <span>用户组</span> </a>
+        <li class="submenu" id="group"><a href="#"><i class="icon icon-group"></i> <span>用户组</span>
+            </a>
             <ul>
                 <li><a href="{{url('group')}}">用户组列表</a></li>
                 <li><a href="{{url('group/create')}}">添加用户组</a></li>
             </ul>
         </li>
-        <li class="submenu" id="role"><a href="#"><i class="icon icon-user-md"></i> <span>角色</span> </a>
+        <li class="submenu" id="role"><a href="#"><i class="icon icon-user-md"></i> <span>角色</span>
+            </a>
             <ul>
                 <li><a href="{{url('role')}}">角色列表</a></li>
                 <li><a href="{{url('role/create')}}">添加角色</a></li>
             </ul>
         </li>
-        <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span> </a>
+        <li class="submenu" id="articles"><a href="#"><i class="icon icon-book"></i> <span>文章</span>
+            </a>
             <ul>
                 <li><a href="{{url('articles')}}">文章列表</a></li>
                 <li><a href="{{url('articles/create')}}">添加文章</a></li>
             </ul>
         </li>
-        <li class="submenu" id="articleCategory"><a href="#"><i class="icon icon-bookmark"></i> <span>文章分类</span> </a>
+        <li class="submenu" id="articleCategory"><a href="#"><i class="icon icon-bookmark"></i>
+                <span>文章分类</span> </a>
             <ul>
                 <li><a href="{{url('articleCategory')}}">文章分类列表</a></li>
                 <li><a href="{{url('articleCategory/create')}}">添加分类</a></li>
@@ -144,7 +151,8 @@
             <a href="{{url('/')}}" title="Go to Home" class="tip-bottom">
                 <i class="icon-home"></i>Home
             </a>
-            <a href="@yield('column_url','/')" class="tip-bottom" data-original-title="">@yield('column','Blog')</a>
+            <a href="@yield('column_url','/')" class="tip-bottom"
+               data-original-title="">@yield('column','Blog')</a>
             <a href="#">@yield('title','Blog')</a>
         </div>
         <h1>@yield('title','Blog')</h1>
@@ -165,7 +173,7 @@
     <script src="{{ URL::asset('/back/js/jquery.min.js') }}"></script>
     <script>
         $(function () {
-           {{--导航高亮--}}
+                    {{--导航高亮--}}
             var url = "{{url()->full()}}";//当前url
             var group_name = url.split('/')[3];
             if ($(".home a").attr('href') == url) {
@@ -189,7 +197,7 @@
         })
 
     </script>
-
+    <script src="{{URL::asset('/back/js/custom.js')}}"></script>
     <script src="{{ URL::asset('/back/js/jquery.ui.custom.js') }}"></script>
     <script src="{{ URL::asset('/back/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/matrix.js') }}"></script>
