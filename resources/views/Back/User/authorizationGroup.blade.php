@@ -1,7 +1,7 @@
 @extends('Back.Common.app')
-@section('column_url',url('role')){{--栏目链接--}}
-@section('column','角色'){{--栏目名称--}}
-@section('title','编辑')
+@section('column_url',url('user')){{--栏目链接--}}
+@section('column','用户'){{--栏目名称--}}
+@section('title','用户组授权')
 @section('css')
     @parent
     <link rel="stylesheet" href="{{ URL::asset('/back/css/uniform.css') }}"/>
@@ -13,20 +13,31 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title"><span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>编辑角色</h5>
+                    <div class="widget-title">
+                        <span class="icon">
+                            <i class="icon-info-sign"></i>
+                        </span>
+                        <h5>授权用户</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('role/'.$info->id)}}"
+                        <form class="form-horizontal" method="post"
+                              action="{{url('user/storeAuthGroup')}}"
                               name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
-                            <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">
-                                <label class="control-label">名称</label>
+                                <label class="control-label">
+                                    <strong style="color: red">({{$userInfo->username}})</strong>
+                                    所属用户组
+                                </label>
                                 <div class="controls">
-                                    <input type="text" name="name" value="{{$info->name}}" class="required">
+                                    <select name="gids[]" multiple>
+                                        @foreach($group as $value)
+                                            <option @if( !empty(is_select_group($userInfo->uid,$value->id))) selected @endif value="{{$value->id}}">{{$value->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
+                            <input type="hidden" value="{{$userInfo->uid}}" name="uid">
                             <div class="form-actions">
                                 <input type="submit" value="Save" class="btn btn-success">
                                 <button type="button" class="btn btn-danger btn-cancel">Cancel</button>

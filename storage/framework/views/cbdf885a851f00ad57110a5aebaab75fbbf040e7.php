@@ -27,6 +27,7 @@
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
                                             <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class="edit" href="<?php echo e(url('group/authorizationRole?gid='.$value->id)); ?>">授权角色</a>
                                         </form>
                                     </td>
                                 </tr>

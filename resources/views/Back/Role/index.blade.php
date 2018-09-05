@@ -1,6 +1,6 @@
 @extends('Back.Common.app')
-@section('column_url',url('user')){{--栏目链接--}}
-@section('column','用户'){{--栏目名称--}}
+@section('column_url',url('role')){{--栏目链接--}}
+@section('column','角色'){{--栏目名称--}}
 @section('title','列表')
 @section('content')
     <div class="container-fluid">

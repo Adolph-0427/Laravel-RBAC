@@ -1,5 +1,5 @@
-<?php $__env->startSection('column_url',url('user')); ?>
-<?php $__env->startSection('column','用户'); ?>
+<?php $__env->startSection('column_url',url('role')); ?>
+<?php $__env->startSection('column','角色'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">

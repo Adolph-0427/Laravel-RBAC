@@ -39,7 +39,8 @@
                                             @csrf
                                             <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
-                                        <a class="edit" href="{{url('user/authorization?uid='.$value->uid)}}">授权</a>
+                                        <a class="edit" href="{{url('user/authorizationGroup?uid='.$value->uid)}}">授权用户组</a>
+                                        <a class="edit" href="{{url('user/authorizationRole?uid='.$value->uid)}}">授权角色</a>
                                     </td>
                                 </tr>
                             @endforeach

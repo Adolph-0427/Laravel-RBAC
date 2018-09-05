@@ -8,19 +8,22 @@ use Illuminate\Support\Facades\Hash;
 use App\Repositories\AdminUser\AdminUserRepository;
 use App\Repositories\AdminUser\UserGroupRepository;
 use  App\Repositories\AdminUser\AuthorizationRepository;
+use App\Repositories\AdminUser\RoleRepository;
 
 class AdminUserController extends CommonController
 {
     protected $AdminUser;
     protected $UserGroup;
     protected $Authorization;
+    protected $Role;
 
-    public function __construct(AdminUserRepository $AdminUser, UserGroupRepository $UserGroup, AuthorizationRepository $Authorization)
+    public function __construct(AdminUserRepository $AdminUser, UserGroupRepository $UserGroup, AuthorizationRepository $Authorization, RoleRepository $Role)
     {
         parent::__construct();
         $this->AdminUser = $AdminUser;
         $this->UserGroup = $UserGroup;
         $this->Authorization = $Authorization;
+        $this->Role = $Role;
     }
 
     /**
@@ -92,17 +95,22 @@ class AdminUserController extends CommonController
     }
 
 
-    public function authorization(Request $request)
+    /**
+     * 授权用户组 view
+     */
+
+    public function authorizationGroup(Request $request)
     {
         $userInfo = $this->AdminUser->find($request->uid, ['uid', 'username']);//获取用户信息
         $group = $this->UserGroup->all();
-        return view('Back.User.authorization', ['userInfo' => $userInfo, 'group' => $group]);
+        return view('Back.User.authorizationGroup', ['userInfo' => $userInfo, 'group' => $group]);
     }
 
     /**
-     * 授权
+     * 授权用户组 store
      */
-    public function storeAuth(Request $request)
+
+    public function storeAuthGroup(Request $request)
     {
         $data = [];
         foreach ($request->gids as $key => $value) {
@@ -110,7 +118,33 @@ class AdminUserController extends CommonController
             $data[$key]['uid'] = $request->uid;
         }
 
-        $this->Authorization->authorization($data, $request->uid);
+        $this->Authorization->authorizationGroup($data, $request->uid);
         return redirect('/user');
+    }
+
+    /**
+     * 授权角色 view
+     */
+    public function authorizationRole(Request $request)
+    {
+        $userInfo = $this->AdminUser->find($request->uid, ['uid', 'username']);//获取用户信息
+        $roles = $this->Role->all();
+        return view('Back.User.authorizationRole', ['userInfo' => $userInfo, 'roles' => $roles]);
+    }
+
+    /**
+     * 授权角色 store
+     */
+    public function storeAuthRole(Request $request)
+    {
+        $data = [];
+        foreach ($request->rids as $key => $value) {
+            $data[$key]['rid'] = $value;
+            $data[$key]['uid'] = $request->uid;
+        }
+
+        $this->Authorization->authorizationRole($data, $request->uid);
+        return redirect('/user');
+
     }
 }

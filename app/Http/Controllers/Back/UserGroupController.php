@@ -5,16 +5,22 @@ namespace App\Http\Controllers\Back;
 use App\Http\Requests\StoreUserGroupPost;
 use Illuminate\Http\Request;
 use App\Repositories\AdminUser\UserGroupRepository;
+use App\Repositories\AdminUser\RoleRepository;
+use App\Repositories\AdminUser\AuthorizationRepository;
 
 class UserGroupController extends CommonController
 {
 
     protected $UserGroup;
+    protected $Role;
+    protected $Authorization;
 
-    public function __construct(UserGroupRepository $UserGroup)
+    public function __construct(UserGroupRepository $UserGroup, RoleRepository $Role, AuthorizationRepository $Authorization)
     {
         parent::__construct();
         $this->UserGroup = $UserGroup;
+        $this->Role = $Role;
+        $this->Authorization = $Authorization;
     }
 
     /**
@@ -93,6 +99,32 @@ class UserGroupController extends CommonController
     public function destroy($id)
     {
         $this->UserGroup->delete($id);
+        return redirect('/group');
+    }
+
+
+    /**
+     * 授权角色 view
+     */
+    public function authorizationRole(Request $request)
+    {
+        $roles = $this->Role->all();
+        $info = $this->UserGroup->find($request->gid);
+        return view('Back.UserGroup.authorizationRole', ['info' => $info, 'roles' => $roles]);
+    }
+
+    /**
+     * 授权角色 store
+     */
+    public function storeAuthRole(Request $request)
+    {
+        $data = [];
+        foreach ($request->rids as $key => $value) {
+            $data[$key]['rid'] = $value;
+            $data[$key]['gid'] = $request->gid;
+        }
+
+        $this->Authorization->groupAuthorizationRole($data, $request->gid);
         return redirect('/group');
     }
 }

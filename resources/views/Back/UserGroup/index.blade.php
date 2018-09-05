@@ -28,6 +28,7 @@
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class="edit" href="{{url('group/authorizationRole?gid='.$value->id)}}">授权角色</a>
                                         </form>
                                     </td>
                                 </tr>

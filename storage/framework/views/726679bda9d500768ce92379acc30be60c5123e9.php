@@ -38,7 +38,8 @@
                                             <?php echo csrf_field(); ?>
                                             <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
-                                        <a class="edit" href="<?php echo e(url('user/authorization?uid='.$value->uid)); ?>">授权</a>
+                                        <a class="edit" href="<?php echo e(url('user/authorizationGroup?uid='.$value->uid)); ?>">授权用户组</a>
+                                        <a class="edit" href="<?php echo e(url('user/authorizationRole?uid='.$value->uid)); ?>">授权角色</a>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

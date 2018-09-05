@@ -45,6 +45,27 @@ function articleStatus($status)
  */
 function is_select_group($uid, $gid)
 {
-
     return DB::table('user_relational_group')->where([['uid', '=', $uid], ['gid', '=', $gid]])->exists();
+}
+
+/**
+ * 查询用户是否添加该角色
+ * @param rid uid
+ * return boolean
+ */
+function is_select_role($uid, $rid)
+{
+    return DB::table('user_relational_role')->where([['uid', '=', $uid], ['rid', '=', $rid]])->exists();
+
+}
+
+/**
+ * 查询用户组是否添加该角色
+ * @param rid gid
+ * return boolean
+ */
+function is_group_select_role($gid, $rid)
+{
+    return DB::table('role_relational_group')->where([['rid', '=', $rid], ['gid', '=', $gid]])->exists();
+
 }
