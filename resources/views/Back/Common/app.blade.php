@@ -10,10 +10,9 @@
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-style.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/css/matrix-media.css') }}"/>
         <link rel="stylesheet" href="{{ URL::asset('/back/font-awesome/css/font-awesome.css') }}"/>
-        <link rel='stylesheet' type='text/css'
-              href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
+        <link rel='stylesheet' type='text/css'  href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
         <link rel="stylesheet" href="{{URL::asset('/back/css/style.css')}}"/>
-    @show
+    {{--@show--}}
 </head>
 <body>
 <!--Header-part-->
@@ -117,6 +116,14 @@
             <ul>
                 <li><a href="{{url('articleCategory')}}">文章分类列表</a></li>
                 <li><a href="{{url('articleCategory/create')}}">添加分类</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu" id="menu"><a href="#"><i class="icon icon-list-ul"></i>
+                <span>菜单</span> </a>
+            <ul>
+                <li><a href="{{url('menu')}}">菜单列表</a></li>
+                <li><a href="{{url('menu/create')}}">添加菜单</a></li>
             </ul>
         </li>
     </ul>

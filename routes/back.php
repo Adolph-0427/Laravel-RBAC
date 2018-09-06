@@ -35,5 +35,7 @@ Route::post('group/storeAuthRole', 'UserGroupController@storeAuthRole');
 Route::resource('group', 'UserGroupController');
 //角色
 Route::resource('role', 'RoleController');
+//菜单
+Route::resource('menu', 'MenuController');
 
 
