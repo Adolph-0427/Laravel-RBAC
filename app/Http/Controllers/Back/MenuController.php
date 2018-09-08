@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class MenuController extends CommonController
 {
@@ -11,7 +12,7 @@ class MenuController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('Back.Menu.index');
     }
@@ -23,7 +24,7 @@ class MenuController extends CommonController
      */
     public function create()
     {
-        //
+        return view('Back.Menu.create');
     }
 
     /**
@@ -32,9 +33,9 @@ class MenuController extends CommonController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Route $route)
     {
-        //
+        echo $route->getName();
     }
 
     /**
