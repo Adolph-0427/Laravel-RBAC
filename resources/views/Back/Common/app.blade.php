@@ -118,7 +118,6 @@
                 <li><a href="{{url('articleCategory/create')}}">添加分类</a></li>
             </ul>
         </li>
-
         <li class="submenu" id="menu"><a href="#"><i class="icon icon-list-ul"></i>
                 <span>菜单</span> </a>
             <ul>

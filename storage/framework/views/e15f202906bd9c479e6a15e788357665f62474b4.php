@@ -116,5 +116,4 @@
     function removeHoverDom(treeId, treeNode) {
         _$("#addBtn_" + treeNode.tId).unbind().remove();
     };
-    //-->
 </script>

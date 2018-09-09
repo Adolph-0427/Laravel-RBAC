@@ -3,18 +3,27 @@
 namespace App\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
+use App\Repositories\Access\MenuRepository;
 
 class MenuController extends CommonController
 {
+
+    protected $Menu;
+
+    public function __construct(MenuRepository $Menu)
+    {
+        parent::__construct();
+        $this->Menu = $Menu;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('Back.Menu.index');
+        return view('Back.Menu.index', ['list' => $this->Menu->all()]);
     }
 
     /**
@@ -33,9 +42,10 @@ class MenuController extends CommonController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Route $route)
+    public function store(Request $request)
     {
-        echo $route->getName();
+        $this->Menu->create($request->all());
+        return redirect('/menu');
     }
 
     /**
