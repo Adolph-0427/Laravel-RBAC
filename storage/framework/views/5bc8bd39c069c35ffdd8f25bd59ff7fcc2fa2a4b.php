@@ -3,12 +3,47 @@
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
-        <hr/>
+        <hr>
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <ul id="menu_tree" class="ztree"></ul>
+                    <div class="widget-title">
+                        <span class="icon">
+                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
+                        </span>
+                        <h5>全部选择</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered table-striped with-check">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>路由</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td><?php echo e($value->id); ?></td>
+                                    <td><?php echo e($value->name); ?></td>
+                                    <td><?php echo e($value->route); ?></td>
+                                    <td>
+                                        <a class="edit" href="<?php echo e(url('menu/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('menu/'.$value->id)); ?>" method="POST" id="delete">
+                                            <input name="_method" value="DELETE" type="hidden">
+                                            <?php echo csrf_field(); ?>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -20,5 +55,4 @@
     <script src="<?php echo e(URL::asset('/back/js/jquery.dataTables.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/matrix.tables.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('Plug.treeview',array('tree'=>'menu_tree'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('Back.Common.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -4,13 +4,37 @@ namespace App\Repositories\Access;
 
 use App\Model\Menu;
 use App\Repositories\EloquentRepository;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Access\AccessRepository;
 
-class MenuRepository  extends EloquentRepository
+class MenuRepository extends EloquentRepository
 {
 
-    public function __construct(Menu $model)
+    protected $Access;
+
+    public function __construct(Menu $model, AccessRepository $Access)
     {
         parent::__construct($model);
+        $this->Access = $Access;
     }
 
+    public function create(array $data)
+    {
+        DB::transaction(function () use ($data) {
+            $mid = parent::create($data);
+            $aid = $this->Access->create(array('type' => 1));
+            DB::table('access_relational_menu')->insert(array('aid' => $aid->id, 'mid' => $mid->id));
+        });
+    }
+
+    public function delete($id)
+    {
+        DB::transaction(function () use ($id) {
+            $relational = DB::table('access_relational_menu')->where('mid', $id)->first(['aid', 'mid']);
+            parent::delete($relational->mid);
+            $this->Access->delete($relational->aid);
+            DB::table('access_relational_menu')->where('mid', $id)->delete();
+        });
+
+    }
 }

@@ -67,7 +67,7 @@ class MenuController extends CommonController
      */
     public function edit($id)
     {
-        //
+        return view('Back.Menu.edit', ['info' => $this->Menu->find($id)]);
     }
 
     /**
@@ -79,7 +79,8 @@ class MenuController extends CommonController
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->Menu->update($request->all(), array('id' => $id));
+        return redirect('/menu');
     }
 
     /**
@@ -90,6 +91,7 @@ class MenuController extends CommonController
      */
     public function destroy($id)
     {
-        //
+        $this->Menu->delete($id);
+        return redirect('/menu');
     }
 }
