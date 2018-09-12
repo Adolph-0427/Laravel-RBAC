@@ -1,5 +1,5 @@
-<?php $__env->startSection('column_url',url('role')); ?>
-<?php $__env->startSection('column','角色'); ?>
+<?php $__env->startSection('column_url',url('user')); ?>
+<?php $__env->startSection('column','用户'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
@@ -12,7 +12,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>角色</th>
+                                <th>用户组</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -22,12 +22,12 @@
                                     <td><?php echo e($value->id); ?></td>
                                     <td><?php echo e($value->name); ?></td>
                                     <td>
-                                        <a class="edit" href="<?php echo e(url('role/'.$value->id.'/edit')); ?>">编辑</a>
-                                        <form action="<?php echo e(url('role/'.$value->id)); ?>" method="POST" id="delete">
+                                        <a class="edit" href="<?php echo e(url('group/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('group/'.$value->id)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
                                             <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
-                                            <a href="<?php echo e(url('access/index')); ?>">访问授权</a>
+                                            <a class="edit" href="<?php echo e(url('group/authorizationRole?gid='.$value->id)); ?>">授权角色</a>
                                         </form>
                                     </td>
                                 </tr>

@@ -11,4 +11,9 @@ class Menu extends Model
     protected $fillable = ['name', 'url', 'pid', 'route'];
 
     public $timestamps = false;
+
+    public function access()
+    {
+        return $this->belongsToMany('App\Model\Access', 'access_relational_menu', 'mid', 'aid');
+    }
 }

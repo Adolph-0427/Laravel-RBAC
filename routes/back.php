@@ -38,5 +38,4 @@ Route::resource('role', 'RoleController');
 //菜单
 Route::resource('menu', 'MenuController');
 //访问授权
-Route::view('menu/access', 'Back.Menu.access')->name('menu.access');
-
+Route::get('access/index','AccessController@index');

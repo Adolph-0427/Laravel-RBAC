@@ -28,6 +28,7 @@
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a href="{{url('access/index')}}">访问授权</a>
                                         </form>
                                     </td>
                                 </tr>
@@ -43,8 +44,8 @@
 @endsection
 @section('js')
     @parent
-    <script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('/back/js/matrix.tables.js') }}"></script>
+    <script src="{{ URL::asset('/back/js/jquery.uniform.js')}}"></script>
+    <script src="{{ URL::asset('/back/js/select2.min.js')}}"></script>
+    <script src="{{ URL::asset('/back/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ URL::asset('/back/js/matrix.tables.js')}}"></script>
 @endsection

@@ -5,7 +5,6 @@ namespace App\Repositories\Access;
 use App\Model\Menu;
 use App\Repositories\EloquentRepository;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\Access\AccessRepository;
 
 class MenuRepository extends EloquentRepository
 {
