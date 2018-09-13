@@ -4,25 +4,25 @@ namespace App\Repositories\Access;
 
 use App\Model\Access;
 use App\Repositories\EloquentRepository;
-use  App\Model\Menu;
+use Illuminate\Support\Facades\DB;
 
 class AccessRepository extends EloquentRepository
 {
 
-    protected $Menu;
-
-    public function __construct(Access $model, Menu $Menu)
+    public function __construct(Access $model)
     {
         parent::__construct($model);
-        $this->Menu = $Menu;
     }
 
     //获取权限菜单
     public function menu()
     {
-        \DB::enableQueryLog();
-        $this->model->menu()->get();
-        dd(\DB::getQueryLog());
+        $menu = DB::table('access_relational_menu')
+            ->join('access', 'aid', '=', 'access.id')
+            ->join('menu', 'mid', '=', 'menu.id')
+            ->where('access.type', '=', 1)
+            ->get(['access_relational_menu.*', 'menu.name', 'menu.route', 'menu.pid']);
+        return $menu;
     }
 
 }

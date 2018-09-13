@@ -12,9 +12,4 @@ class Access extends Model
 
     public $timestamps = false;
 
-
-    public function menu()
-    {
-        return $this->belongsToMany('App\Model\Menu', 'access_relational_menu', 'aid', 'mid');
-    }
 }
