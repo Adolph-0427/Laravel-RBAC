@@ -21,9 +21,10 @@ class MenuController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Back.Menu.index', ['list' => $this->Menu->all()]);
+        $pid = (int)$request->get('pid');
+        return view('Back.Menu.index', ['list' => $this->Menu->findBy('pid', $pid)]);
     }
 
     /**
@@ -31,9 +32,11 @@ class MenuController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('Back.Menu.create');
+        $parent_id = $request->get('pid');
+
+        return view('Back.Menu.create', ['parent' => $this->Menu->find($parent_id)]);
     }
 
     /**

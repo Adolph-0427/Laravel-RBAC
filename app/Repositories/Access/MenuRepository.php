@@ -36,4 +36,13 @@ class MenuRepository extends EloquentRepository
         });
 
     }
+
+    public function findBy($field, $value, $columns = array('*'))
+    {
+        $list = parent::findBy($field, $value, $columns);
+        foreach ($list as &$v) {
+            $v['parent'] = $this->model->find($v['pid']);
+        }
+        return $list;
+    }
 }

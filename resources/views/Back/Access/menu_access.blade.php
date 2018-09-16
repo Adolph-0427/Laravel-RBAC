@@ -21,4 +21,4 @@
     <script src="{{ URL::asset('/back/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{ URL::asset('/back/js/matrix.tables.js')}}"></script>
 @endsection
-@include('Plug.treeview',array('tree'=>'menu_tree'))
+@include('Plug.treeview',array('tree'=>'menu_tree','data'=>$list,'idKey'=>'mid','pIdKey'=>'pid'))

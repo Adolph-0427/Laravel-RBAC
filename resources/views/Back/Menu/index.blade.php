@@ -21,6 +21,7 @@
                                 <th>ID</th>
                                 <th>名称</th>
                                 <th>路由</th>
+                                <th>上级菜单</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -28,14 +29,24 @@
                             @foreach($list as $value)
                                 <tr>
                                     <td>{{$value->id}}</td>
-                                    <td>{{$value->name}}</td>
+                                    <td><a style="color: #00B83F" href="{{url('menu?pid='.$value->id)}}"> {{$value->name}}</a></td>
                                     <td>{{$value->route}}</td>
+                                    <td>
+                                        @if($value->pid <= 0)
+                                            无
+                                            @else
+                                            <a href="{{url('menu?pid='.$value->parent->pid)}}">
+                                                {{$value->parent->name}}
+                                            </a>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a class="edit" href="{{url('menu/'.$value->id.'/edit')}}">编辑</a>
                                         <form action="{{ url('menu/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='edit' href="{{url('menu/create?pid='.$value->id)}}" >添加子菜单</a>
                                         </form>
                                     </td>
                                 </tr>

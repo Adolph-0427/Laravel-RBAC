@@ -69,3 +69,19 @@ function is_group_select_role($gid, $rid)
     return DB::table('role_relational_group')->where([['rid', '=', $rid], ['gid', '=', $gid]])->exists();
 
 }
+
+
+/**
+ * 递归
+ */
+function recursion($list = [], $pid = 0)
+{
+    $array = [];
+    foreach ($list as $value) {
+        if ($value->pid == $pid) {
+            $value->child = recursion($list, $value->pid);
+            $array[] = $value;
+        }
+    }
+    return $array;
+}

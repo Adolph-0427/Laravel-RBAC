@@ -19,6 +19,15 @@
                     <div class="widget-content nopadding">
                         <form class="form-horizontal" method="post" action="{{url('menu')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
+                            @if(!empty($parent->id))
+                                <div class="control-group">
+                                    <label class="control-label">父级菜单</label>
+                                    <div class="controls">
+                                        <input type="text" name="name" value="{{$parent->name}}" disabled>      <a></a>
+                                    </div>
+                                    <input type="hidden" name="pid" value="{{$parent->id}}">
+                                </div>
+                            @endif
                             <div class="control-group">
                                 <label class="control-label">菜单名称</label>
                                 <div class="controls">
@@ -43,7 +52,6 @@
     </div>
 @endsection
 @section('js')
-
     @parent
     <script src="{{ URL::asset('/back/js/jquery.uniform.js') }}"></script>
     <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
