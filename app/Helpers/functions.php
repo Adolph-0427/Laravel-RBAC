@@ -85,3 +85,13 @@ function recursion($list = [], $pid = 0)
     }
     return $array;
 }
+
+/**
+ * 对象转数组
+ * @param $object 对象集合
+ */
+function objectToArray($object)
+{
+    //先编码成json字符串，再解码成数组
+    return json_decode(json_encode($object), true);
+}

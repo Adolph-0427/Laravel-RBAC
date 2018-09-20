@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Back;
 
-use Illuminate\Http\Request;
 use App\Repositories\Access\AccessRepository;
+use Illuminate\Http\Request;
 
 class AccessController extends CommonController
 {
@@ -16,8 +16,30 @@ class AccessController extends CommonController
         $this->Access = $Access;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('Back.Access.menu_access', ['list' => $this->Access->menu()]);
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+
+        dd($request->all());
+//        $this->Access->create($request->all());
+
+        return redirect('/access');
+    }
+
 }

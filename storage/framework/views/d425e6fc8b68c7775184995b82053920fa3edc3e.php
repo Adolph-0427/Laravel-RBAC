@@ -1,14 +1,14 @@
-<link rel="stylesheet" href="{{ URL::asset('/back/css/tree/bootstrapStyle.css')}}"/>
+<link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/tree/bootstrapStyle.css')); ?>"/>
 
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script src="{{ URL::asset('/back/js/tree/jquery.ztree.core.js') }}"></script>
-<script src="{{ URL::asset('/back/js/tree/jquery.ztree.excheck.js') }}"></script>
-<script src="{{ URL::asset('/back/js/tree/jquery.ztree.exedit.js') }}"></script>
+<script src="<?php echo e(URL::asset('/back/js/tree/jquery.ztree.core.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('/back/js/tree/jquery.ztree.excheck.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('/back/js/tree/jquery.ztree.exedit.js')); ?>"></script>
 <script>
     var _$ = jQuery.noConflict(true);
-    var ID = "{{$tree}}";
-    var idKey = ("{{$idKey}}" != '') ? "{{$idKey}}" : 'id';
-    var pIdKey = ("{{$pIdKey}}" != '') ? "{{$pIdKey}}" : 'pId';
+    var ID = "<?php echo e($tree); ?>";
+    var idKey = ("<?php echo e($idKey); ?>" != '') ? "<?php echo e($idKey); ?>" : 'id';
+    var pIdKey = ("<?php echo e($pIdKey); ?>" != '') ? "<?php echo e($pIdKey); ?>" : 'pId';
 
     var setting = {
         view: {
@@ -38,7 +38,7 @@
             onCheck: onCheck,
         }
     };
-    var zNodes = {!! $data !!};
+    var zNodes = <?php echo $data; ?>;
 
     _$(document).ready(function () {
         _$.fn.zTree.init(_$("#" + ID), setting, zNodes);

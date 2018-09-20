@@ -28,7 +28,7 @@
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
                                             <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
-                                            <a href="{{url('access/index')}}">访问授权</a>
+                                            <a href="{{url('access/?rid='.$value->id)}}">访问授权</a>
                                         </form>
                                     </td>
                                 </tr>
