@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Back;
 
 use App\Repositories\Access\AccessRepository;
 use Illuminate\Http\Request;
+use App\Repositories\Access\AuthRepository;
 
 class AccessController extends CommonController
 {
 
     protected $Access;
+    protected $Auth;
 
-    public function __construct(AccessRepository $Access)
+    public function __construct(AccessRepository $Access, AuthRepository $Auth)
     {
         parent::__construct();
         $this->Access = $Access;
+        $this->Auth = $Auth;
     }
 
     /**
@@ -21,9 +24,13 @@ class AccessController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Back.Access.menu_access', ['list' => $this->Access->menu()]);
+        if (empty($request->get('rid'))) {
+            return redirect('/role');
+
+        }
+        return view('Back.Access.menu_access', ['list' => $this->Access->menu($request->get('rid'))]);
     }
 
 
@@ -36,8 +43,7 @@ class AccessController extends CommonController
     public function store(Request $request)
     {
 
-        dd($request->all());
-//        $this->Access->create($request->all());
+        $this->Auth->create($request->all());
 
         return redirect('/access');
     }

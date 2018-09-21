@@ -28,7 +28,7 @@
     <script src="<?php echo e(URL::asset('/back/js/jquery.dataTables.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('/back/js/matrix.tables.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('Plug.treeview',array('tree'=>'menu_tree','data'=>$list,'idKey'=>'mid','pIdKey'=>'pid'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('Plug.treeview',array('tree'=>'menu_tree','data'=>$list,'idKey'=>'mid','pIdKey'=>'pid','valueId'=>'aid'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 
 <?php echo $__env->make('Back.Common.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

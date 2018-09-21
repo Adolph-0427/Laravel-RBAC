@@ -9,6 +9,7 @@
     var ID = "<?php echo e($tree); ?>";
     var idKey = ("<?php echo e($idKey); ?>" != '') ? "<?php echo e($idKey); ?>" : 'id';
     var pIdKey = ("<?php echo e($pIdKey); ?>" != '') ? "<?php echo e($pIdKey); ?>" : 'pId';
+    var valueId = ("<?php echo e($valueId); ?>" != '') ? "<?php echo e($valueId); ?>" : 'valueId';
 
     var setting = {
         view: {
@@ -45,7 +46,7 @@
         var treeObj = _$.fn.zTree.getZTreeObj(ID);
         treeObj.expandAll(true);
         //添加一个隐藏域
-        $("#"+ID).append('<input type="hidden" name='+idKey+'>');
+        $("#"+ID).append('<input type="hidden" name='+valueId+'>');
     });
 
     var newCount = 1;
@@ -80,9 +81,10 @@
             nodes = treeObj.getCheckedNodes(true),
             ids = "";
         for (var i = 0; i < nodes.length; i++) {
-            ids += nodes[i][idKey] + ",";
+            ids += nodes[i][valueId] + ",";
         }
         ids = ids.substring(0,ids.length-1);
-        $("input[name="+idKey+"]").val(ids);
+        console.log(ids);
+        $("input[name="+valueId+"]").val(ids);
     }
 </script>
