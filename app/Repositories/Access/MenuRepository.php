@@ -5,16 +5,19 @@ namespace App\Repositories\Access;
 use App\Model\Menu;
 use App\Repositories\EloquentRepository;
 use Illuminate\Support\Facades\DB;
+use App\Model\AccessRelationalRole;
 
 class MenuRepository extends EloquentRepository
 {
 
     protected $Access;
+    protected $AccessRelationalRole;
 
-    public function __construct(Menu $model, AccessRepository $Access)
+    public function __construct(Menu $model, AccessRepository $Access, AccessRelationalRole $AccessRelationalRole)
     {
         parent::__construct($model);
         $this->Access = $Access;
+        $this->AccessRelationalRole = $AccessRelationalRole;
     }
 
     public function create(array $data)
@@ -28,6 +31,16 @@ class MenuRepository extends EloquentRepository
 
     public function delete($id)
     {
+        if ($this->model->where('pid', '=', $id)->exists()) {
+            return back()->withErrors('请先删除子菜单');
+        }
+
+        //查询所对应的权限ID
+        $aid = DB::table('access_relational_menu')->where('mid', '=', $id)->value('aid');
+        if ($this->AccessRelationalRole->where('aid', '=', $aid)->exists()) {
+            return back()->withErrors('已经授权的菜单，无法删除');
+        }
+
         DB::transaction(function () use ($id) {
             $relational = DB::table('access_relational_menu')->where('mid', $id)->first(['aid', 'mid']);
             parent::delete($relational->mid);
