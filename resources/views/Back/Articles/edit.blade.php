@@ -123,7 +123,7 @@
     {{--引入上传插件--}}
     @include('Plug.webUpload')
     <script>
-        uploadImg('/articles/articleCover', 'cover_img', 300, 300);
+        uploadImg('/articles/articleCover', 'cover_img', 3000, 3000);
     </script>
     {{--引入富文本编辑器--}}
     @include('Plug.froalaEditor',[

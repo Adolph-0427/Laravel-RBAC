@@ -18,13 +18,14 @@
                         <h5>添加文章</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="<?php echo e(url('articles/'.$info->id)); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
-                            <input type="hidden" name="_method" value="PATCH">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('articles')); ?>"
+                              name="basic_validate"
+                              id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
                             <div class="control-group">
                                 <label class="control-label">标题</label>
                                 <div class="controls">
-                                    <input type="text" value="<?php echo e($info->title); ?>" name="title" class="required"/>
+                                    <input type="text" name="title" class="required"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -32,7 +33,7 @@
                                 <div class="controls">
                                     <select name="category_id" style="width: 230px">
                                         <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option <?php if($value->id == $info->category_id): ?> selected <?php endif; ?> value="<?php echo e($value->id); ?>"><?php echo e($value->name); ?></option>
+                                            <option value="<?php echo e($value->id); ?>"><?php echo e($value->name); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
@@ -40,7 +41,8 @@
                             <div class="control-group">
                                 <label class="control-label">描述</label>
                                 <div class="controls">
-                                    <textarea id="textarea" class="required" name="describe" rows="3"><?php echo e($info->describe); ?></textarea>
+                                    <textarea id="textarea" class="required" name="describe"
+                                              rows="3"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -48,11 +50,8 @@
                                 <div class="controls">
                                     <div id="uploader-demo">
                                         <!--用来存放item-->
-                                        <div id="cover_img">选择图片</div>
+                                        <div id="cover_img"> 选择图片</div>
                                     </div>
-                                    <?php if(!empty($info->cover_img)): ?>
-                                        <img src="<?php echo e(URL::asset($info->cover_img)); ?>" />
-                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -62,34 +61,38 @@
                                         .radio input[type="radio"] {
                                             margin-left: 0px
                                         }
+
                                         .btn-info {
                                             cursor: pointer;
                                         }
                                     </style>
                                     <label class="radio">
-                                        <input <?php if($info->is_hot == 1): ?> checked <?php endif; ?> type="radio" name="is_hot" value="1"/>是
+                                        <input type="radio" name="is_hot" value="1"/>是
                                     </label>
                                     <label class="radio">
-                                        <input <?php if($info->is_hot == 0): ?> checked <?php endif; ?>  type="radio" name="is_hot" value="0"/>否
+                                        <input checked="" type="radio" name="is_hot" value="0"/>否
                                     </label>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">发表时间</label>
                                 <div class="controls">
-                                    <input name="publication_time" type="text" data-date="2018-1-1"  data-date-format="yyyy-mm-dd" value="<?php echo e($info->publication_time); ?>" class="datepicker" >
-                                    <a  class="btn-info btn-mini" onclick="$('input[name=publication_time]').val('')">清空</a>
+                                    <input name="publication_time" type="text" data-date="2018-1-1"
+                                           data-date-format="yyyy-mm-dd" value="0"
+                                           class="datepicker"><a
+                                            class="btn-info btn-mini"
+                                            onclick="$('input[name=publication_time]').val('')">清空</a>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">排序</label>
                                 <div class="controls">
-                                    <input type="text" name="sort" value="<?php echo e($info->sort); ?>" class="number"/>
+                                    <input type="text" name="sort" value="0" class="number"/>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label">内容</label>
                                     <div class="controls" style="padding-right: 10%">
-                                        <textarea id="edit" name="content"  class="textarea_editor required span12" rows="6"><?php echo e($info->content); ?></textarea>
+                                        <textarea id="edit" name="content"  class="textarea_editor required span12" rows="6"></textarea>
                                     </div>
                                 </div>
                                 <input name="user_id" type="hidden" value="0">
@@ -122,7 +125,7 @@
     
     <?php echo $__env->make('Plug.webUpload', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <script>
-        uploadImg('/articles/articleCover', 'cover_img', 3000, 3000);
+        uploadImg('/articles/articleCover', 'cover_img', 300, 300);
     </script>
     
     <?php echo $__env->make('Plug.froalaEditor',[
