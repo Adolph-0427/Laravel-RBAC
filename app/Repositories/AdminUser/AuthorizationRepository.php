@@ -40,7 +40,7 @@ class AuthorizationRepository extends EloquentRepository
     public function groupAuthorizationRole($data = [])
     {
         foreach ($data as $key => $value) {
-            $this->Role->Role_Group($data[$key]);
+            $this->Role_Group->firstOrCreate($data[$key]);
         }
     }
 }
