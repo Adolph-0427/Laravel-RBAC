@@ -46,6 +46,10 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="pagination">
+                        <?php echo e($list->links()); ?>
+
+                    </div>
                 </div>
 
             </div>

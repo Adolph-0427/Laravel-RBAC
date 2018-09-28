@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Access\AccessAuthorityRepository;
 
 class CommonController extends Controller
 {
+    protected $AccessAuthorityRepository;
+
     public function __construct()
     {
         $this->request = request();
@@ -17,6 +20,8 @@ class CommonController extends Controller
             }
             return $next($request);
         });
+
+        $this->access();
     }
 
     /**
@@ -24,7 +29,11 @@ class CommonController extends Controller
      */
     protected function access()
     {
+        $this->AccessAuthorityRepository = new AccessAuthorityRepository('', '', '', '');
 
+        $route = \Route::currentRouteName();
+
+        $this->AccessAuthorityRepository->menuAccess($route);
     }
 
 }

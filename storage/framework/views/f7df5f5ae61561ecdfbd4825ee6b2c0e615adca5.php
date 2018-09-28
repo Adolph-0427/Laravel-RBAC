@@ -1,5 +1,5 @@
-<?php $__env->startSection('column_url',url('role')); ?>
-<?php $__env->startSection('column','角色'); ?>
+<?php $__env->startSection('column_url',url('articleCategory')); ?>
+<?php $__env->startSection('column','文章分类'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
@@ -7,12 +7,20 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
+                    <div class="widget-title">
+                        <span class="icon">
+                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
+                        </span>
+                        <h5>全部选择</h5>
+                    </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>角色</th>
+                                <th>名称</th>
+                                <th>分类标识</th>
+                                <th>描述</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -21,13 +29,14 @@
                                 <tr>
                                     <td><?php echo e($value->id); ?></td>
                                     <td><?php echo e($value->name); ?></td>
+                                    <td><?php echo e($value->identify); ?></td>
+                                    <td><?php echo e($value->describe); ?></td>
                                     <td>
-                                        <a class="edit" href="<?php echo e(url('role/'.$value->id.'/edit')); ?>">编辑</a>
-                                        <form action="<?php echo e(url('role/'.$value->id)); ?>" method="POST" id="delete">
+                                        <a class="edit" href="<?php echo e(url('articleCategory/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('articleCategory/'.$value->id)); ?>" method="POST" class="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
-                                            <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
-                                            <a href="<?php echo e(url('access/?rid='.$value->id)); ?>">访问授权</a>
+                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
                                         </form>
                                     </td>
                                 </tr>
