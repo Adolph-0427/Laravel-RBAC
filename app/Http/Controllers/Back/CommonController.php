@@ -19,4 +19,12 @@ class CommonController extends Controller
         });
     }
 
+    /**
+     * 判断是否有权限
+     */
+    protected function access()
+    {
+
+    }
+
 }

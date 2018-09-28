@@ -20,23 +20,27 @@ class AuthorizationRepository extends EloquentRepository
     }
 
     //用户授权用户组
-    public function authorizationGroup($data = [], $uid)
+    public function authorizationGroup($data = [])
     {
-        $this->model->where('uid', $uid)->delete();
-        return $this->model->insert($data);
+        foreach ($data as $key => $value) {
+            $this->model->firstOrCreate($data[$key]);
+        }
     }
 
     //用户授权角色
-    public function authorizationRole($data = [], $uid)
+    public function authorizationRole($data = [])
     {
-        $this->Role->where('uid', $uid)->delete();
-        return $this->Role->insert($data);
+        foreach ($data as $key => $value) {
+            $this->Role->firstOrCreate($data[$key]);
+        }
+
     }
 
     //用户组授权角色
-    public function groupAuthorizationRole($data = [], $gid)
+    public function groupAuthorizationRole($data = [])
     {
-        $this->Role_Group->where('gid', $gid)->delete();
-        return $this->Role_Group->insert($data);
+        foreach ($data as $key => $value) {
+            $this->Role->Role_Group($data[$key]);
+        }
     }
 }

@@ -118,7 +118,7 @@ class AdminUserController extends CommonController
             $data[$key]['uid'] = $request->uid;
         }
 
-        $this->Authorization->authorizationGroup($data, $request->uid);
+        $this->Authorization->authorizationGroup($data);
         return redirect('/user');
     }
 
@@ -143,7 +143,7 @@ class AdminUserController extends CommonController
             $data[$key]['uid'] = $request->uid;
         }
 
-        $this->Authorization->authorizationRole($data, $request->uid);
+        $this->Authorization->authorizationRole($data);
         return redirect('/user');
 
     }

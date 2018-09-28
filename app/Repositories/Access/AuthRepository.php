@@ -4,7 +4,6 @@ namespace App\Repositories\Access;
 
 use App\Model\AccessRelationalRole;
 use App\Repositories\EloquentRepository;
-use Illuminate\Support\Facades\DB;
 
 class AuthRepository extends EloquentRepository
 {

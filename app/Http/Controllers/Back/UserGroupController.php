@@ -124,7 +124,7 @@ class UserGroupController extends CommonController
             $data[$key]['gid'] = $request->gid;
         }
 
-        $this->Authorization->groupAuthorizationRole($data, $request->gid);
+        $this->Authorization->groupAuthorizationRole($data);
         return redirect('/group');
     }
 }
