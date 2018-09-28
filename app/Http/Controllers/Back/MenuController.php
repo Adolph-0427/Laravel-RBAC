@@ -24,7 +24,7 @@ class MenuController extends CommonController
     public function index(Request $request)
     {
         $pid = (int)$request->get('pid');
-        return view('Back.Menu.index', ['list' => $this->Menu->findBy('pid', $pid)]);
+        return view('Back.Menu.index', ['list' => $this->Menu->paginate(array('pid'=>$pid))]);
     }
 
     /**

@@ -54,6 +54,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="pagination">
+                        {{$list->links()}}
+                    </div>
                 </div>
 
             </div>

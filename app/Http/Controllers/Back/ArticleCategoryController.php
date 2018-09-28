@@ -24,7 +24,7 @@ class ArticleCategoryController extends CommonController
      */
     public function index()
     {
-        return view('Back.ArticleCategory.index', ['list' => $this->Category->all()]);
+        return view('Back.ArticleCategory.index', ['list' => $this->Category->paginate()]);
     }
 
     /**

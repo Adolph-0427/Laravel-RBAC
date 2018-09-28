@@ -42,9 +42,9 @@ abstract class EloquentRepository implements RepositoryInterface
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
 
-    public function paginate($perPage = 15, $columns = array('*'))
+    public function paginate($where = array(), $perPage = 15, $columns = array('*'))
     {
-        return $this->model->paginate($perPage, $columns);
+        return $this->model->where($where)->paginate($perPage, $columns);
     }
 
     /**

@@ -24,7 +24,7 @@ class RoleController extends CommonController
      */
     public function index()
     {
-        return view('Back.Role.index', ['list' => $this->Role->all()]);
+        return view('Back.Role.index', ['list' => $this->Role->paginate()]);
     }
 
     /**

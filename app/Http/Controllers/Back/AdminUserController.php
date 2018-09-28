@@ -33,7 +33,7 @@ class AdminUserController extends CommonController
      */
     public function index()
     {
-        return view('Back.User.index', ['list' => $this->AdminUser->all()]);
+        return view('Back.User.index', ['list' => $this->AdminUser->paginate()]);
     }
 
     /**

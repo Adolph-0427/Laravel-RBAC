@@ -9,7 +9,7 @@
     var ID = "<?php echo e($tree); ?>";
     var idKey = ("<?php echo e($idKey); ?>" != '') ? "<?php echo e($idKey); ?>" : 'id';
     var pIdKey = ("<?php echo e($pIdKey); ?>" != '') ? "<?php echo e($pIdKey); ?>" : 'pId';
-    var valueId = ("<?php echo e($valueId); ?>" != '') ? "<?php echo e($valueId); ?>" : 'valueId';
+    var valueId = ("<?php echo e($valueId); ?>" != '') ? "<?php echo e($valueId); ?>" : 'id';
 
     var setting = {
         view: {
@@ -46,7 +46,8 @@
         var treeObj = _$.fn.zTree.getZTreeObj(ID);
         treeObj.expandAll(true);
         //添加一个隐藏域
-        $("#"+ID).append('<input type="hidden" name='+valueId+'>');
+        $("#" + ID).append('<input type="hidden" name=' + valueId + '>');//选中
+        $("#" + ID).append('<input type="hidden" name="cancel_ids">');//取消
     });
 
     var newCount = 1;
@@ -78,13 +79,27 @@
     //选择节点
     function onCheck() {
         var treeObj = _$.fn.zTree.getZTreeObj(ID),
-            nodes = treeObj.getCheckedNodes(true),
-            ids = "";
+            nodes = treeObj.getCheckedNodes(true),//选中的
+            cancel = treeObj.getChangeCheckedNodes();//有变化的用于取消的
+        ids = "";
         for (var i = 0; i < nodes.length; i++) {
             ids += nodes[i][valueId] + ",";
         }
-        ids = ids.substring(0,ids.length-1);
-        console.log(ids);
-        $("input[name="+valueId+"]").val(ids);
+        ids = ids.substring(0, ids.length - 1);
+        $("input[name=" + valueId + "]").val(ids);
+        cancelCheck(cancel);
     }
+
+    //ajax 取消选中节点
+    function cancelCheck(cancel) {
+        cancel_ids = "";
+        for (var i = 0; i < cancel.length; i++) {
+            if (cancel[i]['checked'] == false) {
+                cancel_ids += cancel[i][valueId] + ",";
+            }
+        }
+        cancel_ids = cancel_ids.substring(0, cancel_ids.length - 1);
+        $("input[name='cancel_ids']").val(cancel_ids);
+    }
+
 </script>

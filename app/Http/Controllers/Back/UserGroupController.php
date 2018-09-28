@@ -30,7 +30,7 @@ class UserGroupController extends CommonController
      */
     public function index()
     {
-        return view('Back.UserGroup.index', ['list' => $this->UserGroup->all()]);
+        return view('Back.UserGroup.index', ['list' => $this->UserGroup->paginate()]);
     }
 
     /**

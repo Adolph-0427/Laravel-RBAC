@@ -29,7 +29,7 @@ class ArticlesController extends CommonController
      */
     public function index()
     {
-        return view('Back.Articles.index', ['list' => $this->Articles->all()]);
+        return view('Back.Articles.index', ['list' => $this->Articles->paginate()]);
     }
 
     /**
