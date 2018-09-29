@@ -118,6 +118,9 @@ class UserGroupController extends CommonController
      */
     public function storeAuthRole(Request $request)
     {
+        if ($request->post('rids') == null) {
+            return back()->withErrors('未选择角色');
+        }
         $data = [];
         foreach ($request->rids as $key => $value) {
             $data[$key]['rid'] = $value;

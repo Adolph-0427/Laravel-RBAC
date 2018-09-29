@@ -112,12 +112,15 @@ class AdminUserController extends CommonController
 
     public function storeAuthGroup(Request $request)
     {
+        if ($request->post('gids') == null) {
+            return back()->withErrors('未选择用户组');
+        }
+
         $data = [];
         foreach ($request->gids as $key => $value) {
             $data[$key]['gid'] = $value;
             $data[$key]['uid'] = $request->uid;
         }
-
         $this->Authorization->authorizationGroup($data);
         return redirect('/user');
     }
@@ -137,6 +140,9 @@ class AdminUserController extends CommonController
      */
     public function storeAuthRole(Request $request)
     {
+        if ($request->post('rids') == null) {
+            return back()->withErrors('未选择角色');
+        }
         $data = [];
         foreach ($request->rids as $key => $value) {
             $data[$key]['rid'] = $value;
