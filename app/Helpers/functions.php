@@ -95,3 +95,28 @@ function objectToArray($object)
     //先编码成json字符串，再解码成数组
     return json_decode(json_encode($object), true);
 }
+
+/**
+ * API 接口返回
+ * @param $code int 状态码
+ * @param $message string 返回信息
+ * @param $data array 返回数据
+ * @param $url string 要跳转的URL
+ * return array
+ */
+function ajaxReturn($code, $message, $data = array(), $url = '/')
+{
+    if (!is_numeric($code)) {
+        return 'code 为数字';
+    }
+
+    $result = [
+        'code' => $code,
+        'message' => $message,
+        'data' => $data,
+        'url' => $url,
+    ];
+    header('Content-Type:application/json; charset=utf-8');
+
+    return json_encode($result);
+}

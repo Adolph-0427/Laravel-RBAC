@@ -17,7 +17,9 @@ class CommonController extends Controller
                 redirect('/login')->withErrors(['未登录，请前去登录！'])->send();
                 exit();
             }
-            $this->access();
+            if (!$this->access()) {
+                return back()->withErrors('无权限访问！');
+            }
             return $next($request);
         });
 
