@@ -35,8 +35,8 @@
                                         @if($value->pid <= 0)
                                             无
                                             @else
-                                            <a href="{{url('menu?pid='.$value->parent->pid)}}">
-                                                {{$value->parent->name}}
+                                            <a href="{{url('menu?pid='.$value->pid)}}">
+                                                {{$value->name}}
                                             </a>
                                         @endif
                                     </td>

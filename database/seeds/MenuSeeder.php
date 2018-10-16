@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Back;
+use Illuminate\Database\Seeder;
+use App\Repositories\Access\MenuRepository;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\Access\AccessRepository;
 
-use Illuminate\Http\Request;
-
-class AdminController extends CommonController
+class MenuSeeder extends Seeder
 {
+
     protected $data = [
         [
             'name' => '首页',
@@ -139,10 +141,35 @@ class AdminController extends CommonController
         ]
     ];
 
-    public function index()
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
     {
-        recursionMenu($this->data);die();
-        return view('Back.Index.index');
+        $this->menu();
     }
 
+
+    public function menu(MenuRepository $MenuRepository, AccessRepository $Access, $data = [], $pid = 0)
+    {
+
+        foreach ($data as $key => $value) {
+            $da = [
+                'name' => $value['name'],
+                'route' => $value['route'],
+                'pid' => $pid
+            ];
+            DB::transaction(function () use ($MenuRepository, $Access, $da, $mid) {
+                $mid = $MenuRepository->create($da);
+                $aid = $this->Access->create(array('type' => 1));
+                DB::table('access_relational_menu')->insert(array('aid' => $aid->id, 'mid' => $mid->id));
+            });
+
+            if ($value['child']) {
+                $this->menu($MenuRepository, $Access, $value['child'], $pid = $mid->id);
+            }
+        }
+    }
 }

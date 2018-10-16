@@ -34,8 +34,8 @@
                                         <?php if($value->pid <= 0): ?>
                                             无
                                             <?php else: ?>
-                                            <a href="<?php echo e(url('menu?pid='.$value->parent->pid)); ?>">
-                                                <?php echo e($value->parent->name); ?>
+                                            <a href="<?php echo e(url('menu?pid='.$value->pid)); ?>">
+                                                <?php echo e($value->name); ?>
 
                                             </a>
                                         <?php endif; ?>

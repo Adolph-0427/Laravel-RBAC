@@ -12,9 +12,9 @@ class UsersSeeder extends Seeder
     public function run(AdminUserRepository $User)
     {
         $data = [
-            'username' => 'root2',
-            'password' => Hash::make('wujianhua'),
-            'describe' => '测试数据填充',
+            'username' => 'root',
+            'password' => Hash::make('root'),
+            'describe' => '超管账户',
         ];
         $User->create($data);
     }
