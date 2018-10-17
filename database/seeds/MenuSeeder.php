@@ -166,7 +166,6 @@ class MenuSeeder extends Seeder
 
     public function menu($Menu, $Access, $data = [], $pid = 0)
     {
-        DB::connection()->enableQueryLog();
         foreach ($data as $key => $value) {
             $mid = (object)[];
             DB::transaction(function () use ($Menu, $Access, $value, $mid, $pid) {

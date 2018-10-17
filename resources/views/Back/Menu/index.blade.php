@@ -36,7 +36,7 @@
                                             无
                                             @else
                                             <a href="{{url('menu?pid='.$value->pid)}}">
-                                                {{$value->name}}
+                                                {{getOne('menu','id',$value->pid,'name')}}
                                             </a>
                                         @endif
                                     </td>
