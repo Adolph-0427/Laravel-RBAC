@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Repositories\Access\MenuRepository;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Access\AccessRepository;
+use App\Model\Menu;
 
 class MenuSeeder extends Seeder
 {
-
     protected $data = [
         [
             'name' => '首页',
@@ -141,6 +140,19 @@ class MenuSeeder extends Seeder
         ]
     ];
 
+    protected $Access;
+
+    protected $Menu;
+
+    protected $mid;
+
+    public function __construct(AccessRepository $Access, Menu $Menu)
+    {
+        $this->Access = $Access;
+        $this->Menu = $Menu;
+    }
+
+
     /**
      * Run the database seeds.
      *
@@ -148,27 +160,28 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        $this->menu();
+        $this->menu($this->Menu, $this->Access, $this->data);
     }
 
 
-    public function menu(MenuRepository $MenuRepository, AccessRepository $Access, $data = [], $pid = 0)
+    public function menu($Menu, $Access, $data = [], $pid = 0)
     {
-
+        DB::connection()->enableQueryLog();
         foreach ($data as $key => $value) {
-            $da = [
-                'name' => $value['name'],
-                'route' => $value['route'],
-                'pid' => $pid
-            ];
-            DB::transaction(function () use ($MenuRepository, $Access, $da, $mid) {
-                $mid = $MenuRepository->create($da);
+            $mid = (object)[];
+            DB::transaction(function () use ($Menu, $Access, $value, $mid, $pid) {
+                $da = [
+                    'name' => $value['name'],
+                    'route' => $value['route'],
+                    'pid' => $pid
+                ];
+                $mid = $Menu->create($da);
                 $aid = $this->Access->create(array('type' => 1));
                 DB::table('access_relational_menu')->insert(array('aid' => $aid->id, 'mid' => $mid->id));
+                $this->mid = $mid->id;
             });
-
-            if ($value['child']) {
-                $this->menu($MenuRepository, $Access, $value['child'], $pid = $mid->id);
+            if (isset($value['child'])) {
+                $this->menu($Menu, $Access, $value['child'], $this->mid);
             }
         }
     }
