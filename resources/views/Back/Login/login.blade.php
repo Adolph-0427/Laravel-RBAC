@@ -27,7 +27,6 @@
     {{--错误消息--}}
 
     {{--登录--}}
-    {{session('user.username')}}
     <form class="form-horizontal" method="post" action="{{url('login/login')}}" name="basic_validate" id="basic_validate" novalidate="novalidate">
         @csrf
         <div class="control-group normal_text"><h3><img src="{{ URL::asset('/back/img/logo.png') }}" alt="Logo"/></h3>

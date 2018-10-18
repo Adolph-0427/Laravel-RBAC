@@ -120,3 +120,4 @@ function ajaxReturn($code, $message, $data = array(), $url = '/')
 
     return json_encode($result);
 }
+

@@ -55,4 +55,7 @@
     <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/jquery.validate.js') }}"></script>
     <script src="{{ URL::asset('/back/js/matrix.form_validation.js') }}"></script>
+
 @endsection
+
+

@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         $result = $this->AdminUser->login($request->all());
         if ($result !== false) {
-            return redirect('/user');
+            return redirect('/');
         } else {
             return back()->withErrors(['用户名或者密码错误']);
         }

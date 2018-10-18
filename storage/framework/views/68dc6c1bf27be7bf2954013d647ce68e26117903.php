@@ -27,8 +27,6 @@
     
 
     
-    <?php echo e(session('user.username')); ?>
-
     <form class="form-horizontal" method="post" action="<?php echo e(url('login/login')); ?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
         <?php echo csrf_field(); ?>
         <div class="control-group normal_text"><h3><img src="<?php echo e(URL::asset('/back/img/logo.png')); ?>" alt="Logo"/></h3>

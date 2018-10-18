@@ -10,7 +10,7 @@ class MenuSeeder extends Seeder
     protected $data = [
         [
             'name' => '首页',
-            'route' => '/',
+            'route' => 'index',
         ],
         [
             'name' => '用户',
