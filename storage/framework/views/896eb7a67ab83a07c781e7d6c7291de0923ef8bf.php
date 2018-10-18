@@ -1,5 +1,5 @@
-<?php $__env->startSection('column_url',url('menu')); ?>
-<?php $__env->startSection('column','菜单'); ?>
+<?php $__env->startSection('column_url',url('role')); ?>
+<?php $__env->startSection('column','角色'); ?>
 <?php $__env->startSection('title','列表'); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container-fluid">
@@ -7,20 +7,12 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
-                    <div class="widget-title">
-                        <span class="icon">
-                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
-                        </span>
-                        <h5>全部选择</h5>
-                    </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>名称</th>
-                                <th>路由</th>
-                                <th>上级菜单</th>
+                                <th>角色</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -28,25 +20,14 @@
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td><?php echo e($value->id); ?></td>
-                                    <td><a style="color: #00B83F" href="<?php echo e(url('menu?pid='.$value->id)); ?>"> <?php echo e($value->name); ?></a></td>
-                                    <td><?php echo e($value->route); ?></td>
+                                    <td><?php echo e($value->name); ?></td>
                                     <td>
-                                        <?php if($value->pid <= 0): ?>
-                                            无
-                                            <?php else: ?>
-                                            <a href="<?php echo e(url('menu?pid='.$value->pid)); ?>">
-                                                <?php echo e(getOne('menu','id',$value->pid,'name')); ?>
-
-                                            </a>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td>
-                                        <a class="edit" href="<?php echo e(url('menu/'.$value->id.'/edit')); ?>">编辑</a>
-                                        <form action="<?php echo e(url('menu/'.$value->id)); ?>" method="POST" id="delete">
+                                        <a class="edit" href="<?php echo e(url('role/'.$value->id.'/edit')); ?>">编辑</a>
+                                        <form action="<?php echo e(url('role/'.$value->id)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
-                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
-                                            <a class='edit' href="<?php echo e(url('menu/create?pid='.$value->id)); ?>" >添加子菜单</a>
+                                            <a class="delete" href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a href="<?php echo e(url('access/?rid='.$value->id)); ?>">访问授权</a>
                                         </form>
                                     </td>
                                 </tr>

@@ -121,3 +121,14 @@ function ajaxReturn($code, $message, $data = array(), $url = '/')
     return json_encode($result);
 }
 
+/**
+ * 查询单个字段
+ * @param $table 表名称
+ * @param $whereFild 查询条件字段
+ * @param $whereValue 查询条件值
+ * @param $field 要查询的字段
+ */
+function getOne($table, $whereField, $whereValue, $field)
+{
+    return DB::table($table)->where($whereField, '=', $whereValue)->value($field);
+}
