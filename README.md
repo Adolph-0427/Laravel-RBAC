@@ -14,10 +14,15 @@ composer update
 
 在 .env 设置数据库
   DB_CONNECTION=mysql
+  
   DB_HOST=127.0.0.1
+  
   DB_PORT=3306
+  
   DB_DATABASE=blog
+  
   DB_USERNAME=root
+  
   DB_PASSWORD=password
   
   去创建一个名为blog的数据库
