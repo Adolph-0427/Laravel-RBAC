@@ -35,6 +35,14 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '授权角色',
                     'route' => 'user.authorizationRole',
+                ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'user.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'menu.update',
                 ]
             ]
 
@@ -58,6 +66,14 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '授权角色',
                     'route' => 'group.authorizationRole',
+                ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'group.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'group.update',
                 ]
             ]
 
@@ -81,6 +97,14 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '访问授权',
                     'route' => 'access.index'
+                ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'access.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'access.update',
                 ]
             ]
         ],
@@ -99,6 +123,14 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '删除文章',
                     'route' => 'articles.destroy',
+                ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'articles.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'articles.update',
                 ]
             ],
         ],
@@ -117,6 +149,14 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '删除文章分类',
                     'route' => 'articleCategory.destroy',
+                ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'articleCategory.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'articleCategory.update',
                 ]
             ]
         ],
@@ -136,6 +176,14 @@ class MenuSeeder extends Seeder
                     'name' => '删除菜单',
                     'route' => 'menu.destroy',
                 ],
+                [
+                    'name' => '保存数据',
+                    'route' => 'menu.store',
+                ],
+                [
+                    'name' => '更新数据',
+                    'route' => 'menu.update',
+                ]
             ],
         ]
     ];
