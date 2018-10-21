@@ -40,3 +40,10 @@ Route::resource('menu', 'MenuController');
 //角色授权
 Route::get('access', 'AccessController@index')->name('access.index');
 Route::post('access/store', 'AccessController@store')->name('access.store');
+//邮件
+//预览模板
+Route::get('previewEmail', function () {
+    return new  App\Mail\Email();
+});
+//发送邮件
+Route::get('sendEmail','MailController@send');

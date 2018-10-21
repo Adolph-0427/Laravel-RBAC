@@ -5,11 +5,13 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Eamil extends Mailable
+class Email extends Mailable
 {
     use Queueable, SerializesModels;
+
+
+    public $SendInfo;
 
     /**
      * Create a new message instance.
@@ -18,7 +20,10 @@ class Eamil extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->SendInfo = [
+            'title' => '测试标题',
+            'text' => '测试内容'
+        ];
     }
 
     /**
@@ -28,6 +33,6 @@ class Eamil extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('Email.send');
     }
 }
