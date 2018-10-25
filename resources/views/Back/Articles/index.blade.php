@@ -9,16 +9,16 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title">
-                        <span class="icon">
-                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
-                        </span>
-                        <h5>全部选择</h5>
+                        <ul class="article-status">
+                            <ol><a href="{{url('articles?status=1')}}">待审核</a></ol>
+                            <ol><a href="{{url('articles?status=2')}}">已发布</a></ol>
+                            <ol><a href="{{url('articles?status=0')}}">垃圾箱</a></ol>
+                        </ul>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
-                                <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
                                 <th>标题</th>
                                 <th>描述</th>
@@ -31,7 +31,6 @@
                             <tbody>
                             @foreach($list as $value)
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="{{$value->id}}}"/></td>
                                     <td>{{$value->id}}</td>
                                     <td>{{$value->title}}</td>
                                     <td>{{$value->describe}}</td>
@@ -43,8 +42,12 @@
                                         <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             @csrf
-                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit"
+                                               onclick="$(this).parent().submit();return false">删除</a>
                                         </form>
+                                        @if($status==1)
+                                            <a class="edit" href="{{url('articles/auditing?id='.$value->id)}}">审核</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

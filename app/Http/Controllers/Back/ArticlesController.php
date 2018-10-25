@@ -27,9 +27,10 @@ class ArticlesController extends CommonController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Back.Articles.index', ['list' => $this->Articles->paginate()]);
+        $status = $request->get('status', 1);
+        return view('Back.Articles.index', ['list' => $this->Articles->paginate(array('status' => $status)), 'status' => $status]);
     }
 
     /**
@@ -122,5 +123,17 @@ class ArticlesController extends CommonController
     private function getCategory()
     {
         return $this->Category->all();
+    }
+
+    /**
+     * 文章审核
+     */
+    public function auditing(Request $request)
+    {
+        $id = $request->get('id');
+
+        $this->Articles->update(array('status' => 2), array('id' => $id));
+
+        return redirect('/articles');
     }
 }

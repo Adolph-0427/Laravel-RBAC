@@ -15,7 +15,7 @@
                 </div>
                 <input type="hidden" name="rid" value="{{Request('rid')}}">
                 <div class="form-actions">
-                    <input type="submit" value="Save" class="btn btn-success">
+                    <input type="submit" value="Save" class="btn btn-success" >
                     <button type="button" class="btn btn-danger btn-cancel">Cancel</button>
                 </div>
             </div>

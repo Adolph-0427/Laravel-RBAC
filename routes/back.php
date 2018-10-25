@@ -22,6 +22,8 @@ Route::post('user/storeAuthRole', 'AdminUserController@storeAuthRole')->name('us
 Route::resource('user', 'AdminUserController');
 //文章
 Route::resource('articles', 'ArticlesController');
+//文章审核
+Route::get('articles/auditing', 'Articles@auditing')->name('articles.auditing');
 //上传文章封面
 Route::post('articles/articleCover', 'ArticlesController@articleCover')->name('articles.articleCover');
 //文章内容图片上传
@@ -46,4 +48,4 @@ Route::get('previewEmail', function () {
     return new  App\Mail\Email();
 });
 //发送邮件
-Route::get('sendEmail','MailController@send');
+Route::get('sendEmail', 'MailController@send');

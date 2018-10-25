@@ -17,3 +17,14 @@
 #content-header {
     z-index: 0 !important;
 }
+
+.article-status {
+    margin: 0px;
+}
+
+.article-status ol {
+    float: left;
+    width: auto;
+    color: red;
+    line-height: 30px;
+}

@@ -8,16 +8,16 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title">
-                        <span class="icon">
-                            <input type="checkbox" id="title-checkbox" name="title-checkbox"/>
-                        </span>
-                        <h5>全部选择</h5>
+                        <ul class="article-status">
+                            <ol><a href="<?php echo e(url('articles?status=1')); ?>">待审核</a></ol>
+                            <ol><a href="<?php echo e(url('articles?status=2')); ?>">已发布</a></ol>
+                            <ol><a href="<?php echo e(url('articles?status=0')); ?>">垃圾箱</a></ol>
+                        </ul>
                     </div>
                     <div class="widget-content nopadding">
                         <table class="table table-bordered table-striped with-check">
                             <thead>
                             <tr>
-                                <th><i class="icon-resize-vertical"></i></th>
                                 <th>ID</th>
                                 <th>标题</th>
                                 <th>描述</th>
@@ -30,7 +30,6 @@
                             <tbody>
                             <?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><input type="checkbox" name="uid" value="<?php echo e($value->id); ?>}"/></td>
                                     <td><?php echo e($value->id); ?></td>
                                     <td><?php echo e($value->title); ?></td>
                                     <td><?php echo e($value->describe); ?></td>
@@ -42,8 +41,12 @@
                                         <form action="<?php echo e(url('articles/'.$value->id)); ?>" method="POST" id="delete">
                                             <input name="_method" value="DELETE" type="hidden">
                                             <?php echo csrf_field(); ?>
-                                            <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false" >删除</a>
+                                            <a class='delete' href="#" name="submit"
+                                               onclick="$(this).parent().submit();return false">删除</a>
                                         </form>
+                                        <?php if($status==1): ?>
+                                            <a class="edit" href="<?php echo e(url('articles/auditing?id='.$value->id)); ?>">审核</a>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->tinyInteger('is_hot')->comment('是否为热门 1是 0不是');
             $table->integer('views')->default(0)->comment('浏览量');
             $table->timestamp('publication_time')->comment('发表时间 不填为立即发布');
-            $table->tinyInteger('status')->default(0)->comment('状态 0未发布 1待审核 2已发布');
+            $table->tinyInteger('status')->default(0)->comment('状态 0草稿箱 1待审核 2已发布');
             $table->tinyInteger('category_id')->comment('分类ID');
             $table->integer('sort')->comment('排序');
             $table->integer('user_id')->unsigned()->comment('用户id');
