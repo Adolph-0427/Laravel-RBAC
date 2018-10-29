@@ -10,9 +10,9 @@
                 <div class="widget-box">
                     <div class="widget-title">
                         <ul class="article-status">
-                            <ol><a href="{{url('articles?status=1')}}">待审核</a></ol>
-                            <ol><a href="{{url('articles?status=2')}}">已发布</a></ol>
-                            <ol><a href="{{url('articles?status=0')}}">垃圾箱</a></ol>
+                            <ol><a href="{{url('articles?status=1')}}" status="1">待审核</a></ol>
+                            <ol><a href="{{url('articles?status=2')}}" status="2">已发布</a></ol>
+                            <ol><a href="{{url('articles?status=0')}}" status="0">垃圾箱</a></ol>
                         </ul>
                     </div>
                     <div class="widget-content nopadding">
@@ -39,14 +39,17 @@
                                     <td>{{$value->created_at}}</td>
                                     <td>
                                         <a class="edit" href="{{url('articles/'.$value->id.'/edit')}}">编辑</a>
-                                        <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
-                                            <input name="_method" value="DELETE" type="hidden">
-                                            @csrf
-                                            <a class='delete' href="#" name="submit"
-                                               onclick="$(this).parent().submit();return false">删除</a>
-                                        </form>
+                                        @if($status==0)
+                                            <form action="{{ url('articles/'.$value->id) }}" method="POST" id="delete">
+                                                <input name="_method" value="DELETE" type="hidden">
+                                                @csrf
+                                                <a class='delete' href="#" name="submit" onclick="$(this).parent().submit();return false">删除</a>
+                                            </form>
+                                        @endif
                                         @if($status==1)
-                                            <a class="edit" href="{{url('articles/auditing?id='.$value->id)}}">审核</a>
+                                            <a class="edit" href="{{url('articles/auditing?status=2&id='.$value->id)}}">审核</a>
+                                            @elseif($status==2 || $status==1)
+                                            <a class="edit" href="{{url('articles/auditing?status=0&id='.$value->id)}}">删除</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -66,4 +69,12 @@
     <script src="{{ URL::asset('/back/js/select2.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('/back/js/matrix.tables.js') }}"></script>
+    <script>
+        $(".article-status a").each(function (key, value) {
+            var v = $(value).attr('status');
+            if(v == "{{$status}}"){
+                $(this).css('color','#28b779');
+            }
+        })
+    </script>
 @endsection

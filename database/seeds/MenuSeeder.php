@@ -115,6 +115,16 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '添加文章',
                     'route' => 'articles.create',
+                    'child' => [
+                        [
+                            'name' => '上传文章封面图片',
+                            'route' => 'articles.articleCover',
+                        ],
+                        [
+                            'name' => '上传文章编辑器图片',
+                            'route' => 'articles.articleEdit',
+                        ]
+                    ],
                 ],
                 [
                     'name' => '编辑文章',
@@ -131,7 +141,12 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '更新数据',
                     'route' => 'articles.update',
-                ]
+                ],
+                [
+                    'name' => '审核文章',
+                    'route' => 'articles.update',
+                ],
+
             ],
         ],
         [

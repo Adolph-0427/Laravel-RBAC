@@ -131,6 +131,7 @@ class ArticlesController extends CommonController
     public function auditing(Request $request)
     {
         $id = $request->get('id');
+        $status = $request->get('status');
 
         $this->Articles->update(array('status' => 2), array('id' => $id));
 
