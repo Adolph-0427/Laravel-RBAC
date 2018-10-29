@@ -29,7 +29,7 @@ composer update
   
   执行 php artisan migrate 命令
   
- 四:创建数据
+ 四:创建默认数据
  
-  执行 php artisan db:seed --class=MenuSeeder
+  执行 php artisan db:seed
  
