@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/bootstrap-responsive.min.css')); ?>"/>
     <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-login.css')); ?>"/>
     <link href="<?php echo e(URL::asset('/back/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
 </head>
 <body>

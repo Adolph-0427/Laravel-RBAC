@@ -49,3 +49,5 @@ Route::get('previewEmail', function () {
 });
 //发送邮件
 Route::get('sendEmail', 'MailController@send');
+//接受邮件
+Route::get('receiveEmail', 'MailController@receive');

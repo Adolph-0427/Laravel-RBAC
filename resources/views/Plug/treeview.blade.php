@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ URL::asset('/back/css/tree/bootstrapStyle.css')}}"/>
 
-<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
 <script src="{{ URL::asset('/back/js/tree/jquery.ztree.core.js') }}"></script>
 <script src="{{ URL::asset('/back/js/tree/jquery.ztree.excheck.js') }}"></script>
 <script src="{{ URL::asset('/back/js/tree/jquery.ztree.exedit.js') }}"></script>
