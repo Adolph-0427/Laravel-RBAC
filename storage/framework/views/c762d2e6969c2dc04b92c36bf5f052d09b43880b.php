@@ -16,8 +16,7 @@
                         <h5>编辑菜单</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="<?php echo e(url('menu/'.$info->id)); ?>"
-                              name="basic_validate" id="basic_validate" novalidate="novalidate">
+                        <form class="form-horizontal" method="post" action="<?php echo e(url('menu/'.$info->id)); ?>"   name="basic_validate" id="basic_validate" novalidate="novalidate">
                             <?php echo csrf_field(); ?>
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="control-group">

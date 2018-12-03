@@ -24,10 +24,10 @@ Route::post('user/modifyPass', 'AdminUserController@modifyPass')->name('user.mod
 Route::resource('user', 'AdminUserController');
 //文章
 //文章审核
-Route::get('articles/auditing', 'Articles@auditing')->name('articles.auditing');
-//上传文章封面
+Route::get('articles/auditing', 'ArticlesController@auditing')->name('articles.auditing');
+////上传文章封面
 Route::post('articles/articleCover', 'ArticlesController@articleCover')->name('articles.articleCover');
-//文章内容图片上传
+////文章内容图片上传
 Route::post('articles/articleEdit', 'ArticlesController@articleEdit')->name('articles.articleEdit');
 Route::resource('articles', 'ArticlesController');
 //文章分类
