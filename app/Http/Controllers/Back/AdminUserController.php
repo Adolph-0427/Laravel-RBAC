@@ -153,4 +153,30 @@ class AdminUserController extends CommonController
         return redirect('/user');
 
     }
+
+
+    /**
+     * 修改密码
+     */
+    public function modifyPass(Request $request)
+    {
+        if ($_POST) {
+            $password = $this->AdminUser->find(session('user.uid'), ['password']);
+
+            if (!Hash::check($request->password, $password->password)) {
+                return back()->withErrors('原密码错误');
+            }
+            if ($request->new_password != $request->re_new_password) {
+                return back()->withErrors('重复密码错误');
+            }
+            $this->AdminUser->update(array('password' => Hash::make($request->new_password)), array('uid' => session('user.uid')));
+
+            return redirect('/user');
+
+        } else {
+            return view('Back.User.modifyPass');
+        }
+
+
+    }
 }

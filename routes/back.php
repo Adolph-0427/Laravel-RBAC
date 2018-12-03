@@ -19,6 +19,8 @@ Route::get('user/authorizationGroup', 'AdminUserController@authorizationGroup')-
 Route::get('user/authorizationRole', 'AdminUserController@authorizationRole')->name('user.authorizationRole');
 Route::post('user/storeAuthGroup', 'AdminUserController@storeAuthGroup')->name('user.storeAuthGroup');
 Route::post('user/storeAuthRole', 'AdminUserController@storeAuthRole')->name('user.storeAuthRole');
+Route::get('user/modifyPass', 'AdminUserController@modifyPass')->name('user.modifyPass');
+Route::post('user/modifyPass', 'AdminUserController@modifyPass')->name('user.modifyPass');
 Route::resource('user', 'AdminUserController');
 //文章
 //文章审核

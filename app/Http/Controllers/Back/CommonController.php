@@ -18,7 +18,7 @@ class CommonController extends Controller
                 exit();
             }
             if (!$this->access()) {
-                return back()->withErrors('无权限访问！');
+//                return back()->withErrors('无权限访问！');
             }
             return $next($request);
         });

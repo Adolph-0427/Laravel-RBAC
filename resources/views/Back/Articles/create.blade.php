@@ -20,8 +20,7 @@
                     </div>
                     <div class="widget-content nopadding">
                         <form class="form-horizontal" method="post" action="{{url('articles')}}"
-                              name="basic_validate"
-                              id="basic_validate" novalidate="novalidate">
+                              name="basic_validate" id="basic_validate" novalidate="novalidate">
                             @csrf
                             <div class="control-group">
                                 <label class="control-label">标题</label>

@@ -42,8 +42,12 @@ class MenuSeeder extends Seeder
                 ],
                 [
                     'name' => '更新数据',
-                    'route' => 'menu.update',
-                ]
+                    'route' => 'user.update',
+                ],
+                [
+                    'name' => '修改密码',
+                    'route' => 'user.modifyPass',
+                ],
             ]
 
         ],
@@ -198,12 +202,13 @@ class MenuSeeder extends Seeder
                 [
                     'name' => '更新数据',
                     'route' => 'menu.update',
+                ],
+                [
+                    'name' => '更数据',
+                    'route' => 'menu.updat1e',
                 ]
             ],
         ],
-        [
-
-        ]
     ];
 
     protected $Access;
@@ -233,18 +238,22 @@ class MenuSeeder extends Seeder
     public function menu($Menu, $Access, $data = [], $pid = 0)
     {
         foreach ($data as $key => $value) {
+
             $mid = (object)[];
-            DB::transaction(function () use ($Menu, $Access, $value, $mid, $pid) {
-                $da = [
-                    'name' => $value['name'],
-                    'route' => $value['route'],
-                    'pid' => $pid
-                ];
-                $mid = $Menu->create($da);
-                $aid = $this->Access->create(array('type' => 1));
-                DB::table('access_relational_menu')->insert(array('aid' => $aid->id, 'mid' => $mid->id));
-                $this->mid = $mid->id;
-            });
+            if (!$this->Menu->where('route', '=', $value['route'])->exists()) {
+                DB::transaction(function () use ($Menu, $Access, $value, $mid, $pid) {
+                    $da = [
+                        'name' => $value['name'],
+                        'route' => $value['route'],
+                        'pid' => $pid
+                    ];
+                    $mid = $Menu->create($da);
+                    $aid = $this->Access->create(array('type' => 1));
+                    DB::table('access_relational_menu')->insert(array('aid' => $aid->id, 'mid' => $mid->id));
+                    $this->mid = $mid->id;
+                });
+            }
+            $this->mid = $Menu->where('route','=',$value['route'])->value('id');
             if (isset($value['child'])) {
                 $this->menu($Menu, $Access, $value['child'], $this->mid);
             }

@@ -10,7 +10,8 @@
         <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-style.css')); ?>"/>
         <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/matrix-media.css')); ?>"/>
         <link rel="stylesheet" href="<?php echo e(URL::asset('/back/font-awesome/css/font-awesome.css')); ?>"/>
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
+        <link rel='stylesheet' type='text/css'
+              href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,800'>
         <link rel="stylesheet" href="<?php echo e(URL::asset('/back/css/style.css')); ?>"/>
     <?php echo $__env->yieldSection(); ?>
 </head>
@@ -30,9 +31,7 @@
                 <span class="text">欢迎 <?php echo e(session('user.username')); ?></span><b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-user"></i>我的资料</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="icon-check"></i> 我的任务</a></li>
+                <li><a href="<?php echo e(url('user/modifyPass')); ?>"><i class="icon-user"></i> 修改密码</a></li>
                 <li class="divider"></li>
                 <li><a href="<?php echo e(url('/logout')); ?>"><i class="icon-key"></i> 退出</a></li>
             </ul>
